@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
-import SearchForm from './SearchForm';
+import CollapseMenu from './collapse/CollapseMenu';
 
 class Header extends React.Component{
     constructor(props){
@@ -11,10 +11,8 @@ class Header extends React.Component{
         return (
             <Navbar bg="light" expand = "true" className ="p-3">
                 <Navbar.Brand href="#">MBTI.zip</Navbar.Brand>
-                <Link type ="mbti" />
-                <Link type ="job" />
-                <DropdownLink type="person" />
-                <SearchForm />
+                <Navbar.Toggle aria-controls="navbarScroll" />
+                <CollapseMenu />
             </Navbar>
         )
     }

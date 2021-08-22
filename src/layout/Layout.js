@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from './header/Header';
-import Sidebar from './sidebar/Sidebar';
 import Footer from './footer/Footer';
 
 class Layout extends React.Component{
@@ -12,7 +11,6 @@ class Layout extends React.Component{
         return (
             <div className="layout">
                 <Header />
-                <Sidebar />
                 <Footer />
             </div>
         )
