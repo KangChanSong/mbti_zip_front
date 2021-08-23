@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import SearchForm from './SearchForm';
+import PersonDropdownItem from './PersonDropdownItem';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 class CollapseMenu extends React.Component{
@@ -12,22 +13,24 @@ class CollapseMenu extends React.Component{
     render(){
         return (
             
-            <Navbar.Collapse id ="navbarScroll">
-                <Nav
-                    className ="mr-auto my-2 my-lg-0"
+            <Navbar.Collapse id ="navbarScroll" className = "d-flex justify-content-between">
+                <Nav className = "p-2"
                     style = {{ maxHeight : '300px'}}
                     navbarScroll>
                     <Nav.Link href="#action1">MBTI</Nav.Link>
                     <Nav.Link href="#action2">직업</Nav.Link>
                     <NavDropdown title="인물" id="navbarScrollingDropdown">
-                        <NavDropdown.Item href="#action3">만화캐릭터</NavDropdown.Item>
-                        <NavDropdown.Item href="#action4">배우</NavDropdown.Item>
-                        <NavDropdown.Item href="#action5">가수</NavDropdown.Item>
-                        <NavDropdown.Item href="#action5">래퍼</NavDropdown.Item>
-                        <NavDropdown.Item href="#action5">위인</NavDropdown.Item>
+                        <PersonDropdownItem href="#" value = "위인" />
+                        <PersonDropdownItem href="#" value = "과학자" />
+                        <PersonDropdownItem href="#" value = "배우" />
+                        <PersonDropdownItem href="#" value = "가수" />
+                        <PersonDropdownItem href="#" value = "아이돌" />
+                        <PersonDropdownItem href="#" value = "래퍼" /> 
                     </NavDropdown>    
                 </Nav>
-                <SearchForm />
+                <Nav className = "p-2">
+                    <SearchForm />
+                </Nav>
             </Navbar.Collapse>
         )
     }

@@ -9,7 +9,7 @@ class Header extends React.Component{
 
     render(){
         return (
-            <Navbar bg="light" expand = "true" className ="p-3">
+            <Navbar bg="light" expand = "lg" className ="p-3">
                 <Navbar.Brand href="#">MBTI.zip</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <CollapseMenu />
