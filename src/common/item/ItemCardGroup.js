@@ -38,7 +38,7 @@ class ItemCardGroup extends React.Component{
         const itemList = this.props.itemList;
 
         return (
-            <CardGroup>
+            <CardGroup className = 'm-5'>
                {type === "person" ?
                 this.toPersonItemList(itemList) :
                 this.toJobItemList(itemList)}

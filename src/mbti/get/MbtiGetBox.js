@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemCardGroup from '../../common/ItemCardGroup';
+import ItemCardGroup from '../../common/item/ItemCardGroup';
 import MbtiGet from './MbtiGet';
 import MbtiGetTitle from './MbtiGetTitle';
 

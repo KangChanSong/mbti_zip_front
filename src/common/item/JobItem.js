@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import getRandomColor from './ColorRandomGenerator';
+import getRandomColor from '../ColorRandomGenerator';
 import './Item.css';
 
 class JobItem extends React.Component{

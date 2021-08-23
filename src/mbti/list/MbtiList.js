@@ -1,5 +1,5 @@
 import React from 'react';
-import MbtiItem from '../../common/MbtiItem';
+import MbtiItem from '../../common/item/MbtiItem';
 import CardGroup from 'react-bootstrap/CardGroup';
 import './MbtiList.css';
 

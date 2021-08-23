@@ -1,6 +1,6 @@
 import React from 'react';
 import TrendingHead from './TrendingHead';
-import ItemCardGroup from '../../common/ItemCardGroup';
+import ItemCardGroup from '../../common/item/ItemCardGroup';
 import './Trending.css';
 
 class Trending extends React.Component{
