@@ -1,0 +1,21 @@
+.card {
+    text-align: center;
+    color: black;
+}
+
+.card:hover{
+    background-color: rgb(240, 240, 255);
+}
+
+.card-text{
+    font-size: 14px;
+}
+
+.item-card-image{
+    width: 90px;
+    height: 80px;
+}
+
+a {
+    text-decoration: none;
+}

@@ -1,0 +1,12 @@
+.trending {
+    display: flex;
+    flex-direction: column;
+    margin: 5%;
+}
+
+.trending-head{
+    width: 95%;
+    margin: 2%;
+    display: flex;
+    justify-content: space-between;
+}
