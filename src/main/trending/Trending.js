@@ -1,39 +1,12 @@
 import React from 'react';
-import CardGroup from 'react-bootstrap/CardGroup';
-import PersonItem from '../../common/PersonItem';
-import JobItem from '../../common/JobItem';
 import TrendingHead from './TrendingHead';
+import ItemCardGroup from '../../common/ItemCardGroup';
 import './Trending.css';
 
 class Trending extends React.Component{
     constructor(props){
         super(props);
     }
-
-    toPersonItemList(itemList){
-        return itemList.map(item => {
-            return <PersonItem 
-                image = {item.image}
-                name = {item.name}
-                mbti = {item.mbti}
-                likes = {item.likes}
-                views = {item.views}
-            />
-        })
-        
-    }
-
-    toJobItemList(itemList){
-        return itemList.map(item => {
-            return <JobItem 
-                name = {item.name}
-                mbti = {item.mbti}
-                likes = {item.likes}
-                views = {item.views}
-            />
-            })
-    } 
-
 
     render(){
         const type = this.props.type;
@@ -42,11 +15,7 @@ class Trending extends React.Component{
         return (
         <div className = "trending">
             <TrendingHead type={type} />
-            <CardGroup>
-               {type === "person" ?
-                this.toPersonItemList(itemList) :
-                this.toJobItemList(itemList)}
-            </CardGroup>
+            <ItemCardGroup type = {type} itemList = {itemList} />
         </div>
         )
     }

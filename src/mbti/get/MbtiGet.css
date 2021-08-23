@@ -1,0 +1,12 @@
+.mbtiGet {
+    margin: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mbtiGet-title {
+    display: flex;
+    justify-content: space-between;
+    margin: 3% 0 3% 0;
+}
