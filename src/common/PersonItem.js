@@ -12,7 +12,9 @@ class PersonItem extends React.Component{
         const person = {
             image : this.props.image,
             name : this.props.name,
-            mbti : this.props.mbti
+            mbti : this.props.mbti,
+            likes : this.props.likes,
+            views : this.props.views
         };
 
         return (
@@ -24,6 +26,8 @@ class PersonItem extends React.Component{
                 <Card.Body>
                     <Card.Title>{person.name}</Card.Title>
                     <Card.Text>{person.mbti}</Card.Text>
+                    <Card.Text>❤ : {person.likes}</Card.Text>
+                    <Card.Text>👁‍🗨 : {person.views}</Card.Text>
                 </Card.Body>
             </Card>
             </a>

@@ -11,7 +11,9 @@ class JobItem extends React.Component{
     render(){
         const job = {
             name : this.props.name,
-            mbti : this.props.mbti
+            mbti : this.props.mbti,
+            likes : this.props.likes,
+            views : this.props.views
         };
         return (
             <a href="#">
@@ -19,6 +21,8 @@ class JobItem extends React.Component{
             <Card.Body>
                 <Card.Title>{job.name}</Card.Title>
                 <Card.Text >{job.mbti}</Card.Text>
+                <Card.Text>❤ : {job.likes}</Card.Text>
+                <Card.Text>👁‍🗨 : {job.views}</Card.Text>
             </Card.Body>
             </Card>
             </a>

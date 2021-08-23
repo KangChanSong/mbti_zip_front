@@ -16,6 +16,8 @@ class Trending extends React.Component{
                 image = {item.image}
                 name = {item.name}
                 mbti = {item.mbti}
+                likes = {item.likes}
+                views = {item.views}
             />
         })
         
@@ -26,6 +28,8 @@ class Trending extends React.Component{
             return <JobItem 
                 name = {item.name}
                 mbti = {item.mbti}
+                likes = {item.likes}
+                views = {item.views}
             />
             })
     } 

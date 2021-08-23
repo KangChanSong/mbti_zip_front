@@ -10,25 +10,25 @@ class Main extends React.Component{
     render(){
 
         const personList = [
-            {image : 'image', name : '나루토', mbti: 'ENFP'},
-            {image : 'image', name : '나루토', mbti: 'ENFP'},
-            {image : 'image', name : '나루토', mbti: 'ENFP'},
-            {image : 'image', name : '나루토', mbti: 'ENFP'},
-            {image : 'image', name : '나루토', mbti: 'ENFP'},
-            {image : 'image', name : '나루토', mbti: 'ENFP'},
-            {image : 'image', name : '나루토', mbti: 'ENFP'},
-            {image : 'image', name : '나루토', mbti: 'ENFP'}
+            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
+            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
+            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
+            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
+            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
+            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
+            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
+            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100}
         ];
 
         const jobList = [
-            {name : '소방관', mbti: 'ESFP'},
-            {name : '소방관', mbti: 'ESFP'},
-            {name : '소방관', mbti: 'ESFP'},
-            {name : '소방관', mbti: 'ESFP'},
-            {name : '소방관', mbti: 'ESFP'},
-            {name : '소방관', mbti: 'ESFP'},
-            {name : '소방관', mbti: 'ESFP'},
-            {name : '소방관', mbti: 'ESFP'}
+            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
+            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
+            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
+            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
+            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
+            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
+            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
+            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121}
         ]
 
         return (
