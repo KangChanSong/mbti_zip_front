@@ -4,12 +4,11 @@ const colors = [
     'success',
     'danger',
     'warning',
-    'info',
-    'dark'
+    'info'
 ]
 
 function getRandomColor(){
-    let rand = Math.round((Math.random() * 7));
+    let rand = Math.round((Math.random() * 6));
     return colors[rand];
 }
 export default getRandomColor;
