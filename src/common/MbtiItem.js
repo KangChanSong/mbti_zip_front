@@ -30,7 +30,7 @@ class MbtiItem extends React.Component{
 
         const mbtiName = this.props.name;
         return (
-            <a href="#">
+            <a className = "itemLink" href="#">
             <Card className = 'm-3' bg = 'light' variant = 'top'>
             <Card.Body>
                 <Card.Img className = "mbti-card-image "src = "https://static.neris-assets.com/images/personality-types/avatars/infp-mediator.png"/>

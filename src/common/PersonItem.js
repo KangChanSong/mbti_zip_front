@@ -18,8 +18,8 @@ class PersonItem extends React.Component{
         };
 
         return (
-            <a href="#">
-            <Card className="p-4 m-3" border={getRandomColor()}>
+            <a className = "itemLink" href="#">
+            <Card className="m-3" border={getRandomColor()}>
                 <Card.Img
                     className = "item-card-image"
                     variant = 'top' src = 'https://media.comicbook.com/2020/12/naruto-1249229.jpeg?auto=webp&width=1200&height=628&crop=1200:628,smart/'/>

@@ -16,8 +16,8 @@ class JobItem extends React.Component{
             views : this.props.views
         };
         return (
-            <a href="#">
-            <Card className = 'p-4 m-3' border = {getRandomColor()} variant = 'top'>
+            <a className = "itemLink" href="#">
+            <Card className = 'm-3' border = {getRandomColor()} variant = 'top'>
             <Card.Body>
                 <Card.Title>{job.name}</Card.Title>
                 <Card.Text >{job.mbti}</Card.Text>
