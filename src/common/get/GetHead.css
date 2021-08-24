@@ -1,0 +1,15 @@
+.get-head-top {
+    display: flex;
+    justify-content: space-between;
+    margin: 5%;
+}
+
+.get-head-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin: 5%;
+}
+
+.job-get-alert{
+    font-size: 18px;
+}
