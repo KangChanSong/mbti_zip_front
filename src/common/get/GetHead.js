@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import Image from 'react-bootstrap/Image';
 import VoteForm from '../../vote/VoteForm';
-import VoteChart from '../../vote/VoteChart';
 import './GetHead.css';
 
 class GetHead extends React.Component{

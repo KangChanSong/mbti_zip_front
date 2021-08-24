@@ -2,7 +2,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import provideMbtis  from '../common/MbtiArrayProvider';
 import Button from 'react-bootstrap/Button';
-import './VoteForm.css';
+import './Vote.css';
 
 class VoteForm extends React.Component{
     constructor(props){

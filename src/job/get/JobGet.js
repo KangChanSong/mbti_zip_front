@@ -1,5 +1,6 @@
 import React from 'react';
 import GetHead from '../../common/get/GetHead';
+import VoteChart from '../../vote/VoteChart';
 
 class JobGet extends React.Component{
     constructor(props){
@@ -19,8 +20,8 @@ class JobGet extends React.Component{
                     type = 'job'
 
                 />
-                {/* <VoteGraph />
-                <Comment /> */}
+                <VoteChart />
+                {/* <Comment />  */}
             </div>
         );
     }
