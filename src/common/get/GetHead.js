@@ -1,9 +1,9 @@
 import React from 'react';
 import changeTypeToKorean from '../TypeChanger';
-import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import Image from 'react-bootstrap/Image';
 import VoteForm from '../../vote/VoteForm';
+import DeleteModal from '../../modal/DeleteModal';
 import './GetHead.css';
 
 class GetHead extends React.Component{
@@ -41,7 +41,10 @@ class GetHead extends React.Component{
             <div className = "get-head">
                 <div className = "get-head-top">
                     <h2>{changeTypeToKorean(type)} | {type === 'person' ? item.name : item.title}</h2>
-                    <Button variant = "primary">삭제</Button> 
+                    <DeleteModal 
+                        text = "삭제"
+                        variant = "secondary" 
+                        size = "sm" />
                 </div>
                 <div className = "get-head-bottom">
                     {type === 'person' ? 

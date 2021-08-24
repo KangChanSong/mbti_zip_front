@@ -1,0 +1,8 @@
+.register-modal-body{
+    display: flex;
+    flex-direction: column;
+}
+
+.register-modal-input {
+    margin: 2%;
+}
