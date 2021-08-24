@@ -22,7 +22,7 @@ function CommentRegisterModal(){
                     <Modal.Title>댓글 등록</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className = "register-modal-body">
-                    <input type="text" name="writer" placeholder="작성자" className ="register-modal-input" />
+                    <input type="text" name="writer" placeholder="작성자" className ="register-modal-input"  />
                     <input type="content" name="content" placeholder="내용" className ="register-modal-input" />
                     <input type="password" name="password" placeholder ="비밀번호" className ="register-modal-input" />
                 </Modal.Body>

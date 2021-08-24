@@ -1,7 +1,24 @@
+.get-head {
+    margin: 0 7% 0 7%;
+}
+
 .get-head-top {
     display: flex;
     justify-content: space-between;
     margin: 5%;
+}
+
+.get-head-buttons{
+    display: flex;
+    width: 22%;
+    height : 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.get-head-buttons p{
+    padding: 0;
+    margin: 0;
 }
 
 .get-head-bottom {
@@ -10,6 +27,21 @@
     margin: 5%;
 }
 
+
 .job-get-alert{
     font-size: 18px;
+}
+
+
+.person-get-alert{
+    display: flex;
+}
+
+.person-get-img {
+    width: 20%;
+}
+
+.person-get-text{
+    margin-left: 2%;
+    margin-top: 1%;
 }

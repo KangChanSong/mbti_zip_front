@@ -26,7 +26,8 @@ class VoteForm extends React.Component{
         const mbtis = provideMbtis();
 
         return (
-            <Form className = "vote-form" >
+            <div className = "vote-form" >
+            <Form>
                 <Form.Select className = "vote-form-select">
                     <option>MBTI</option>
                     {this.createMbtiOptions(mbtis)}
@@ -35,6 +36,7 @@ class VoteForm extends React.Component{
                     투표하기
                 </Button>
             </Form>
+            </div>
         )
     }
 }

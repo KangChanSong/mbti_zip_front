@@ -6,6 +6,8 @@ import VoteForm from '../../vote/VoteForm';
 import DeleteModal from '../../modal/DeleteModal';
 import './GetHead.css';
 
+// item : Job 또는 Person 리스트
+// type : job 또는 person
 class GetHead extends React.Component{
 
     constructor(props){
@@ -16,10 +18,12 @@ class GetHead extends React.Component{
         
         return (
             <Alert variant = "light" className = "person-get-alert" >
-                <Image src="https://media.comicbook.com/2020/12/naruto-1249229.jpeg?auto=webp&width=1200&height=628&crop=1200:628,smart/" thumbnail />
-                <p>작성자 : {item.writer}</p>
-                <p>분류 : {item.category}</p>
-                <p>투표 결과 : {item.mbti}</p>
+                <Image className ="person-get-img" src="https://media.comicbook.com/2020/12/naruto-1249229.jpeg?auto=webp&width=1200&height=628&crop=1200:628,smart/" thumbnail />
+                <div className = "person-get-text">
+                    <p>작성자 : {item.writer}</p>
+                    <p>분류 : {item.category}</p>
+                    <p>투표 결과 : {item.mbti}</p>
+                </div>
             </Alert>  
         )
     }
@@ -41,10 +45,14 @@ class GetHead extends React.Component{
             <div className = "get-head">
                 <div className = "get-head-top">
                     <h2>{changeTypeToKorean(type)} | {type === 'person' ? item.name : item.title}</h2>
-                    <DeleteModal 
-                        text = "삭제"
-                        variant = "secondary" 
-                        size = "sm" />
+                    <div className = "get-head-buttons">
+                        <p>조회수: 154</p>
+                        <button>❤  3</button>
+                        <DeleteModal 
+                            text = "삭제"
+                            variant = "secondary" 
+                            size = "sm" />
+                    </div>
                 </div>
                 <div className = "get-head-bottom">
                     {type === 'person' ? 

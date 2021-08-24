@@ -26,6 +26,7 @@ class Comment extends React.Component{
 
         return (
             <div className = "comment">
+                <h2>토론</h2>
                 <CommentList commentList = {commentList}/>
                 <CommentBottom />
             </div>

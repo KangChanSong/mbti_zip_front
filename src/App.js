@@ -6,10 +6,12 @@ import MbtiList from './mbti/list/MbtiList';
 import MbtiGet from './mbti/get/MbtiGet';
 import JobList from './job/list/JobList';
 import JobGet from './job/get/JobGet';
+import PersonList from './person/list/PersonList';
+import PersonGet from './person/get/PersonGet';
 
 function App(){
   return (
-    <Layout children = {<JobGet />}/>
+    <Layout children = {<PersonGet />}/>
   ) 
 }
 
