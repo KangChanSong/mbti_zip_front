@@ -8,10 +8,11 @@ import JobList from './job/list/JobList';
 import JobGet from './job/get/JobGet';
 import PersonList from './person/list/PersonList';
 import PersonGet from './person/get/PersonGet';
+import Register from './common/register/Register';
 
 function App(){
   return (
-    <Layout children = {<PersonGet />}/>
+    <Layout children = {<Register type='job' />}/>
   ) 
 }
 

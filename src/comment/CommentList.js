@@ -14,9 +14,8 @@ class CommentList extends React.Component{
                     <td>{comment.writer}</td>
                     <td>{comment.content}</td>
                     <td>{comment.createDate}</td>
-                    <td>{comment.likes}</td>
                     <td className = "comment-list-button">
-                         <button>❤</button>
+                         <button>❤ {comment.likes}</button>
                     </td>
                     <td className = "comment-list-button">
                          <DeleteModal
@@ -37,10 +36,9 @@ class CommentList extends React.Component{
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>작성자</th>
-                        <th>내용</th>
-                        <th>작성일</th>
-                        <th>좋아요</th>
+                        <th >작성자</th>
+                        <th >내용</th>
+                        <th >작성일</th>
                     </tr>
                 </thead>
                 <tbody>

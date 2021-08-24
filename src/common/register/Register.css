@@ -1,0 +1,22 @@
+.register {
+    margin: 5% 20% 5% 20%;
+}
+.register h1{
+    margin: 5% 0 5% 0;
+}
+.register .form-control{
+    padding: 2% 0 2% 0;
+    margin: 3% 0 3% 0;
+}
+
+.register .form-select {
+    width: 100%;
+    padding: 2% 0 2% 0;
+    margin: 3% 0 3% 0;
+}
+
+.register-button {
+    margin: 3% 0 3% 0;
+    display: flex;
+    justify-content: flex-end;
+}
