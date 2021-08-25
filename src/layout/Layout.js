@@ -1,21 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import Header from './header/Header';
 import Footer from './footer/Footer';
+import Main from '../main/Main';
 
-class Layout extends React.Component{
-    constructor(props){
-        super(props)
-    }
+function Layout(){
+    const [patty , setPatty ] = useState(<Main />);
 
-    render(){
-        return (
-            <div className="layout">
-                <Header />
-                {this.props.children}
-                <Footer />
-            </div>
-        )
-    }
+    return (
+        <div className="layout">
+            <Header setPatty = {setPatty} />
+            {patty}
+            <Footer />
+        </div>
+    )
 }
 
 export default Layout;

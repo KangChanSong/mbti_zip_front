@@ -3,22 +3,18 @@ import TrendingHead from './TrendingHead';
 import ItemCardGroup from '../../common/item/ItemCardGroup';
 import './Trending.css';
 
-class Trending extends React.Component{
-    constructor(props){
-        super(props);
-    }
+function Trending(props){
 
-    render(){
-        const type = this.props.type;
-        const itemList = this.props.itemList;
+    const type = props.type;
+    const itemList = props.itemList;
 
-        return (
-        <div className = "trending">
-            <TrendingHead type={type} />
-            <ItemCardGroup type = {type} itemList = {itemList} />
-        </div>
-        )
-    }
+    return (
+    <div className = "trending">
+        <TrendingHead type={type} />
+        <ItemCardGroup type = {type} itemList = {itemList} />
+    </div>
+    )
+
 }
 
 export default Trending;

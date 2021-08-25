@@ -1,43 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ItemCardGroup from '../../common/item/ItemCardGroup';
 import ListHead from '../../common/list/ListHead';
 import ListFoot from '../../common/list/ListFoot';
 
 
-class JobList extends React.Component{
-    constructor(props){
-        super(props);
-    }
+function JobList(){
 
-    render(){
+    const JobListElement = () => (
+        <div className = "jobList" >
+            <ListHead type = 'job'/>
+            <ItemCardGroup type = "job" itemList = {"asdasd"} />
+            <ListFoot type = 'job' />
+        </div>
+    );
 
-        const jobList = [
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121}
-        ];
+    const [element , setElement] = useState(<JobListElement />);
 
-        return (
-            <div className = "jobList" >
-                <ListHead type = 'job'/>
-                <ItemCardGroup type = "job" itemList = {jobList} />
-                <ListFoot />
-            </div>
-        );
-    }
+    return (
+        {element}
+    );
+
 }
 
 export default JobList;

@@ -1,21 +1,22 @@
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import CollapseMenu from './collapse/CollapseMenu';
+import Main from '../../main/Main';
 
-class Header extends React.Component{
-    constructor(props){
-        super(props);
+function Header(props){
+
+    function handleBrandCLick(){
+        props.setPatty(<Main />)
     }
 
-    render(){
-        return (
-            <Navbar bg="light" expand = "lg" className ="p-3">
-                <Navbar.Brand href="#">MBTI.zip</Navbar.Brand>
-                <Navbar.Toggle aria-controls="navbarScroll" />
-                <CollapseMenu />
-            </Navbar>
-        )
-    }
+    return (
+        <Navbar bg="light" expand = "lg" className ="p-3">
+            <Navbar.Brand href="#" onClick = {handleBrandCLick}>MBTI.zip</Navbar.Brand>
+            <Navbar.Toggle aria-controls="navbarScroll" />
+            <CollapseMenu setPatty = {props.setPatty} />
+        </Navbar>
+    )
+
 }
 
 export default Header;

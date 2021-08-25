@@ -3,14 +3,15 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import PersonItem from './PersonItem';
 import JobItem from './JobItem';
 
-class ItemCardGroup extends React.Component{
-    constructor(props){
-        super(props);
-    }
+function ItemCardGroup(props){
 
-    toPersonItemList(itemList){
+    const type = props.type;
+    const itemList = props.itemList;
+
+    function toPersonItemList(itemList){
         return itemList.map(item => {
             return <PersonItem 
+                key = {item.id}
                 image = {item.image}
                 name = {item.name}
                 mbti = {item.mbti}
@@ -21,10 +22,12 @@ class ItemCardGroup extends React.Component{
         
     }
 
-    toJobItemList(itemList){
+    function toJobItemList(itemList){
+
         return itemList.map(item => {
             return <JobItem 
-                name = {item.name}
+                key = {item.id}
+                name = {item.title}
                 mbti = {item.mbti}
                 likes = {item.likes}
                 views = {item.views}
@@ -32,19 +35,15 @@ class ItemCardGroup extends React.Component{
             })
     } 
 
-    render(){
 
-        const type = this.props.type;
-        const itemList = this.props.itemList;
+    return (
+        <CardGroup className = 'm-5'>
+            {type === "person" ?
+            toPersonItemList(itemList) :
+            toJobItemList(itemList)}
+        </CardGroup>
+    )
 
-        return (
-            <CardGroup className = 'm-5'>
-               {type === "person" ?
-                this.toPersonItemList(itemList) :
-                this.toJobItemList(itemList)}
-            </CardGroup>
-        )
-    }
 }
 
 export default ItemCardGroup;

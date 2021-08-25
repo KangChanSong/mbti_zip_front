@@ -1,44 +1,56 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Greeting from './greeting/Greeting';
 import Trending from './trending/Trending';
 
-class Main extends React.Component{
-    constructor(props){
-        super(props);
+function Main (){
+
+    const[persons, setPersons] = useState(null);
+    const[jobs , setJobs] = useState(null);
+    const[loading, setLoading] = useState(false);
+    const[error, setError] = useState(null);
+
+    useEffect(() => {
+
+        const fetchItems = async () => {
+            try{
+                setPersons(null);
+                setJobs(null);
+                setLoading(true);
+                setError(null);
+                
+                const urlSuffix = "/api/v1/list?page=1&size=8&sort=createDate&dir=desc";
+                const personResponse = await axios.get("/person" + urlSuffix );
+                const jobResponse = await axios.get("/job" + urlSuffix ); 
+                setPersons(personResponse.data['personGetDtos']);
+                setJobs(jobResponse.data['jobGetDtos']);
+
+            } catch (e){
+                setError(e);
+            }
+            setLoading(false);
+        }
+
+        fetchItems();
+    }, [])
+
+    if(loading){
+        return <h1>로딩중</h1>;
+    }
+    if(error) {
+        return <h1> {error.toString()} </h1>;
+    }
+    if(!persons && !jobs){
+        return null;
     }
 
-    render(){
-
-        const personList = [
-            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100}
-        ];
-
-        const jobList = [
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121},
-            {name : '소방관', mbti: 'ESFP', likes: 6, views: 121}
-        ]
-
-        return (
+    return (
             <div className = "main">
                 <Greeting />
-                <Trending type = "person" itemList = {personList}/>
-                <Trending type = "job" itemList = {jobList}/>
+                <Trending type = "person" itemList = {persons}/>
+                <Trending type = "job" itemList = {jobs}/>
             </div>
-        )
-    }
+    )
 }
 
 export default Main;

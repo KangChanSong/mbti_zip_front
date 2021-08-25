@@ -5,13 +5,10 @@ import changeTypeToKorean from '../TypeChanger';
 import './Register.css';
 
 // type : person 또는 job
-class Register extends React.Component{
-    constructor(props){
-        super(props);
-    }
+function Register(props){
 
-    createPersonRegsiterForm(type){
-        return (
+    const createPersonRegsiterForm = (type) => 
+        (
             <div className = "register">
                 <h1>{type} 등록</h1>
                 <Form>
@@ -67,11 +64,9 @@ class Register extends React.Component{
                     <Button variant = "primary">{type} 등록</Button>
                 </div>
             </div>
-        )
-    }
+    );
 
-    createJobRegisterForm(type){
-        return (
+    const createJobRegisterForm = (type) => (
             <div className = "register">
                 <h1>{type} 등록</h1>
                 <Form>
@@ -105,21 +100,18 @@ class Register extends React.Component{
                 </div>
             </div>
         )
-    }
 
-    render(){
 
-        const type = changeTypeToKorean(this.props.type);
+    const type = changeTypeToKorean(this.props.type);
 
-        return (
-            <>
-            {type === '인물' ?
-             this.createPersonRegsiterForm(type)
-             : this.createJobRegisterForm(type)};
-            </>
-            );
+    return (
+        <>
+        {type === '인물' ?
+            createPersonRegsiterForm(type)
+            : createJobRegisterForm(type)};
+        </>
+    );
         
-    }
 }
 
 export default Register;
