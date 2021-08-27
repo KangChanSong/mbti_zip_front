@@ -4,13 +4,12 @@ import Header from './header/Header';
 import Footer from './footer/Footer';
 import Main from '../main/Main';
 
-function Layout(){
-    const [patty , setPatty ] = useState(<Main />);
+const Layout = ({ children, onLogoClick }) => {
 
     return (
         <div className="layout">
-            <Header setPatty = {setPatty} />
-            {patty}
+            <Header onLogoClick = {onLogoClick} />
+            {children}
             <Footer />
         </div>
     )

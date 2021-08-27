@@ -7,21 +7,23 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import MbtiList from '../../../mbti/list/MbtiList';
 import JobList from '../../../job/list/JobList';
 import PersonList from '../../../person/list/PersonList';
+import { useDispatch } from 'react-redux';
+import { setChildren } from '../../../modules/LayoutModule';
 
-function CollapseMenu(props){
+function CollapseMenu(){
 
-    let category = '';
+    const dispatch = useDispatch();
 
     function handleMbtiClick(){
-        props.setPatty(<MbtiList />)
+        dispatch(setChildren(<MbtiList />))
     }
 
     function handleJobClick(){
-        props.setPatty(<JobList />)
+        dispatch(setChildren(<JobList />))
     }
 
     function handlePersonClick(){
-        props.setPatty(<PersonList  />)
+        dispatch(setChildren(<PersonList />))
     }
 
     return (
