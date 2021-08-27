@@ -1,19 +1,18 @@
 import React from 'react';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link } from 'react-router-dom';
+const PersonDropdownItem = (props) => {
 
-class PersonDropdownItem extends React.Component{
-    constructor(props){
-        super(props);
-    }
+    const value = props.value;
 
-    render(){
-        const href = this.props.href;
-        const value = this.props.value;
+    return (
+        <NavDropdown.Item >
+            <Link to="/person/list">
+                {value}
+            </Link>
+        </NavDropdown.Item>
+    )
 
-        return (
-            <NavDropdown.Item href={href}>{value}</NavDropdown.Item>
-        )
-    }
 }
 
 export default PersonDropdownItem;

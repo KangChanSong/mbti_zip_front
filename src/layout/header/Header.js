@@ -2,12 +2,13 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Main from '../../main/Main';
 import CollapseMenu from './collapse/CollapseMenu';
+import { Link } from 'react-router-dom';
 
-const Header = ({ onLogoClick }) => {
+const Header = () => {
 
     return (
         <Navbar bg="light" expand = "lg" className ="p-3">
-            <Navbar.Brand href="#" onClick = {() => onLogoClick(<Main />)}>MBTI.zip</Navbar.Brand>
+            <Link to = "/"><Navbar.Brand>MBTI.zip</Navbar.Brand></Link>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <CollapseMenu />
         </Navbar>
