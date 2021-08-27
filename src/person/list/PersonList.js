@@ -1,42 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ItemCardGroup from '../../common/item/ItemCardGroup';
 import ListFoot from '../../common/list/ListFoot';
 import ListHead from '../../common/list/ListHead';
+import { getListFromServer  } from '../../modules/apiCaller';
+import { renderAfterApiCall } from '../../modules/renderHelper';
 
-class PersonList extends React.Component{
-    constructor(props){
-        super(props)
-    }
+const PersonList = () => {
 
-    render(){
-        const personList = [
-            {image : 'image', name : '나asdas루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : 'sdsd나루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나루sd토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나sdd루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나루sd토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나sd루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나sdsd루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : 'sdsdsdsdsds나루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나sds루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나루토', mbti: 'ENFP', likes: 4, views: 100},
-            {image : 'image', name : '나루sdsd토', mbti: 'ENFP', likes: 4, views: 100}
-        ];
+    const[persons, setPersons] = useState(null);
+    const[loading, setLoading] = useState(false);
+    const[error, setError] = useState(null);
 
-        return (
-            <div className = "personList">
-                <ListHead type = 'person' />
-                <ItemCardGroup type = 'person' itemList = {personList} />
-                <ListFoot />
-            </div>
-        )
+    useEffect(() => {
+        const url = '/person/api/v1/list?page=1&size=16&sort=createDate&dir=desc';
+        getListFromServer(url, 'person', setPersons, setError, setLoading);
+    }, []);
 
-    }
+    const element = renderAfterApiCall(persons, error, loading, 
+        <div className = "personList">
+            <ListHead type = 'person' />
+            <ItemCardGroup type = 'person' itemList = {persons} />
+            <ListFoot />
+        </div>);
+
+    return element;
 }
 
 export default PersonList;

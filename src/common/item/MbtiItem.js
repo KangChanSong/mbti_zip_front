@@ -25,7 +25,9 @@ class MbtiItem extends React.Component{
             ISTP : '만능 재주꾼',
             ISFP : '호기심 많은 예술가',
             ESTP : '모험을 즐기는 사업가',
-            ESFP : '자유로운 영혼의 연예인'
+            ESFP : '자유로운 영혼의 연예인',
+            NONE : '아직 투표되지 않음',
+            DRAW : '투표 결과가 같은 MBTI가 두개 이상',
         }
 
         const mbtiName = this.props.name;

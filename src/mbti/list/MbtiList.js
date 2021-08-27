@@ -1,48 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MbtiItem from '../../common/item/MbtiItem';
 import CardGroup from 'react-bootstrap/CardGroup';
+import axios from 'axios';
 import './MbtiList.css';
+import { getListFromServer } from '../../modules/apiCaller';
+import { renderAfterApiCall } from '../../modules/renderHelper';
 
-class MbtiList extends React.Component{
-    constructor(props){
-        super(props);
-    }
+const MbtiList = () => {
 
-    toMbtiList(mbtiList){
-        return mbtiList.map(mbti => {
-            return <MbtiItem name = {mbti.name} />
-        })
-    }
+    const[mbtis, setMbtis] = useState(null);
+    const[loading, setLoading] = useState(false);
+    const[error, setError] = useState(null);
 
-    render(){
-        const mbtiList = [
-            {name : 'INFP'},
-            {name : 'INFJ'},
-            {name : 'INTP'},
-            {name : 'INTJ'},
-            {name : 'ISFP'},
-            {name : 'ISFJ'},
-            {name : 'ISTP'},
-            {name : 'ISTJ'},
-            {name : 'ENFP'},
-            {name : 'ENFJ'},
-            {name : 'ENTP'},
-            {name : 'ENTJ'},
-            {name : 'ESFP'},
-            {name : 'ESFJ'},
-            {name : 'ESTP'},
-            {name : 'ESTJ'}
-        ];
-        
-        return(
-            <div className = "mbtiList">
-                <h1>Mbti 목록</h1>
-                <CardGroup>
-                    {this.toMbtiList(mbtiList)}
-                </CardGroup>
-            </div>
+    useEffect(() => {
+        const url = "/mbti/api/v1/list";
+        getListFromServer(url, 'mbti', setMbtis, setError, setLoading);
+    }, []);
+
+    const MbtiElements = ({ mbtis }) => {
+        return (
+            <>
+            {
+                mbtis.map(mbti => (<MbtiItem key = {mbti.key} name = {mbti.name.toUpperCase()} />))
+            }
+            </>
         )
     }
+
+    const element = (
+        <div className = "mbtiList">
+            <h1>Mbti 목록</h1>
+            <CardGroup>
+                <MbtiElements mbtis = {mbtis} />
+            </CardGroup>
+        </div>
+    );
+
+    const render = renderAfterApiCall(mbtis, error, loading, element);
+
+    return render;
 }
 
 export default MbtiList;
