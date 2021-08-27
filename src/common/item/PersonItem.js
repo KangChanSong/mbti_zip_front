@@ -2,23 +2,14 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import getRandomColor from '../ColorRandomGenerator';
 import './Item.css';
+import { Link } from 'react-router-dom';
 
-class PersonItem extends React.Component{
-    constructor(props){
-        super(props);
-    }
+const PersonItem = ({ person }) => {
 
-    render(){
-        const person = {
-            image : this.props.image,
-            name : this.props.name,
-            mbti : this.props.mbti,
-            likes : this.props.likes,
-            views : this.props.views
-        };
 
-        return (
-            <a className = "itemLink" href="#">
+
+    return (
+        <Link className = "itemLink" to={"/person/get/" + person.id} >
             <Card className="m-3" border={getRandomColor()}>
                 <Card.Img
                     className = "item-card-image"
@@ -30,9 +21,8 @@ class PersonItem extends React.Component{
                     <Card.Text>👁‍🗨 : {person.views}</Card.Text>
                 </Card.Body>
             </Card>
-            </a>
-        )
-    }
+        </Link>
+    )
 }
 
 export default PersonItem;

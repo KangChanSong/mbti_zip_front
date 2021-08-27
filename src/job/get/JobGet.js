@@ -1,30 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import GetHead from '../../common/get/GetHead';
 import VoteChart from '../../vote/VoteChart';
 import Comment from '../../comment/Comment';
-class JobGet extends React.Component{
-    constructor(props){
-        super(props);
-    }
+import { fetchOne } from '../../modules/apiCaller';
+import { renderAfterApiCall } from '../../modules/renderHelper';
 
-    render(){
+const JobGet = ({ match }) => {
 
-        const sampleJob = {
-            title : '개발자', writer : 'skc97', mbti: 'INFP'
-        }
+    const jobId = match.params.jobId;
+    const [job, setJob] = useState(null);
+    const [loading, setLoading] = useState(null);
+    const [error, setError ] = useState(null);
 
-        return (
-            <div className = "jobGet">
-                <GetHead 
-                    item = {sampleJob}
-                    type = 'job'
+    useEffect(() => {
+        const url = "/job/api/v1/get/" + jobId;
+        fetchOne(url, setJob, setError , setLoading);
+    }, []);
 
-                />
-                <VoteChart />
-                <Comment /> 
-            </div>
-        );
-    }
+    const element = (
+        <div className = "jobGet">
+            <GetHead 
+                item = {job}
+                type = 'job'
+            />
+            <VoteChart />
+            <Comment /> 
+        </div>
+    )
+    return renderAfterApiCall(job, error, loading, element);
 }
 
 export default JobGet;

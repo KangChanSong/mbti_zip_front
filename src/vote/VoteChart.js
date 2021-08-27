@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
-import provideMbtis from '../common/MbtiArrayProvider';
+import { fetchItems } from '../modules/apiCaller';
 import './Vote.css';
 
 function createDataWithMbti(mbtiVotes){
@@ -52,32 +52,26 @@ scales: {
 },
 };
   
-class VoteChart extends React.Component{
-    constructor(props){
-        super(props);
-    }
+const VoteChart = () => {
 
-    render(){
-        let mbtiVotes = [];
-        let cnt = 0;
-        provideMbtis().forEach(mbti => {
-            mbtiVotes.push(
-                {mbti : mbti['name'],
-                votes: cnt++}
-            )
-        })
-        const data = createDataWithMbti(mbtiVotes);
+    const [mbtis, setMbtis] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-        return (
-            <div className = "vote-chart">
-                <h3>MBTI별 투표율</h3>
-                <Bar
-                    data={data}
-                    height={100}
-                    options={options} />
-            </div>
-        );
-    }
+    
+
+    const data = createDataWithMbti(mbtiVotes);
+
+    return (
+        <div className = "vote-chart">
+            <h3>MBTI별 투표율</h3>
+            <Bar
+                data={data}
+                height={100}
+                options={options} />
+        </div>
+    );
+
 }
 
   export default VoteChart;

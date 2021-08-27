@@ -1,33 +1,25 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import getRandomColor from '../ColorRandomGenerator';
+import { Link } from 'react-router-dom';
+
+
 import './Item.css';
 
-class JobItem extends React.Component{
-    constructor(props){
-        super(props);
-    }
+const JobItem = ({ job }) => {
 
-    render(){
-        const job = {
-            name : this.props.name,
-            mbti : this.props.mbti,
-            likes : this.props.likes,
-            views : this.props.views
-        };
-        return (
-            <a className = "itemLink" href="#">
+    return (
+        <Link className = "itemLink" to = {"/job/get/" + job.id} >
             <Card className = 'm-3' border = {getRandomColor()} variant = 'top'>
             <Card.Body>
-                <Card.Title>{job.name}</Card.Title>
+                <Card.Title>{job.title}</Card.Title>
                 <Card.Text >{job.mbti}</Card.Text>
                 <Card.Text>❤ : {job.likes}</Card.Text>
                 <Card.Text>👁‍🗨 : {job.views}</Card.Text>
             </Card.Body>
             </Card>
-            </a>
-        )
-    }
+        </Link>    
+    )
 }
 
 export default JobItem;

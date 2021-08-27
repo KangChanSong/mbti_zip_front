@@ -12,25 +12,18 @@ function ItemCardGroup(props){
         return itemList.map(item => {
             return <PersonItem 
                 key = {item.id}
-                image = {item.image}
-                name = {item.name}
-                mbti = {item.mbti}
-                likes = {item.likes}
-                views = {item.views}
+                person = {item}
             />
         })
         
     }
 
     function toJobItemList(itemList){
-
+        console.log(itemList);
         return itemList.map(item => {
             return <JobItem 
                 key = {item.id}
-                name = {item.title}
-                mbti = {item.mbti}
-                likes = {item.likes}
-                views = {item.views}
+                job = {item}
             />
             })
     } 

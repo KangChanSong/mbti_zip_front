@@ -3,7 +3,7 @@ import MbtiItem from '../../common/item/MbtiItem';
 import CardGroup from 'react-bootstrap/CardGroup';
 import axios from 'axios';
 import './MbtiList.css';
-import { getListFromServer } from '../../modules/apiCaller';
+import { fetchItems } from '../../modules/apiCaller';
 import { renderAfterApiCall } from '../../modules/renderHelper';
 
 const MbtiList = () => {
@@ -14,7 +14,7 @@ const MbtiList = () => {
 
     useEffect(() => {
         const url = "/mbti/api/v1/list";
-        getListFromServer(url, 'mbti', setMbtis, setError, setLoading);
+        fetchItems(url, 'mbti', setMbtis, setError, setLoading);
     }, []);
 
     const MbtiElements = ({ mbtis }) => {

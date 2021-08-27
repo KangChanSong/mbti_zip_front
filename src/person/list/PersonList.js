@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ItemCardGroup from '../../common/item/ItemCardGroup';
 import ListFoot from '../../common/list/ListFoot';
 import ListHead from '../../common/list/ListHead';
-import { getListFromServer  } from '../../modules/apiCaller';
+import { fetchItems  } from '../../modules/apiCaller';
 import { renderAfterApiCall } from '../../modules/renderHelper';
 
 const PersonList = () => {
@@ -13,7 +13,7 @@ const PersonList = () => {
 
     useEffect(() => {
         const url = '/person/api/v1/list?page=1&size=16&sort=createDate&dir=desc';
-        getListFromServer(url, 'person', setPersons, setError, setLoading);
+        fetchItems(url, 'person', setPersons, setError, setLoading);
     }, []);
 
     const element = renderAfterApiCall(persons, error, loading, 
