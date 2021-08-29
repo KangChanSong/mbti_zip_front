@@ -4,15 +4,16 @@ import ListFoot from '../../common/list/ListFoot';
 import ListHead from '../../common/list/ListHead';
 import { fetchItems  } from '../../modules/apiCaller';
 import { renderAfterApiCall } from '../../modules/renderHelper';
+import { createListUrlWithQuery } from '../../modules/urlGenerator';
 
-const PersonList = () => {
+const PersonList = ({ location }) => {
 
     const[persons, setPersons] = useState(null);
     const[loading, setLoading] = useState(false);
     const[error, setError] = useState(null);
 
     useEffect(() => {
-        const url = '/person/api/v1/list?page=1&size=16&sort=createDate&dir=desc';
+        const url = createListUrlWithQuery(location.search, 'person');
         fetchItems(url, 'person', setPersons, setError, setLoading);
     }, []);
 

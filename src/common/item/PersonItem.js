@@ -25,4 +25,4 @@ const PersonItem = ({ person }) => {
     )
 }
 
-export default PersonItem;
+export default PersonItem;  

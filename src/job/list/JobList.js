@@ -4,15 +4,16 @@ import ListHead from '../../common/list/ListHead';
 import ListFoot from '../../common/list/ListFoot';
 import { fetchItems } from '../../modules/apiCaller';
 import { renderAfterApiCall } from '../../modules/renderHelper';
+import { createListUrlWithQuery } from '../../modules/urlGenerator';
 
-function JobList(){
+function JobList({ location }){
 
     const [jobs, setJobs] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const url = "/job/api/v1/list?page=1&size=16&sort=createDate&dir=desc";
+        const url = createListUrlWithQuery(location.search, 'job');
         fetchItems(url, 'job', setJobs, setError, setLoading);
     }, [])
 
@@ -28,5 +29,7 @@ function JobList(){
 
     return render;
 }
+
+
 
 export default JobList;

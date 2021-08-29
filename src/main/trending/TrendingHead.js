@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-
+import { Link } from 'react-router-dom';
 class TrendingHead extends React.Component{
     constructor(props){
         super(props);
@@ -17,11 +17,11 @@ class TrendingHead extends React.Component{
         return (
             <div className = 'trending-head'>
                 <h3>실시간 베스트 | {types[type]}</h3>
-                <a href="#">
+                <Link to ="/job/list">
                     <Button variant = "primary" size= "sm">
                         더보기
                     </Button>
-                </a>                
+                </Link>
             </div>
         )
     }
