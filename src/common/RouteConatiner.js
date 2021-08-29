@@ -6,6 +6,7 @@ import PersonList from '../person/list/PersonList';
 import PersonGet from '../person/get/PersonGet';
 import MbtiList from '../mbti/list/MbtiList';
 import JobGet from '../job/get/JobGet';
+import Register from './register/Register';
 
 const RouteContainer = () => {
     return (
@@ -16,6 +17,7 @@ const RouteContainer = () => {
             <Route path = "/person/list" component = {PersonList} />
             <Route path = "/person/get/:personId" component = {PersonGet}/>
             <Route path = "/job/get/:jobId" component = {JobGet} />
+            <Route path = "/:type/register" component = {Register} />
         </>
     )
 }

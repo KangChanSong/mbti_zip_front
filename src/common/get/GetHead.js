@@ -7,7 +7,7 @@ import DeleteModal from '../../modal/DeleteModal';
 import './GetHead.css';
 import axios from 'axios';
 
-// item : Job 또는 Person 리스트
+// item : Job 또는 Person 객체
 // type : job 또는 person
 const GetHead = ({item, type}) => {
 
@@ -75,7 +75,10 @@ const GetHead = ({item, type}) => {
                 {type === 'person' ? 
                 toPersonHead(item) :
                 toJobHead(item)}
-                <VoteForm />
+
+                <VoteForm 
+                type = {type}
+                id = {item.id}/>
             </div>
         </div>
     );

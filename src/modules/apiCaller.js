@@ -1,43 +1,70 @@
 import axios from 'axios';
 
-export const fetchItems = async (url, type, setItem, setError, setLoading) => {
+export const fetchItems = (url, type, setItem, setError, setLoading) => {
 
     const types = {
         person : 'personGetDtos',
         job : 'jobGetDtos',
         mbti: 'mbtiGetDtos',
+        comment : 'commentGetDtos'
     };
 
-    try{
-        setItem(null);
-        setError(null);
-        setLoading(true);
+    const functions = {
+        setItem : setItem,
+        setError : setError,
+        setLoading : setLoading
+    };
 
-        const response = await axios.get(url);
-        
-        setItem(response.data[types[type]]);
-
-    }catch (e){
-        setError(e);
-    }
-
-    setLoading(false);
+    handleRequest(() => axios.get(url), functions, types[type]);
 }
 
-export const fetchOne = async (url, setItem, setError, setLoading) => {
+export const fetchOne = (url, setItem, setError, setLoading) => {
+
+    const functions = {
+        setItem : setItem,
+        setError : setError,
+        setLoading : setLoading
+    };
+
+    handleRequest(() => axios.get(url), functions, '');
+}
+
+export const postOne = (url, data, setItem, setError, setLoading) => {
+
+    const request = () => axios.post(url, data);
+
+    const functions = {
+        setItem : setItem,
+        setError : setError,
+        setLoading : setLoading
+    };
+
+    handleRequest(request, functions, 'isSuccess');
+}
+
+const handleRequest = async (request, functions, dataString) => {
+
+    const setItem = functions.setItem;
+    const setError = functions.setError;
+    const setLoading = functions.setLoading;
 
     try{
         setItem(null);
         setError(null);
         setLoading(true);
 
-        const response = await axios.get(url);
+        const response = await request();
         
-        setItem(response.data);
+        if(dataString === ''){
+            setItem(response.data);
+        } else {
+            setItem(response.data[dataString]);
+        }
 
     }catch (e){
         setError(e);
     }
 
     setLoading(false);
+    
 }

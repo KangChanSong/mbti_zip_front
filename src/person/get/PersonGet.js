@@ -23,8 +23,8 @@ const PersonGet = ({ match }) => {
                 item = {person}
                 type = 'person'
             />
-            <VoteChart />
-            <Comment /> 
+            <VoteChart itemId = {personId} type = 'person' />
+            <Comment type = 'person' id = {personId}/> 
         </div>
     )
 

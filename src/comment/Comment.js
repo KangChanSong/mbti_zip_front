@@ -1,37 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CommentList from './CommentList';
 import './Comment.css';
 import CommentBottom from './CommentBottom';
-class Comment extends React.Component{
-    constructor(props){
-        super(props);
-    }
+import { fetchItems } from '../modules/apiCaller';
+import { renderAfterApiCall } from '../modules/renderHelper';
+const Comment = ({type , id}) => {
+    
+    const [comments, setComments] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error,  setError] = useState(null);
+    
+    useEffect(() => {
+        const url = "/comment/api/v1/" + type + "/" + id + "/list?page=1&size=10&sort=createDate&dir=desc";
+        fetchItems(url, 'comment', setComments, setError, setLoading);
+    }, []);
 
-    render(){
-
-        
-        const commentList = [
-            {writer : 'aa' , content: 'Nono', createDate : '2021-09-21', likes : 6},
-            {writer : 'aasdsa' , content: 'Nondfffo', createDate : '2021-09-21', likes : 6},
-            {writer : 'asdasaa' , content: 'Nondfdfo', createDate : '2021-09-21', likes : 6},
-            {writer : 'aa' , content: 'Nasdono', createDate : '2021-09-21', likes : 6},
-            {writer : 'adasdasa' , content: 'Nondfadfadfafdo', createDate : '2021-09-21', likes : 23},
-            {writer : 'asdsda' , content: 'Nodfdfno', createDate : '2021-09-21', likes : 6},
-            {writer : 'aa' , content: 'Nodfdfdafadfadfano', createDate : '2021-09-21', likes : 44},
-            {writer : 'asda' , content: 'Nono', createDate : '2021-09-21', likes : 6},
-            {writer : 'aa' , content: 'Noadfadfno', createDate : '2021-09-21', likes : 12},
-            {writer : 'sdaa' , content: 'Nodfdfdno', createDate : '2021-09-21', likes : 6},
-            
-        ]
-
-        return (
-            <div className = "comment">
-                <h2>토론</h2>
-                <CommentList commentList = {commentList}/>
-                <CommentBottom />
-            </div>
-        )
-    }
+    const element = (
+        <div className = "comment">
+            <h2>토론</h2>
+            <CommentList comments = {comments}/>
+            <CommentBottom type = {type} id = {id}/>
+        </div>
+    )
+    
+    return renderAfterApiCall(comments, error, loading, element);
 }
 
 export default Comment;

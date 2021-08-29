@@ -1,114 +1,114 @@
-import React from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import React, { useState } from 'react';
+
 import changeTypeToKorean from '../TypeChanger';
+import PersonRegisterForm from '../../person/register/PersonRegisterForm'
+import JobRegisterForm from '../../job/register/JobRegisterForm';
+import RegisterSuccessModal from '../../modal/register/RegisterSuccessModal';
+import RegisterLoadingModal from '../../modal/register/RegsiterLoadingModal';
+import RegisterErrorModal from '../../modal/register/RegisterErrorModal';
+import { postOne } from '../../modules/apiCaller';
+
 import './Register.css';
 
+
 // type : person 또는 job
-function Register(props){
+function Register({ match }){
+    const type = match.params.type;
+    let initialState;
 
-    const createPersonRegsiterForm = (type) => 
-        (
-            <div className = "register">
-                <h1>{type} 등록</h1>
-                <Form>
-                    <Form.Group className = "mb-3">
-                        <Form.Control
-                            type="text"
-                            name = "name"
-                            placeholder = {type + " 이름을 입력하세요"} />
-                    </Form.Group>
-                    <Form.Group className = "mb-3">
-                        <Form.Control
-                        name = "writer"
-                        type="text"
-                        placeholder = "작성자를 입력하세요." />
-                    </Form.Group>
-                    <Form.Group className = "mb-3">
-                        <Form.Control
-                        name = "image"
-                        type="file" />
-                        썸네일을 업로드하세요.
-                    </Form.Group>
-                    <Form.Group className ="mb-3">
-                        <Form.Select name = "gender">
-                            <option>성별을 선택하세요.</option>
-                            <option value ="male">남</option>
-                            <option value = "female">여</option>
-                        </Form.Select>
-                    </Form.Group>
-                    <Form.Group className ="mb-3">
-                        <Form.Select name = "categoryIds">
-                            <option>카테고리를 선택하세요.</option>
-                            <option value= "?">만화캐릭터</option>
-                            <option value= "?">연기자</option>
-                            <option value= "?">개그맨</option>
-                            <option value= "?">아이돌</option>
-                            <option value= "?">화가</option>
-                        </Form.Select>
-                    </Form.Group>
-                    <Form.Group className = "mb-3">
-                        <Form.Control
-                        name = "description"
-                        type="text"
-                        placeholder = "설명을 입력하세요." />
-                    </Form.Group>
-                    <Form.Group className = "mb-3">
-                        <Form.Control
-                            name ="password"
-                            type="password"
-                            placeholder = "비밀번호를 입력하세요." />
-                    </Form.Group>
-                </Form>
-                <div className = "register-button">
-                    <Button variant = "primary">{type} 등록</Button>
-                </div>
-            </div>
-    );
+    if(type === 'person'){
+        initialState =
+            {
+                name : '',
+                writer : '',
+                gender : '',
+                categoryIds : '',
+                description : '',
+                password : '',
+            };
+    } 
+    if(type === 'job'){
+        initialState = 
+            {
+                title : '',
+                writer : '',
+                password : '',
+            };
+    } else {
+        throw new Error('type 이 맞지 않습니다. type : ' + type);
+    }
 
-    const createJobRegisterForm = (type) => (
-            <div className = "register">
-                <h1>{type} 등록</h1>
-                <Form>
-                    <Form.Group className = "mb-3">
-                        <Form.Control
-                            type="text"
-                            name = "title"
-                            placeholder = {type + " 이름을 입력하세요."} />
-                    </Form.Group>
-                    <Form.Group className = "mb-3">
-                        <Form.Control
-                            type="text"
-                            name ="writer"
-                            placeholder = "작성자을 입력하세요." />
-                    </Form.Group>
-                    <Form.Group className = "mb-3">
-                        <Form.Control
-                        name = "image"
-                        type="file" />
-                        썸네일을 업로드하세요.
-                    </Form.Group>
-                    <Form.Group className = "mb-3">
-                        <Form.Control
-                            type="password"
-                            name ="password"
-                            placeholder = "비밀번호을 입력하세요." />
-                    </Form.Group>
-                </Form>
-                <div className = "register-button">
-                    <Button variant = "primary">{type} 등록</Button>
-                </div>
-            </div>
-        )
+    const [form, setForm] = useState(initialState);
 
+    const [success, setSuccess] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [show, setShow ] = useState(false);
 
-    const type = changeTypeToKorean(this.props.type);
+    const handleChange = (e) => {
+
+        const name = e.target.name;
+        const value = e.target.value;
+
+        setForm({
+            ...form,
+            [name] : value,
+        });
+    };
+
+    const handleSubmit = (e) => {
+
+        const displayAlert = () => alert('모두 입력해주세요.');
+
+        if(type === 'person'){
+            if(!form.name || !form.writer || !form.gender || !form.categoryIds || !form.description || !form.password){
+                displayAlert();
+            }
+        }
+        if(type === 'job'){
+            if(!form.title || !form.writer || !form.password){
+                displayAlert();
+            }
+        }
+        e.preventDefault();
+        const url = "/" + type +"/api/v1/register";
+        postOne(url, form, setSuccess, setError, setLoading);
+    }
 
     return (
         <>
-        {type === '인물' ?
-            createPersonRegsiterForm(type)
-            : createJobRegisterForm(type)};
+        {type === 'person' ?
+
+            <PersonRegisterForm 
+            setForm = {setForm}
+            handleChange = {handleChange}
+            handleSubmit = {handleSubmit}/> 
+            : 
+            <JobRegisterForm
+            setForm = {setForm}
+            handleChange = {handleChange}
+            handleSubmit = {handleSubmit}/>};
+
+        {success !== true ? 
+            null
+            :
+            <RegisterSuccessModal
+                show = {show.toString()}
+                setShow = {setShow}
+            />
+            }
+        
+        {loading !== true ?
+            null
+            : 
+            <RegisterLoadingModal
+                show = {loading.toString()}/> }
+
+        {!error ? 
+            null
+            :
+            <RegisterErrorModal 
+                error = {error} /> }
         </>
     );
         

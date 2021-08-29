@@ -2,20 +2,15 @@ import React from 'react';
 
 import Page from '../common/Page';
 import CommentRegisterModal from '../modal/CommentRegisterModal';
-class CommentBottom extends React.Component{
-    constructor(props){
-        super(props);
-    }
+const CommentBottom = ({ type, id}) => {
 
-    render(){
-        return (
-            <div className = "comment-bottom">
-                <div></div>
-                <Page />
-                <CommentRegisterModal />
-            </div>
-        )
-    }
+    return (
+        <div className = "comment-bottom">
+            <div></div>
+            <Page />
+            <CommentRegisterModal type = {type} id = {id}/>
+        </div>
+    )
 }
 
 export default CommentBottom;

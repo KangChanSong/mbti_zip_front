@@ -23,8 +23,8 @@ const JobGet = ({ match }) => {
                 item = {job}
                 type = 'job'
             />
-            <VoteChart />
-            <Comment /> 
+            <VoteChart itemId = {jobId} type = 'job' />
+            <Comment type = 'job' id = {jobId} /> 
         </div>
     )
     return renderAfterApiCall(job, error, loading, element);
