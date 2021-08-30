@@ -24,7 +24,6 @@ export const createListUrlWithQuery = (search, baseUrl) => {
     if(parsed.keyword && parsed.filterBy){
         url += "&keyword=" + parsed.keyword + "&filterBy=" + parsed.filterBy;
     }
-    console.log(parsed);
     return url;
 }
 
@@ -32,6 +31,8 @@ export const createQueryWithCondition = (forWhat, object) => {
 
     let url = new URL(window.location.href);
     let params = url.searchParams;
+
+    console.log("object : " + object);
 
     if(forWhat === 'page'){
         params.set('page', object.page);
@@ -46,5 +47,5 @@ export const createQueryWithCondition = (forWhat, object) => {
         params.set('keyword', object.keyword);
     }
 
-    return url.toString();
+    return window.location.pathname + "?" + params.toString();
 }

@@ -5,12 +5,15 @@ import ListFoot from '../../common/list/ListFoot';
 import { fetchItems } from '../../modules/apiCaller';
 import { renderAfterApiCall } from '../../modules/renderHelper';
 import { createListUrlWithQuery } from '../../modules/urlGenerator';
+import { extractPageAndSize } from '../../modules/queryExtractor'
 
 function JobList({ location }){
 
     const [jobs, setJobs] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    const { page, size } = extractPageAndSize(location);
 
     useEffect(() => {
         const url = createListUrlWithQuery(location.search, '/job/api/v1/list');
@@ -21,7 +24,10 @@ function JobList({ location }){
         <div className = "jobList" >
                 <ListHead type = 'job'/>
                 <ItemCardGroup type = "job" itemList = {jobs} />
-                <ListFoot type = 'job' />
+                <ListFoot 
+                    curr = {page}
+                    size = {size}
+                    type = 'job' />
         </div>
     );
 

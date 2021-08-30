@@ -5,6 +5,7 @@ import ListHead from '../../common/list/ListHead';
 import { fetchItems  } from '../../modules/apiCaller';
 import { renderAfterApiCall } from '../../modules/renderHelper';
 import { createListUrlWithQuery } from '../../modules/urlGenerator';
+import { extractPageAndSize } from '../../modules/queryExtractor';
 
 const PersonList = ({ location }) => {
 
@@ -12,8 +13,7 @@ const PersonList = ({ location }) => {
     const[loading, setLoading] = useState(false);
     const[error, setError] = useState(null);
 
-    const currPage = location.search.page;
-    const size = location.search.size;
+    const [page, size] = extractPageAndSize(location);
 
     useEffect(() => {
         const url = createListUrlWithQuery(location.search, '/person/api/v1/list');
@@ -25,7 +25,7 @@ const PersonList = ({ location }) => {
             <ListHead type = 'person' />
             <ItemCardGroup type = 'person' itemList = {persons} />
             <ListFoot 
-                curr ={currPage}
+                curr ={page}
                 size = {size}
             />
         </div>);

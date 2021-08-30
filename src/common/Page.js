@@ -5,34 +5,7 @@ import axios from 'axios';
 import { createQueryWithCondition } from '../modules/urlGenerator';
 import { renderAfterApiCall } from '../modules/renderHelper';
 
-
-const Page = ({curr, size, type}) => {
-
-    const [total, setTotal] = useState(null);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        const fetch = async () => {
-            try{   
-                setTotal(null);
-                setError(null);
-                setLoading(null);
-                
-                const url = "/" + type + "/api/v1/count/all";
-                const response = await axios.get(url);
-                setTotal(response['count']);
-            } catch(e){
-                setError(e);
-            }
-            setLoading(true);
-        }
-
-        fetch();
-    }, []);
-
-
-
+const makePage = (curr, size, total) => {
     let last = Math.ceil(curr / 10) * 10;
     let start = last - 9;
     let realLast = Math.ceil(total / size);
@@ -48,25 +21,61 @@ const Page = ({curr, size, type}) => {
         last = realLast;
     }
 
-    const createPageButton = (number) => {
-        return (
-            <Link to = {createQueryWithCondition('page', { page : number, size : size})}>
-                <Pagination.Item key = {number}>
-                    {number}
-                </Pagination.Item>
-            </Link>
-        )
-    }
+    return [start, last, prev, next];
+}
 
-    const createMultiplePageButtons = () => {
+const PageButton = ({ number, size, curr }) => {
+    return (
+        <Link to = {createQueryWithCondition('page', { page : number, size : size})}>
+            <Pagination.Item active = {number === curr}>
+                {number}
+            </Pagination.Item>
+        </Link>
+    )
+}
 
-        let pages;
 
-        for(let i=start ; i <= last ; i++){
-            pages += createPageButton(i);
+const Page = ({curr, size, type}) => {
+
+    const [total, setTotal] = useState(0);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const fetch = async () => {
+            try{    
+                setError(null);
+                setLoading(null);
+                
+                const url = "/" + type + "/api/v1/count/all";
+                const response = await axios.get(url);
+                setTotal(response.data['count']);
+            } catch(e){
+                setError(e);
+            }
+            setLoading(false);
         }
 
-        return <>{pages}</>;
+        fetch();
+
+        return () => setLoading(false);
+    }, []);
+
+    const [start, last, prev, next] = makePage(curr, size, total);
+
+    const PageButtonList = () => {
+        let pages = [];
+        for(let i = start ; i <= last ; i++){
+            pages.push(
+                <PageButton 
+                    key = {i}
+                    number = {i}
+                    curr = {curr}
+                    size = {size}/>
+            )
+        }
+
+        return pages;
     }
 
     const element = (
@@ -75,15 +84,15 @@ const Page = ({curr, size, type}) => {
             <Link to = {createQueryWithCondition('page', { page : start-1, size : size})}>
                 <Pagination.Prev  />
             </Link>
-            : null}
+            : <> </>}
 
-            {createMultiplePageButtons()}
+            {<PageButtonList />}
 
             {next ?
-            <Link to = {createQueryWithCondition('page', { page : start-1, size : size})}>
+            <Link to = {createQueryWithCondition('page', { page : start+1, size : size})}>
                 <Pagination.Next />
             </Link>
-            : null}
+            : <> </>}
         </Pagination>
     );
 
@@ -91,4 +100,4 @@ const Page = ({curr, size, type}) => {
 }
 
 
-export default Page;
+export default React.memo(Page);

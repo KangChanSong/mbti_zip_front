@@ -15,7 +15,6 @@ const ItemCardGroup = ({type, itemList}) => {
         
     }
     function toJobItemList(itemList){
-        console.log(itemList);
         return itemList.map(item => {
             return <JobItem 
                 key = {item.id}
