@@ -15,7 +15,7 @@ const makePage = (curr, size, total) => {
         prev = false;
     }
     if(last * size > total){
-         next = false;
+        next = false;
     }
     if(realLast < last){
         last = realLast;
@@ -27,9 +27,10 @@ const makePage = (curr, size, total) => {
 const PageButton = ({ number, size, curr }) => {
     return (
         <Link to = {createQueryWithCondition('page', { page : number, size : size})}>
-            <Pagination.Item active = {number === curr}>
+            {/* <Pagination.Item
+                active = { number == curr}> */}
                 {number}
-            </Pagination.Item>
+            {/* </Pagination.Item> */}
         </Link>
     )
 }

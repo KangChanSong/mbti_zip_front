@@ -31,9 +31,6 @@ export const createQueryWithCondition = (forWhat, object) => {
 
     let url = new URL(window.location.href);
     let params = url.searchParams;
-
-    console.log("object : " + object);
-
     if(forWhat === 'page'){
         params.set('page', object.page);
         params.set('size', object.size);

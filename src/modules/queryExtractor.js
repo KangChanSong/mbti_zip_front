@@ -13,7 +13,5 @@ export const extractPageAndSize = (location) => {
         parsed.size = 16;
     }
 
-    console.log(parsed);
-
-    return parsed;
+    return [ parsed.page, parsed.size];
 }
