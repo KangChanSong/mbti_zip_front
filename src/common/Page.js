@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { createQueryWithCondition } from '../modules/urlGenerator';
 import { renderAfterApiCall } from '../modules/renderHelper';
+import './Page.css';
 
 const makePage = (curr, size, total) => {
     let last = Math.ceil(curr / 10) * 10;
@@ -26,17 +27,17 @@ const makePage = (curr, size, total) => {
 
 const PageButton = ({ number, size, curr }) => {
     return (
-        <Link to = {createQueryWithCondition('page', { page : number, size : size})}>
-            {/* <Pagination.Item
-                active = { number == curr}> */}
-                {number}
-            {/* </Pagination.Item> */}
-        </Link>
+            <Pagination.Item active = { number == curr}>
+                <Link to = {createQueryWithCondition('page', { page : number, size : size})}>
+                    {number}
+                </Link>
+            </Pagination.Item>
     )
+        
 }
 
 
-const Page = ({curr, size, type}) => {
+const Page = ({curr, size, type, setPage}) => {
 
     const [total, setTotal] = useState(0);
     const [error, setError] = useState(null);

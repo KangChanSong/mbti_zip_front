@@ -12,20 +12,21 @@ function JobList({ location }){
     const [jobs, setJobs] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [page, size] = extractPageAndSize(location);
-
-    const requestToServer = () => {
+    const [extPage, extSize] = extractPageAndSize(location.search);
+    const [page, setPage] = useState(extPage);
+    const [size, setSize] = useState(extSize);
+    
+    useEffect(() => {
         const url = createListUrlWithQuery(location.search, '/job/api/v1/list');
         fetchItems(url, 'job', setJobs, setError, setLoading);
-    }
-
-    useEffect(() => {requestToServer()}, []);
+    }, []);
 
     const element = (
         <div className = "jobList" >
                 <ListHead type = 'job'/>
                 <ItemCardGroup type = "job" itemList = {jobs} />
                 <ListFoot 
+                    setPage = {setPage}
                     curr = {page}
                     size = {size}
                     type = 'job' />

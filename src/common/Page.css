@@ -1,0 +1,33 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+
+    width: 100%;
+    height: 100%;
+}
+.page-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4%;
+    height: 100%;
+}
+.page-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 10%;
+}
+
+.page-link a{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
