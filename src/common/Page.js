@@ -1,30 +1,56 @@
 import React from 'react';
 import Pagination from 'react-bootstrap/Pagination';
-class Page extends React.Component{
-    
-    constructor(props){
-        super(props);
+import { Link } from 'react-router-dom';
+import { splitUrlWithQueryObject } from '../modules/urlGenerator';
+
+
+const Page = ({curr, size, totalAmount}) => {
+
+    const last = Math.ceil(curr / 10) * 10;
+    const start = lastPage - 9;
+    const realLast = Math.ceil(totalAmount / size);
+    const prev, next = true;
+
+    if(start === 1){
+        prev = false;
+    }
+    if(last * size > amount){
+         next = false;
+    }
+    if(realLast < lastPage){
+        lastPage = realLast;
     }
 
-    render(){
+
+    const createPageButton = (number) => {
         return (
-            <Pagination>
-                    <Pagination.First />
-                    <Pagination.Prev />
-                    <Pagination.Item>{1}</Pagination.Item>
-                    <Pagination.Ellipsis />
-                    <Pagination.Item>{10}</Pagination.Item>
-                    <Pagination.Item>{11}</Pagination.Item>
-                    <Pagination.Item active>{12}</Pagination.Item>
-                    <Pagination.Item>{13}</Pagination.Item>
-                    <Pagination.Item disabled>{14}</Pagination.Item>
-                    <Pagination.Ellipsis />
-                    <Pagination.Item>{20}</Pagination.Item>
-                    <Pagination.Next />
-                    <Pagination.Last />
-                </Pagination>
-        );
+            <Link to = {() => splitUrlWithQueryObject('page', { page : number, size : size})}>
+                <Pagination.Item key = {number}>
+                    {number}
+                </Pagination.Item>
+            </Link>
+        )
     }
+
+    const createMultiplePageButtons = () => {
+
+        let pages;
+
+        for(i=start ; i <= last ; i++){
+            pages += <createPageButton number = {i}/>
+        }
+
+        return <>{pages}</>;
+    }
+
+    return (
+        <Pagination>
+            {prev ? <Pagination.Prev /> : null}
+            {createMultiplePageButtons()}
+            {next ? <Pagination.Next /> : null}
+        </Pagination>
+    );
+
 }
 
 export default Page;

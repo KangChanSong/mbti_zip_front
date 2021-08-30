@@ -38,3 +38,24 @@ export const createListUrlWithQuery = (query, type) => {
     
     return url;
 }
+
+export const splitUrlWithQueryObject = (forWhat, object) => {
+
+    let url = new URL(window.location.href);
+    let params = url.searchParams;
+
+    if(forWhat === 'page'){
+        params.set('page', object[page]);
+        params.set('size', object[size]);
+    }
+    if (forWhat === 'sort'){
+        params.set('sort', object[sort]);
+        params.set('order', object[order]);
+    }
+    if( forWhat === 'search'){
+        params.set('filterBy', object[filterBy]);
+        params.set('keyword', object[keyword]);
+    }
+
+    return url.toString();
+}
