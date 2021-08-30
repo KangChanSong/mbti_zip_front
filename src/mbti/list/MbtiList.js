@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import MbtiItem from '../../common/item/MbtiItem';
 import CardGroup from 'react-bootstrap/CardGroup';
-import axios from 'axios';
 import './MbtiList.css';
 import { fetchItems } from '../../modules/apiCaller';
 import { renderAfterApiCall } from '../../modules/renderHelper';
@@ -21,7 +20,7 @@ const MbtiList = () => {
         return (
             <>
             {
-                mbtis.map(mbti => (<MbtiItem key = {mbti.key} name = {mbti.name.toUpperCase()} />))
+                mbtis.map(mbti => (<MbtiItem key = {mbti.id} name = {mbti.name.toUpperCase()} />))
             }
             </>
         )

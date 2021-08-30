@@ -1,25 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MbtiGetBox from './MbtiGetBox';
 import './MbtiGet.css';
+import { fetchItems } from '../../modules/apiCaller';
+import { renderAfterApiCall } from '../../modules/renderHelper';
 
-const MbtiGet = () => {
+const MbtiGet = ({ match }) => {
 
     // api call
-    const personList = [];
-    const jobList = [];
+    const [ persons, setPersons] = useState(null);
+    const [ jobs, setJobs] = useState(null);
+    const [ error,  setError] = useState(null);
+    const [ loading, setLoading] = useState(false);
 
-    return (
+    let name = match.params.name;
+
+    useEffect(() => {
+        const url = "/api/v1/list?&page=1&size=8&sort=likes&dir=desc&filterBy=mbti&keyword=" + name; 
+        fetchItems("/person" + url, 'person', setPersons, setError, setLoading);
+        fetchItems("/job" + url, 'job', setJobs, setError, setLoading);
+    }, []);
+
+    const element = (
         <div className = "mbtiGet">
         <MbtiGetBox 
-            mbti = {mbti}
+            mbtiName = {name}
             type="person" 
-            itemList = {personList}/>
+            itemList = {persons}/>
         <MbtiGetBox 
-            mbti = {mbti}
+            mbtiName = {name}
             type="job" 
-            itemList = {jobList}/>
+            itemList = {jobs}/>
         </div>
     )
+    
+    return renderAfterApiCall({ persons : persons, jobs: jobs}, error, loading, element);
 }
 
 export default MbtiGet;
