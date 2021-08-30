@@ -12,21 +12,25 @@ const PersonList = ({ location }) => {
     const[persons, setPersons] = useState(null);
     const[loading, setLoading] = useState(false);
     const[error, setError] = useState(null);
-
-    const [page, size] = extractPageAndSize(location);
+    
+    const[extPage, extSize] = extractPageAndSize(location);
+    const[page, setPage ] = useState(extPage);
+    const size = extSize;
 
     useEffect(() => {
         const url = createListUrlWithQuery(location.search, '/person/api/v1/list');
         fetchItems(url, 'person', setPersons, setError, setLoading);
-    }, []);
+    }, [page]);
 
     const element = renderAfterApiCall(persons, error, loading, 
         <div className = "personList">
             <ListHead type = 'person' />
             <ItemCardGroup type = 'person' itemList = {persons} />
             <ListFoot 
+                setPage = {setPage}
                 curr ={page}
                 size = {size}
+                type = 'person'
             />
         </div>);
 

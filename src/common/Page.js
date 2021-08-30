@@ -25,10 +25,11 @@ const makePage = (curr, size, total) => {
     return [start, last, prev, next];
 }
 
-const PageButton = ({ number, size, curr }) => {
+const PageButton = ({ number, size, curr, setPage }) => {
     return (
             <Pagination.Item active = { number == curr}>
-                <Link to = {createQueryWithCondition('page', { page : number, size : size})}>
+                <Link to = {createQueryWithCondition('page', { page : number, size : size})}
+                                onClick = {() => setPage(number)}>
                     {number}
                 </Link>
             </Pagination.Item>
@@ -66,14 +67,16 @@ const Page = ({curr, size, type, setPage}) => {
     const [start, last, prev, next] = makePage(curr, size, total);
 
     const PageButtonList = () => {
+
         let pages = [];
         for(let i = start ; i <= last ; i++){
             pages.push(
-                <PageButton 
+                <PageButton
                     key = {i}
                     number = {i}
                     curr = {curr}
-                    size = {size}/>
+                    size = {size}
+                    setPage = {setPage}/>
             )
         }
 

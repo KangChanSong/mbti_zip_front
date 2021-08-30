@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect,   useRef,  useState } from 'react';
 import ItemCardGroup from '../../common/item/ItemCardGroup';
 import ListHead from '../../common/list/ListHead';
 import ListFoot from '../../common/list/ListFoot';
@@ -12,14 +12,15 @@ function JobList({ location }){
     const [jobs, setJobs] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    
     const [extPage, extSize] = extractPageAndSize(location.search);
     const [page, setPage] = useState(extPage);
-    const [size, setSize] = useState(extSize);
+    const size = extSize;
     
     useEffect(() => {
         const url = createListUrlWithQuery(location.search, '/job/api/v1/list');
         fetchItems(url, 'job', setJobs, setError, setLoading);
-    }, []);
+    }, [page]);
 
     const element = (
         <div className = "jobList" >
