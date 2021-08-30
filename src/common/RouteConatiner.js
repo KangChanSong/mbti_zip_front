@@ -17,7 +17,7 @@ const RouteContainer = () => {
             <Route path = "/person/list" component = {PersonList} />
             <Route path = "/person/get/:personId" component = {PersonGet}/>
             <Route path = "/job/get/:jobId" component = {JobGet} />
-            <Route path = "/:type/register" component = {Register} />
+            <Route path = "/:type/register" component = {Register} />   
         </>
     )
 }
