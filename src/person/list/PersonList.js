@@ -12,6 +12,9 @@ const PersonList = ({ location }) => {
     const[loading, setLoading] = useState(false);
     const[error, setError] = useState(null);
 
+    const currPage = location.search.page;
+    const size = location.search.size;
+
     useEffect(() => {
         const url = createListUrlWithQuery(location.search, 'person');
         fetchItems(url, 'person', setPersons, setError, setLoading);
@@ -21,7 +24,10 @@ const PersonList = ({ location }) => {
         <div className = "personList">
             <ListHead type = 'person' />
             <ItemCardGroup type = 'person' itemList = {persons} />
-            <ListFoot />
+            <ListFoot 
+                curr ={currPage}
+                size = {size}
+            />
         </div>);
 
     return element;

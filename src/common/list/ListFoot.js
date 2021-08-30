@@ -1,14 +1,16 @@
 import React from 'react';
 import Page from '../Page';
 import Button from 'react-bootstrap/Button';
-import Register from '../../common/register/Register';
 import { Link  } from 'react-router-dom';
 import './List.css';
-const ListFoot = ({ type }) => {
+const ListFoot = ({ type, curr, size }) => {
     return (
         <div className = "listFoot" >
             <div></div>
-            <Page />     
+            <Page 
+                curr = {curr}
+                size = {size}
+            />     
             <Link to ={"/" + type + "/register"}>
                 <Button 
                     variant = "primary" 

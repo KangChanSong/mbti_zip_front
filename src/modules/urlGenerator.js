@@ -1,23 +1,22 @@
 import qs from 'qs';
 
-export const createListUrlWithQuery = (query, type) => {
-    let parsed = qs.parse(query, {
+export const createListUrlWithQuery = (search, type) => {
+    let parsed = qs.parse(search, {
         ignoreQueryPrefix: true,
     });
 
+
     if(!parsed.page && !parsed.size ){
-        parsed = {
-            ...parsed,
+        parsed.assign({
             page : 1,
             size : 16
-        }
+        });
     }   
     if(!parsed.sort && !parsed.dir){
-        parsed = {
-            ...parsed,
+        parsed.assign({
             sort : 'createDate',
             dir : 'desc',
-        }
+        })
     } 
 
     const { page, size, sort, dir, keyword, filterBy } = parsed;
@@ -39,7 +38,7 @@ export const createListUrlWithQuery = (query, type) => {
     return url;
 }
 
-export const splitUrlWithQueryObject = (forWhat, object) => {
+export const createQueryWithCondition = (forWhat, object) => {
 
     let url = new URL(window.location.href);
     let params = url.searchParams;
