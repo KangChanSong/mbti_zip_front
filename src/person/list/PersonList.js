@@ -16,7 +16,7 @@ const PersonList = ({ location }) => {
     const size = location.search.size;
 
     useEffect(() => {
-        const url = createListUrlWithQuery(location.search, 'person');
+        const url = createListUrlWithQuery(location.search, '/person/api/v1/list');
         fetchItems(url, 'person', setPersons, setError, setLoading);
     }, []);
 

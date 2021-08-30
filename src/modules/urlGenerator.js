@@ -1,40 +1,30 @@
 import qs from 'qs';
 
-export const createListUrlWithQuery = (search, type) => {
-    let parsed = qs.parse(search, {
-        ignoreQueryPrefix: true,
+export const createListUrlWithQuery = (search, baseUrl) => {
+
+    const parsed = qs.parse(search, {
+        ignoreQueryPrefix: true
     });
 
-
     if(!parsed.page && !parsed.size ){
-        parsed.assign({
-            page : 1,
-            size : 16
-        });
+        parsed.page = '1';
+        parsed.size = '16';
     }   
     if(!parsed.sort && !parsed.dir){
-        parsed.assign({
-            sort : 'createDate',
-            dir : 'desc',
-        })
-    } 
-
-    const { page, size, sort, dir, keyword, filterBy } = parsed;
-
-
-    let url = "/" + type
-    + "/api/v1/list?page=" + page
-    + "&size=" + size
-    + "&sort=" + sort
-    + "&dir=" + dir;
-
-    if(keyword){
-        url += "&keyword=" + keyword;
-    }
-    if(filterBy){
-        url += "&filterBy=" + filterBy;
+        parsed.sort = 'createDate';
+        parsed.dir = 'desc';
     }
     
+    let url = baseUrl 
+        + "?page=" + parsed.page
+        + "&size=" + parsed.size
+        + "&sort=" + parsed.sort
+        + "&dir=" + parsed.dir;
+    
+    if(parsed.keyword && parsed.filterBy){
+        url += "&keyword=" + parsed.keyword + "&filterBy=" + parsed.filterBy;
+    }
+    console.log(parsed);
     return url;
 }
 
@@ -44,16 +34,16 @@ export const createQueryWithCondition = (forWhat, object) => {
     let params = url.searchParams;
 
     if(forWhat === 'page'){
-        params.set('page', object[page]);
-        params.set('size', object[size]);
+        params.set('page', object.page);
+        params.set('size', object.size);
     }
     if (forWhat === 'sort'){
-        params.set('sort', object[sort]);
-        params.set('order', object[order]);
+        params.set('sort', object.sort);
+        params.set('dir', object.dir);
     }
     if( forWhat === 'search'){
-        params.set('filterBy', object[filterBy]);
-        params.set('keyword', object[keyword]);
+        params.set('filterBy', object.filterBy);
+        params.set('keyword', object.keyword);
     }
 
     return url.toString();

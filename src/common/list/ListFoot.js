@@ -10,6 +10,7 @@ const ListFoot = ({ type, curr, size }) => {
             <Page 
                 curr = {curr}
                 size = {size}
+                type = {type}
             />     
             <Link to ={"/" + type + "/register"}>
                 <Button 

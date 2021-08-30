@@ -13,7 +13,7 @@ function JobList({ location }){
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const url = createListUrlWithQuery(location.search, 'job');
+        const url = createListUrlWithQuery(location.search, '/job/api/v1/list');
         fetchItems(url, 'job', setJobs, setError, setLoading);
     }, [])
 
