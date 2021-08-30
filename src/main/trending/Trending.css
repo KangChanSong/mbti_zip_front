@@ -10,3 +10,9 @@
     display: flex;
     justify-content: space-between;
 }
+
+.item-card-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -13,8 +13,12 @@ const CollapseMenu = () => {
             <Nav className = "p-2"
                 style = {{ maxHeight : '300px'}}
                 navbarScroll>
-                <Nav.Link><Link to ="/mbti/list">MBTI</Link></Nav.Link>
-                <Nav.Link><Link to  ="/job/list" >직업</Link></Nav.Link>
+                <Nav.Link>
+                    <Link to ="/mbti/list">MBTI</Link>
+                </Nav.Link>
+                <Nav.Link>
+                    <Link to  ="/job/list" >직업</Link>
+                </Nav.Link>
                 <NavDropdown title="인물" id="navbarScrollingDropdown">
                     <PersonDropdownItem value = "전체" />
                     <PersonDropdownItem value = "위인" />

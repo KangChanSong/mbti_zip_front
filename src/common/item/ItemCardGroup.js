@@ -3,10 +3,7 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import PersonItem from './PersonItem';
 import JobItem from './JobItem';
 
-function ItemCardGroup(props){
-
-    const type = props.type;
-    const itemList = props.itemList;
+const ItemCardGroup = ({type, itemList}) => {
 
     function toPersonItemList(itemList){
         return itemList.map(item => {
@@ -17,7 +14,6 @@ function ItemCardGroup(props){
         })
         
     }
-
     function toJobItemList(itemList){
         console.log(itemList);
         return itemList.map(item => {
@@ -27,10 +23,8 @@ function ItemCardGroup(props){
             />
             })
     } 
-
-
     return (
-        <CardGroup className = 'm-5'>
+        <CardGroup className = ''>
             {type === "person" ?
             toPersonItemList(itemList) :
             toJobItemList(itemList)}

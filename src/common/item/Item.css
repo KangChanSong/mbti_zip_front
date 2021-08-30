@@ -30,3 +30,8 @@
     width: 23%;
     height: 25%;
 }
+
+.card-group {
+    display: flex;
+    justify-content: center;
+}
