@@ -83,7 +83,18 @@ const Page = ({curr, size, type, setPage}) => {
         return pages;
     }
 
-    const element = (
+    if(error){
+        return (<Pagination>
+            <p>페이지 불러오는 중 에러 발생 : {error}</p>
+        </Pagination>);
+    }
+    if(loading){
+        return (<Pagination>
+            <p>페이지 버튼을 불러오는 중입니다...</p>
+        </Pagination>);
+    }
+
+    return  (
         <Pagination>
             {prev ? 
             <Link to = {createQueryWithCondition('page', { page : start-1, size : size})}>
@@ -100,8 +111,6 @@ const Page = ({curr, size, type, setPage}) => {
             : <> </>}
         </Pagination>
     );
-
-    return renderAfterApiCall(total, error, loading, element);
 }
 
 

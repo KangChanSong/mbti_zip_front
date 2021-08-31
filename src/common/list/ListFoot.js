@@ -25,4 +25,4 @@ const ListFoot = ({ type, curr, size, setPage }) => {
 
 }
 
-export default ListFoot;
+export default React.memo(ListFoot);

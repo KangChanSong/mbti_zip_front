@@ -9,10 +9,12 @@ function CommentRegisterModal({ type , id}){
     const [form , setForm ] = useState({writer : '', content: '', password: ''});
 
     const handleClose = () => {
-        setForm({writer: '', content: '', password: '' });
+        setForm({
+            writer: '', content: '', password: '' });
         setShow(false)
     };
     const handleShow = () => setShow(true);
+
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -22,9 +24,9 @@ function CommentRegisterModal({ type , id}){
         })
     }
     const handleSubmit = (e) => {
-        console.log(form);
         if(!form.writer || !form.content || !form.password){
             alert("모두 입력해주세요!");
+            return ;
         } 
         e.preventDefault();
         postToServer();
