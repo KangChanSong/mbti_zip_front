@@ -101,4 +101,4 @@ const VoteChart = ({type , itemId}) => {
     return renderAfterApiCall(mbtiVotes, error, loading, element);
 }
 
-  export default VoteChart;
+  export default React.memo(VoteChart);
