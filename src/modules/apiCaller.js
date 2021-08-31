@@ -6,7 +6,8 @@ export const fetchItems = (url, type, setItem, setError, setLoading) => {
         person : 'personGetDtos',
         job : 'jobGetDtos',
         mbti: 'mbtiGetDtos',
-        comment : 'commentGetDtos'
+        comment : 'commentGetDtos',
+        category : 'categoryGetDtos',
     };
 
     const functions = {

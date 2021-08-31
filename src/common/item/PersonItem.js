@@ -17,7 +17,7 @@ const PersonItem = ({ person }) => {
                 <Card.Body>
                     <Card.Title>{person.name}</Card.Title>
                     <Card.Text>{person.mbti}</Card.Text>
-                    <Card.Text>분류 : {person.categories[0]}</Card.Text>
+                    <Card.Text>분류 : {person.category}</Card.Text>
                     <Card.Text>❤ : {person.likes}</Card.Text>
                     <Card.Text>👁‍🗨 : {person.views}</Card.Text>
                 </Card.Body>

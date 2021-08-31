@@ -31,4 +31,4 @@ const PersonGet = ({ match }) => {
     return renderAfterApiCall(person, error,loading, element);
 }
 
-export default PersonGet;
+export default React.memo(PersonGet);

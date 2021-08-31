@@ -1,8 +1,9 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import CategoryList from '../../category/list/CategoryList';
     
-const PersonRegisterForm = ( {setForm, handleChange, handleSubmit } ) => 
+const PersonRegisterForm = ( {setForm, handleChange, handleSubmit} ) => 
 (
     <div className = "register">
         <h1>인물 등록</h1>
@@ -28,19 +29,12 @@ const PersonRegisterForm = ( {setForm, handleChange, handleSubmit } ) =>
             <Form.Group className ="mb-3">
                 <Form.Select name = "gender">
                     <option>성별을 선택하세요.</option>
-                    <option value ="male">남</option>
-                    <option value = "female">여</option>
+                    <option value ="MALE">남</option>
+                    <option value = "FEMALE">여</option>
                 </Form.Select>
             </Form.Group>
             <Form.Group className ="mb-3">
-                <Form.Select name = "categoryIds">
-                    <option>카테고리를 선택하세요.</option>
-                    <option value= "?">만화캐릭터</option>
-                    <option value= "?">연기자</option>
-                    <option value= "?">개그맨</option>
-                    <option value= "?">아이돌</option>
-                    <option value= "?">화가</option>
-                </Form.Select>
+                <CategoryList />
             </Form.Group>
             <Form.Group className = "mb-3">
                 <Form.Control
@@ -56,14 +50,14 @@ const PersonRegisterForm = ( {setForm, handleChange, handleSubmit } ) =>
             </Form.Group>
         </Form>
         <div className = "reset-button">
-            <Button variant = "secondary" onClick = {() => setForm({
+            <Button variant = "secondary" onClick={()=>setForm({
                 name : '',
                 writer : '',
                 gender : '',
                 categoryIds : '',
                 description : '',
                 password : '',
-            })}>인물 등록</Button>
+            })}>초기화</Button>
         </div>
         <div className = "register-button">
             <Button variant = "primary" onClick = {handleSubmit}>인물 등록</Button>

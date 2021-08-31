@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import changeTypeToKorean from '../TypeChanger';
 import PersonRegisterForm from '../../person/register/PersonRegisterForm'
 import JobRegisterForm from '../../job/register/JobRegisterForm';
 import RegisterSuccessModal from '../../modal/register/RegisterSuccessModal';
@@ -10,24 +9,21 @@ import { postOne } from '../../modules/apiCaller';
 
 import './Register.css';
 
+const getInitialState = (type) => {
 
-// type : person 또는 job
-function Register({ match }){
-    const type = match.params.type;
     let initialState;
-
+    
     if(type === 'person'){
         initialState =
             {
                 name : '',
                 writer : '',
                 gender : '',
-                categoryIds : '',
+                categoryId : '',
                 description : '',
-                password : '',
+                password : '',  
             };
-    } 
-    if(type === 'job'){
+    } else if(type === 'job'){
         initialState = 
             {
                 title : '',
@@ -38,12 +34,18 @@ function Register({ match }){
         throw new Error('type 이 맞지 않습니다. type : ' + type);
     }
 
-    const [form, setForm] = useState(initialState);
+    return initialState;
+}
+
+// type : person 또는 job
+const Register = ({ match }) => {
+    const type = match.params.type
+    const [form, setForm] = useState(getInitialState(type));
 
     const [success, setSuccess] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [show, setShow ] = useState(false);
+    const [show, setShow ] = useState(false);    
 
     const handleChange = (e) => {
 
@@ -57,20 +59,20 @@ function Register({ match }){
     };
 
     const handleSubmit = (e) => {
-
-        const displayAlert = () => alert('모두 입력해주세요.');
-
+        const displayAlert = () => {alert('모두 입력해주세요.');}
+        e.preventDefault();
         if(type === 'person'){
-            if(!form.name || !form.writer || !form.gender || !form.categoryIds || !form.description || !form.password){
+            if(!form.name || !form.writer || !form.gender || !form.categoryId || !form.description || !form.password){
                 displayAlert();
+                return;
             }
         }
         if(type === 'job'){
             if(!form.title || !form.writer || !form.password){
                 displayAlert();
+                return;
             }
         }
-        e.preventDefault();
         const url = "/" + type +"/api/v1/register";
         postOne(url, form, setSuccess, setError, setLoading);
     }
