@@ -1,12 +1,34 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { fetchItems, fetchVotes } from '../modules/apiCaller';
 import { ContextConsumer } from '../context/ContextContainer';
+import Modal from 'react-bootstrap/Modal';
 import './Vote.css';
 import axios from 'axios';
 
-const VoteFormElement = ({ type, id, setValue }) => {
+const VoteCheckModal = ({ show, setShow,  handleVote}) => {
+
+    const handleClose = () => {
+        setShow(false);
+    }
+
+    return (
+        <Modal show = {show}>
+            <Modal.Body>
+                <p>한번 투표하면 취소할 수 없습니다. <br />
+                   그래도 투표하시겠어요?</p>
+            </Modal.Body>
+
+            <Modal.Footer>
+                <Button variant="secondary" onClick = {handleClose}>닫기</Button>
+                <Button variant="primary" onClick = {handleVote}>투표</Button>
+            </Modal.Footer>
+        </Modal>
+    )
+}
+
+const VoteFormElement = ({ type, id, value , setValue }) => {
     // mbti 조회
     const [mbtis , setMbtis] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -14,6 +36,8 @@ const VoteFormElement = ({ type, id, setValue }) => {
 
     // mbti 투표
     const [selectedMbti, setSelectedMbti] = useState(null);
+
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
         const url = "/mbti/api/v1/list";
@@ -45,6 +69,8 @@ const VoteFormElement = ({ type, id, setValue }) => {
             const url = "/vote/api/v1/mbti/" + selectedMbti + "/" + type + "/" + id;
             await axios.post(url);
             fetchVotes(type, id,  setValue);
+            alert("투표 성공")
+            setShow(false);
         } catch(error){
             alert('Error : ' + error);
         }
@@ -52,6 +78,7 @@ const VoteFormElement = ({ type, id, setValue }) => {
     }
 
     return (
+        <>
         <div className = "vote-form" >
         <Form>
             <Form.Select 
@@ -62,22 +89,35 @@ const VoteFormElement = ({ type, id, setValue }) => {
             </Form.Select>
             <Button 
                 variant = "primary" 
-                className = "vote-from-button"
-                onClick = {handleVote}>
+                className = "vote-button"
+                onClick = {() => setShow(true)}>
                 투표하기
+            </Button>
+            <Button 
+                variant = "dark"
+                className = "vote-button"
+                disabled>
+                이미 투표함
             </Button>
         </Form>
         </div>
+        <VoteCheckModal
+        show = {show}
+        setShow = {setShow}
+        handleVote = {handleVote}
+    />
+    </>
     );
 }
 
 const VoteForm = ({ type , id}) => (
     <ContextConsumer >
         {
-            ({ actions}) => (
+            ({ state, actions}) => (
                 <VoteFormElement
                     type = {type}
                     id = {id}
+                    value = {state.value}
                     setValue=  {actions.setValue}
                 />
             )
