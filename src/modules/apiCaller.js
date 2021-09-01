@@ -43,30 +43,49 @@ export const postOne = (url, data, setItem, setError, setLoading) => {
     handleRequest(request, functions, 'isSuccess');
 }
 
-export const fetchVotes = async (type , itemId, setValue, setError ,setLoading) => {
+export const fetchVotes = async (type , itemId, setValue) => {
   
+    let value = {
+        mbtiVotes : '',
+        total : '',
+        available : '',
+        error : '',
+        loading : false,
+    }
+
     try{
-        setValue(null);
-        setLoading(true);
-        setError(null);
+         
+
+        setValue(value);
 
         const url = "/vote/api/v1/list/" + type + "/" + itemId;
-
         const response = await axios.get(url);
 
         const mbtiCountGetDtos = response.data['mbtiCountGetDtos'];
         const total = response.data['total'];
+        const available = response.data['available'];
 
-        const value = {
+        value = {
+            ...value,
             mbtiVotes : mbtiCountGetDtos,
             total : total,
-        }
+            available : available,
+        };
 
-        setValue(value);
     } catch (e){
-        setError(e);
+        setValue({
+            ...value,
+            error : {e}
+        })
     }
-    setLoading(false);
+    value = {
+        ...value,
+        loading: false
+    };
+
+    setValue(value);
+
+    console.log("apiCaller -> mbtiVotes : " + value['mbtiVotes']);
 }
 
 const handleRequest = async (request, functions, dataString) => {
@@ -93,5 +112,6 @@ const handleRequest = async (request, functions, dataString) => {
     }
 
     setLoading(false);
+
     
 }

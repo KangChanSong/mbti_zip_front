@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { fetchItems, fetchVotes } from '../modules/apiCaller';
@@ -6,8 +6,7 @@ import { ContextConsumer } from '../context/ContextContainer';
 import './Vote.css';
 import axios from 'axios';
 
-const VoteFormElement = ({ type, id,  setValue }) => {
-
+const VoteFormElement = ({ type, id, setValue }) => {
     // mbti 조회
     const [mbtis , setMbtis] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -19,27 +18,14 @@ const VoteFormElement = ({ type, id,  setValue }) => {
     useEffect(() => {
         const url = "/mbti/api/v1/list";
         fetchItems(url, 'mbti', setMbtis, setError, setLoading);
-    }, []);
+        fetchVotes(type, id, setValue);
+        return () => setLoading(false);
+    }, [])
 
     // state 별 렌더링
     const createMbtiOptions = (mbtis) => {
-
-        if(loading || !mbtis){
-            return (
-                <option>
-                    불러오는 중
-                </option>
-            )
-        }
-
-        if(error){
-            return (
-                <option>
-                    ERROR : {error}
-                </option>
-            )
-        }
-
+        if(loading || !mbtis) return (<option>불러오는 중</option>)
+        if(error) return (<option>ERROR : {error}</option>)
         return mbtis.map(mbti => {
             let name = mbti['name'];
             return (
@@ -51,16 +37,14 @@ const VoteFormElement = ({ type, id,  setValue }) => {
     }
 
     // select 에서 mbti 선택시 처리
-    const handleChange = (e) => {
-        setSelectedMbti(e.target.value);
-    }
+    const handleChange = (e) => setSelectedMbti(e.target.value);
 
     // 투표하기 버튼처리
     const handleVote = async () => {
         try{
             const url = "/vote/api/v1/mbti/" + selectedMbti + "/" + type + "/" + id;
             await axios.post(url);
-            fetchVotes(type, id, setValue, setError, setLoading);
+            fetchVotes(type, id,  setValue);
         } catch(error){
             alert('Error : ' + error);
         }
@@ -101,4 +85,4 @@ const VoteForm = ({ type , id}) => (
     </ContextConsumer>
 )
 
-export default VoteForm;
+export default React.memo(VoteForm);

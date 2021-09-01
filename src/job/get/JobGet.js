@@ -23,7 +23,7 @@ const JobGet = ({ match }) => {
                 item = {job}
                 type = 'job'
             />
-            <VoteChart itemId = {jobId} type = 'job' />
+            <VoteChart />
             <Comment type = 'job' id = {jobId} /> 
         </div>
     )

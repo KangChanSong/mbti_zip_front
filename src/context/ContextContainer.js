@@ -2,6 +2,8 @@ import React from 'react';
 
 const VoteChartContext = React.createContext();
 
+export {VoteChartContext};
+
 const {Provider, Consumer : ContextConsumer} = VoteChartContext;
 
 class ContextProvider extends React.Component{

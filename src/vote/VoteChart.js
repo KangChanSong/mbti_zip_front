@@ -1,10 +1,9 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+
+import React, { useContext, useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { renderAfterApiCall } from '../modules/renderHelper';
-import { fetchVotes } from '../modules/apiCaller';
 import './Vote.css';
-import { ContextConsumer } from '../context/ContextContainer';
+import { ContextConsumer, VoteChartContext } from '../context/ContextContainer';
 
 function createDataWithMbti(mbtiVotes){
     if(!mbtiVotes){
@@ -58,22 +57,23 @@ scales: {
 },
 };
   
-const VoteChartElement = ({type , itemId, value, setValue}) => {
+const VoteChartElement = ({ value}) => {
+  
+  const [mbtiVotes, setMbtiVotes] = useState(null);
+  const [ total , setTotal ] = useState(null);
+  const [ error, setError ] = useState(null);
+  const [ loading, setLoading] = useState(false);
 
-    const [mbtiVotes, setMbtiVotes] = useState(null);
-    const [total ,setTotal] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
 
-    useEffect(() => {
-       fetchVotes(type, itemId, setValue , setError ,setLoading)
-       if(value){
-        setMbtiVotes(value.mbtiVotes);
-        setTotal(value.total);
-       }
-    }, []);
-
-    const data = createDataWithMbti(mbtiVotes);
+  useEffect( () => {
+    if(value){
+      setMbtiVotes(value['mbtiVotes']);
+      setTotal(value['total']);
+      setError(value['error']);
+      setLoading(value['loading']);      
+    }
+  }, [value]); 
+  const data = createDataWithMbti(mbtiVotes);
     
     const element = (
       <div className = "vote-chart">
@@ -89,19 +89,9 @@ const VoteChartElement = ({type , itemId, value, setValue}) => {
     return renderAfterApiCall(mbtiVotes, error, loading, element);
 }
 
-const VoteChart = ({type , itemId}) => (
-
+const VoteChart = () => (
     <ContextConsumer>
-        {
-          ({ state, actions}) => (
-            <VoteChartElement
-              type = {type}
-              itemId = {itemId}
-              value = {state.value}
-              setValue = {actions.setValue}
-            />
-          )
-        }
+        { ({ state }) => (<VoteChartElement value = {state.value} />) }
     </ContextConsumer>
 )
   export default React.memo(VoteChart);
