@@ -87,18 +87,18 @@ const VoteFormElement = ({ type, id, value , setValue }) => {
                 <option>MBTI를 고르세요.</option>
                 {createMbtiOptions(mbtis)}
             </Form.Select>
-            <Button 
+            { value.available ? <Button 
                 variant = "primary" 
-                className = "vote-button"
+                className = "vote-form-button"
                 onClick = {() => setShow(true)}>
                 투표하기
-            </Button>
+            </Button> :
             <Button 
                 variant = "dark"
-                className = "vote-button"
+                className = "vote-form-button"
                 disabled>
                 이미 투표함
-            </Button>
+            </Button>  }           
         </Form>
         </div>
         <VoteCheckModal
