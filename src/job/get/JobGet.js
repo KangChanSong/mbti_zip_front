@@ -30,4 +30,4 @@ const JobGet = ({ match }) => {
     return renderAfterApiCall(job, error, loading, element);
 }
 
-export default JobGet;
+export default React.memo(JobGet);

@@ -3,12 +3,11 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 
-const RegisterSuccessModal = ({ error}) => {
-    const [show , setShow ] = useState(true);
+const RegisterSuccessModal = ({ msg, show , setShow}) => {
     return (
-        <Modal.Dialog show = {true} >
+        <Modal show = {show} >
             <Modal.Body>
-                <p>Error : {error}</p>
+                <p>Error : {msg}</p>
             </Modal.Body>
             <Modal.Footer>
                 <Button 
@@ -17,7 +16,7 @@ const RegisterSuccessModal = ({ error}) => {
                         닫기
                 </Button>
             </Modal.Footer>
-        </Modal.Dialog>
+        </Modal>
     )
 }
 

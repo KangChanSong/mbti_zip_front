@@ -5,7 +5,9 @@ import JobRegisterForm from '../../job/register/JobRegisterForm';
 import RegisterSuccessModal from '../../modal/register/RegisterSuccessModal';
 import RegisterLoadingModal from '../../modal/register/RegsiterLoadingModal';
 import RegisterErrorModal from '../../modal/register/RegisterErrorModal';
+import FillAllModal from '../../modal/warning/FillAllModal';
 import { postOne } from '../../modules/apiCaller';
+
 
 import './Register.css';
 
@@ -42,10 +44,11 @@ const Register = ({ match }) => {
     const type = match.params.type
     const [form, setForm] = useState(getInitialState(type));
 
-    const [success, setSuccess] = useState(null);
+    const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [show, setShow ] = useState(false);    
+
+    const [notFilled, setNotFilled] = useState(false);
 
     const handleChange = (e) => {
 
@@ -59,18 +62,17 @@ const Register = ({ match }) => {
     };
 
     const handleSubmit = (e) => {
-        const displayAlert = () => {alert('모두 입력해주세요.');}
         e.preventDefault();
         if(type === 'person'){
             if(!form.name || !form.writer || !form.gender || !form.categoryId || !form.description || !form.password){
-                displayAlert();
-                return;
+                setNotFilled(true);
+                return ;
             }
         }
         if(type === 'job'){
             if(!form.title || !form.writer || !form.password){
-                displayAlert();
-                return;
+                setNotFilled(true);
+                return ;
             }
         }
         const url = "/" + type +"/api/v1/register";
@@ -89,28 +91,24 @@ const Register = ({ match }) => {
             <JobRegisterForm
             setForm = {setForm}
             handleChange = {handleChange}
-            handleSubmit = {handleSubmit}/>};
+            handleSubmit = {handleSubmit}/>}
 
-        {success !== true ? 
-            null
-            :
-            <RegisterSuccessModal
-                show = {show.toString()}
-                setShow = {setShow}
-            />
-            }
-        
-        {loading !== true ?
-            null
-            : 
-            <RegisterLoadingModal
-                show = {loading.toString()}/> }
+        <RegisterSuccessModal
+                show = {success}
+                setShow = {setSuccess}/>
+         
+        <RegisterLoadingModal
+            show = {loading}/>
 
-        {!error ? 
-            null
-            :
-            <RegisterErrorModal 
-                error = {error} /> }
+        <RegisterErrorModal 
+            msg = {error}
+            show = {error}
+            setShow = {setError} /> 
+
+        <FillAllModal 
+            show = {notFilled}
+            setShow = {setNotFilled}/>
+            
         </>
     );
         

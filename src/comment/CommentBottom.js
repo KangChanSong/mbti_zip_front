@@ -5,6 +5,7 @@ import CommentRegisterModal from '../modal/CommentRegisterModal';
 const CommentBottom = ({ type, id, page, setPage}) => {
 
     return (
+        <>
         <div className = "comment-bottom">
             <div></div>
             <Page 
@@ -14,6 +15,8 @@ const CommentBottom = ({ type, id, page, setPage}) => {
                 setPage = {setPage}/>
             <CommentRegisterModal type = {type} id = {id}/>
         </div>
+        
+        </>
     )
 }
 

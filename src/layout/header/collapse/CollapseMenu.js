@@ -5,6 +5,7 @@ import SearchForm from './SearchForm';
 import PersonDropdownItem from './PersonDropdownItem';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
+import './Collapse.css';
 
 const CollapseMenu = () => {
 
@@ -14,12 +15,12 @@ const CollapseMenu = () => {
                 style = {{ maxHeight : '300px'}}
                 navbarScroll>
                 <Nav.Link>
-                    <Link to ="/mbti/list">MBTI</Link>
+                    <Link to ="/mbti/list" className="my-nav-link" >MBTI</Link>
                 </Nav.Link>
                 <Nav.Link>
-                    <Link to  ="/job/list" >직업</Link>
+                    <Link to ="/job/list" className="my-nav-link">직업</Link>
                 </Nav.Link>
-                <NavDropdown title="인물" id="navbarScrollingDropdown">
+                <NavDropdown title="인물"  className="my-nav-link" id="navbarScrollingDropdown">
                     <PersonDropdownItem value = "전체" />
                     <PersonDropdownItem value = "위인" />
                     <PersonDropdownItem value = "과학자" />

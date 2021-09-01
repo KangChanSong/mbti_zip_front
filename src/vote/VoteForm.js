@@ -65,6 +65,12 @@ const VoteFormElement = ({ type, id, value , setValue }) => {
 
     // 투표하기 버튼처리
     const handleVote = async () => {
+
+        if(!selectedMbti){
+            alert("MBTI를 선택해주세요.")
+            return;
+        }
+
         try{
             const url = "/vote/api/v1/mbti/" + selectedMbti + "/" + type + "/" + id;
             await axios.post(url);

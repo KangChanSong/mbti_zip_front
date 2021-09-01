@@ -10,7 +10,7 @@ const JobItem = ({ job }) => {
 
     return (
         <Link className = "itemLink" to = {"/job/get/" + job.id} >
-            <Card className = 'm-3' border = {getRandomColor()} variant = 'top'>
+            <Card className = 'm-3'  variant = 'top'>
             <Card.Body>
                 <Card.Title>{job.title}</Card.Title>
                 <Card.Text >{job.mbti}</Card.Text>

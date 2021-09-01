@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
-import Main from '../../main/Main';
 import CollapseMenu from './collapse/CollapseMenu';
 import { Link } from 'react-router-dom';
 
