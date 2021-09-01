@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { fetchItems } from '../modules/apiCaller';
+import { fetchItems, fetchVotes } from '../modules/apiCaller';
+import { ContextConsumer } from '../context/ContextContainer';
 import './Vote.css';
 import axios from 'axios';
 
-const VoteForm = ({ type, id }) => {
+const VoteFormElement = ({ type, id,  setValue }) => {
 
     // mbti 조회
-    const [mbtis, setMbtis] = useState(null);
+    const [mbtis , setMbtis] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error , setError] = useState(null); 
 
@@ -58,9 +59,8 @@ const VoteForm = ({ type, id }) => {
     const handleVote = async () => {
         try{
             const url = "/vote/api/v1/mbti/" + selectedMbti + "/" + type + "/" + id;
-            const response = await axios.post(url);
-            alert('투표 성공!');
-            window.location.reload();
+            await axios.post(url);
+            fetchVotes(type, id, setValue, setError, setLoading);
         } catch(error){
             alert('Error : ' + error);
         }
@@ -86,5 +86,19 @@ const VoteForm = ({ type, id }) => {
         </div>
     );
 }
+
+const VoteForm = ({ type , id}) => (
+    <ContextConsumer >
+        {
+            ({ actions}) => (
+                <VoteFormElement
+                    type = {type}
+                    id = {id}
+                    setValue=  {actions.setValue}
+                />
+            )
+        }
+    </ContextConsumer>
+)
 
 export default VoteForm;

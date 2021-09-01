@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { VoteChartConsumer } from '../../context/MbtiCountContext';
+import React from 'react';
+import { ContextConsumer } from '../../context/ContextContainer';
 
 const Receiver = () => {
     return (
-        <VoteChartConsumer>
+        <ContextConsumer>
             
             {
                 (sample) => (
@@ -12,7 +12,7 @@ const Receiver = () => {
                     </div>
                 )
             }
-        </VoteChartConsumer>
+        </ContextConsumer>
     );
 };
 

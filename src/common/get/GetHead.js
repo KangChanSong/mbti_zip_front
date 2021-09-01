@@ -108,4 +108,5 @@ const GetHead = ({item, type}) => {
     return <Element buttons = {buttons} />
 }
 
+
 export default React.memo(GetHead);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { VoteChartConsumer } from '../../context/MbtiCountContext';
+import { ContextConsumer } from '../../context/ContextContainer';
 
 class Sender extends Component{
 
@@ -33,7 +33,7 @@ class Sender extends Component{
 }
 
 const SenderContainer = () => (
-    <VoteChartConsumer>
+    <ContextConsumer>
         {
             ({state, actions}) => (
                 <Sender
@@ -42,7 +42,7 @@ const SenderContainer = () => (
                 />
             )
         }
-    </VoteChartConsumer>
+    </ContextConsumer>
 );
 
 export default SenderContainer;

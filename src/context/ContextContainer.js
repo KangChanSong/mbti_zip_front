@@ -2,12 +2,12 @@ import React from 'react';
 
 const VoteChartContext = React.createContext();
 
-const {Provider, Consumer : VoteChartConsumer} = VoteChartContext;
+const {Provider, Consumer : ContextConsumer} = VoteChartContext;
 
-class VoteChartProvider extends React.Component{
+class ContextProvider extends React.Component{
     
     state = {
-        value : '기본값입니다.',
+        value : '',
     }
 
     actions = {
@@ -17,8 +17,8 @@ class VoteChartProvider extends React.Component{
     }
 
     render(){
-        const { state, action } = this;
-        const value = {state, action};
+        const { state, actions } = this;
+        const value = {state, actions};
         return (
             <Provider value = {value}>
                 {this.props.children}
@@ -28,6 +28,6 @@ class VoteChartProvider extends React.Component{
 }
 
 export {
-    VoteChartConsumer,
-    VoteChartProvider,
+    ContextConsumer,
+    ContextProvider,
 };

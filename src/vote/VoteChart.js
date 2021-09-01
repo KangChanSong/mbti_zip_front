@@ -2,7 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { renderAfterApiCall } from '../modules/renderHelper';
+import { fetchVotes } from '../modules/apiCaller';
 import './Vote.css';
+import { ContextConsumer } from '../context/ContextContainer';
 
 function createDataWithMbti(mbtiVotes){
     if(!mbtiVotes){
@@ -56,33 +58,19 @@ scales: {
 },
 };
   
-const VoteChart = ({type , itemId}) => {
+const VoteChartElement = ({type , itemId, value, setValue}) => {
 
     const [mbtiVotes, setMbtiVotes] = useState(null);
-    const [total, setTotal] = useState(null);
+    const [total ,setTotal] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-      const fetchItems = async () => {
-        try{
-          setMbtiVotes(null);
-          setLoading(true);
-          setError(null);
-
-          const url = "/vote/api/v1/list/" + type + "/" + itemId;
-
-          const response = await axios.get(url);
-
-          setMbtiVotes(response.data['mbtiCountGetDtos']);
-          setTotal(response.data['total']);
-        } catch (e){
-          setError(e);
-        }
-
-        setLoading(false);
-      }
-      fetchItems();
+       fetchVotes(type, itemId, setValue , setError ,setLoading)
+       if(value){
+        setMbtiVotes(value.mbtiVotes);
+        setTotal(value.total);
+       }
     }, []);
 
     const data = createDataWithMbti(mbtiVotes);
@@ -101,4 +89,19 @@ const VoteChart = ({type , itemId}) => {
     return renderAfterApiCall(mbtiVotes, error, loading, element);
 }
 
+const VoteChart = ({type , itemId}) => (
+
+    <ContextConsumer>
+        {
+          ({ state, actions}) => (
+            <VoteChartElement
+              type = {type}
+              itemId = {itemId}
+              value = {state.value}
+              setValue = {actions.setValue}
+            />
+          )
+        }
+    </ContextConsumer>
+)
   export default React.memo(VoteChart);
