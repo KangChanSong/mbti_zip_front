@@ -5,7 +5,7 @@ import ListHead from '../../common/list/ListHead';
 import { fetchItems  } from '../../modules/apiCaller';
 import { renderAfterApiCall } from '../../modules/renderHelper';
 import { createListUrlWithQuery } from '../../modules/urlGenerator';
-import { extractPageAndSize } from '../../modules/queryExtractor';
+import { extractProperties } from '../../modules/queryExtractor';
 
 const PersonList = ({ location }) => {
 
@@ -13,8 +13,11 @@ const PersonList = ({ location }) => {
     const[loading, setLoading] = useState(false);
     const[error, setError] = useState(null);
     
-    const[extPage, extSize] = extractPageAndSize(location);
-    const[page, setPage ] = useState(extPage);
+    const [extPage, extSize, extSort ,extDir] = extractProperties(location.search);
+    const [page, setPage] = useState(extPage);
+    const sort = extSort;
+    const dir = extDir;
+
     const size = extSize;
 
     useEffect(() => {
@@ -24,7 +27,10 @@ const PersonList = ({ location }) => {
 
     const element = renderAfterApiCall(persons, error, loading, 
         <div className = "personList">
-            <ListHead type = 'person' />
+            <ListHead 
+                type = 'job'
+                sort = {sort}
+                dir = {dir}/>
             <ItemCardGroup type = 'person' itemList = {persons} />
             <ListFoot 
                 setPage = {setPage}

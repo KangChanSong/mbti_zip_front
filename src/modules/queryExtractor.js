@@ -1,6 +1,6 @@
 import qs from 'qs';
 
-export const extractPageAndSize = (location) => {
+export const extractProperties = (location) => {
 
     const parsed = qs.parse(location.search, {
         ignoreQueryPrefix: true
@@ -12,6 +12,12 @@ export const extractPageAndSize = (location) => {
     if(!parsed.size){
         parsed.size = 16;
     }
+    if(!parsed.sort){
+        parsed.sort = 'createDate';
+    }
+    if(!parsed.dir){
+        parsed.dir = 'desc';
+    }
 
-    return [ parsed.page, parsed.size];
+    return [ parsed.page, parsed.size, parsed.sort, parsed.dir];
 }
