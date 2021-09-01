@@ -1,4 +1,4 @@
-import React, { useEffect,   useRef,  useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ItemCardGroup from '../../common/item/ItemCardGroup';
 import ListHead from '../../common/list/ListHead';
 import ListFoot from '../../common/list/ListFoot';
@@ -13,7 +13,7 @@ function JobList({ location }){
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const [extPage, extSize, extSort ,extDir] = extractProperties(location.search);
+    const [extPage, extSize, extSort ,extDir] = extractProperties(location);
     const [page, setPage] = useState(extPage);
     const size = extSize;
     const sort = extSort;
@@ -24,6 +24,8 @@ function JobList({ location }){
         fetchItems(url, 'job', setJobs, setError, setLoading);
     }, [page]);
 
+    console.log("JobList sort : " + sort + " dir : " + dir);
+    console.log("JobList location.search sort : " + location.search['sort'] + " dir : " + location.search['dir']);
     const element = (
         <div className = "jobList" >
                 <ListHead 

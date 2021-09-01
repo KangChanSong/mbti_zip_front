@@ -13,6 +13,7 @@ const ListHead = ({ type, sort, dir }) => {
     const likes = "likes";
     const views = "views";
 
+
     const handleChange = (e) => {
         
         const [ sort, dir ] = e.target.value.split("#");
@@ -23,7 +24,7 @@ const ListHead = ({ type, sort, dir }) => {
     return (
         <div className = "listHead">
             <h2>{changeTypeToKorean(type)} 목록</h2>
-            <Form.Select size='sm' onChange = {handleChange}>
+            <Form.Select size='sm' onChange = {handleChange} defaultValue = {sort + "#" + dir}>
                 <option value = {createDate + "#" +  desc} 
                     selected = {
                         sort == createDate && dir == desc 

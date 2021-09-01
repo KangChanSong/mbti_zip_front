@@ -13,7 +13,7 @@ const PersonList = ({ location }) => {
     const[loading, setLoading] = useState(false);
     const[error, setError] = useState(null);
     
-    const [extPage, extSize, extSort ,extDir] = extractProperties(location.search);
+    const [extPage, extSize, extSort ,extDir] = extractProperties(location);
     const [page, setPage] = useState(extPage);
     const sort = extSort;
     const dir = extDir;
