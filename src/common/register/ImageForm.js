@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const ImageForm = ({ image, setImage }) => {
+const ImageForm = ({ form ,setForm }) => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const image = form['filename'];
 
     const upload = async (file) => {
         try {
@@ -19,7 +21,11 @@ const ImageForm = ({ image, setImage }) => {
                 }
             });
             
-            setImage(response.data['fullName']);
+            const filename = response.data['fullName'];
+            setForm({
+                ...form,
+                filename : filename,
+            })
 
         } catch(e){
             setError(e);
@@ -39,7 +45,10 @@ const ImageForm = ({ image, setImage }) => {
     const handleClick = () => {
         if(image) {
             axios.delete("/file/api/v1/delete/" + image);
-            setImage(null);
+            setForm({
+                ...form,
+                filename : '',
+            });
         }
         
     }

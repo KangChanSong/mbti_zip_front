@@ -4,9 +4,8 @@ import Button from 'react-bootstrap/Button';
 import ImageForm from '../../common/register/ImageForm';
 import CategoryList from '../../category/list/CategoryList';
     
-const PersonRegisterForm = ( {handleChange, handleSubmit} ) => 
+const PersonRegisterForm = ( {form, setForm , handleChange, handleSubmit} ) => 
 {      
-    const [image, setImage] = useState(null);
     return (
         <div className = "register">
             <h1>인물 등록</h1>
@@ -24,7 +23,7 @@ const PersonRegisterForm = ( {handleChange, handleSubmit} ) =>
                     placeholder = "작성자를 입력하세요." />
                 </Form.Group>
                 <Form.Group className = "mb-3">
-                    <ImageForm image = {image} setImage = {setImage} /> 
+                    <ImageForm form = {form} setForm = {setForm} /> 
                 </Form.Group>
                 <Form.Group className ="mb-3">
                     <Form.Select name = "gender">
