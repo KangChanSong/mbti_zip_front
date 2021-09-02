@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-const RegisterSuccessModal = ({ show, setShow }) => {
 
+const RegisterSuccessModal = ({ msg, show , setShow}) => {
     return (
-        <Modal show = {show}>
+        <Modal show = {show} >
             <Modal.Body>
-                <p>성공적으로 등록되었습니다.</p>
+                <p>에러 : {msg}</p>
             </Modal.Body>
             <Modal.Footer>
                 <Button 

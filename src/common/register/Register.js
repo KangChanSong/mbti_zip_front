@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import PersonRegisterForm from '../../person/register/PersonRegisterForm'
 import JobRegisterForm from '../../job/register/JobRegisterForm';
-import RegisterSuccessModal from '../../modal/register/RegisterSuccessModal';
-import RegisterLoadingModal from '../../modal/register/RegsiterLoadingModal';
-import RegisterErrorModal from '../../modal/register/RegisterErrorModal';
+import SuccessModal from '../../modal/register/SuccessModal';
+import LoadingModal from '../../modal/register/LoadingModal';
+import ErrorModal from '../../modal/register/ErrorModal';
 import FillAllModal from '../../modal/warning/FillAllModal';
 import { postOne } from '../../modules/apiCaller';
-
+import { deleteFile } from '../../modules/apiCaller';
+import { Prompt } from 'react-router-dom';
 
 import './Register.css';
 
 const getInitialState = (type) => {
 
+
     let initialState;
     
-    if(type === 'person'){
+    if(type == 'person'){
         initialState =
             {
                 name : '',
@@ -26,12 +27,13 @@ const getInitialState = (type) => {
                 password : '',  
                 filename : '',
             };
-    } else if(type === 'job'){
+    } else if(type == 'job'){
         initialState = 
             {
                 title : '',
                 writer : '',
                 password : '',
+                filename : '',
             };
     } else {
         throw new Error('type 이 맞지 않습니다. type : ' + type);
@@ -71,7 +73,7 @@ const Register = ({ match }) => {
             }
         }
         if(type === 'job'){
-            if(!form.title || !form.writer || !form.password){
+            if(!form.title || !form.writer || !form.password || !form.filename){
                 setNotFilled(true);
                 return ;
             }
@@ -80,9 +82,16 @@ const Register = ({ match }) => {
         postOne(url, form, setSuccess, setError, setLoading);
     }
 
+    const deleteOnLeave = () => {
+        const filename = form['filename'];
+        if(filename) deleteFile(filename);
+    }
+
+    window.onbeforeunload = () => deleteOnLeave();
 
     return (
         <>
+        <Prompt message = {(location, action) => {if(action === 'POP') deleteOnLeave(); }} />
         {type === 'person' ?
 
             <PersonRegisterForm 
@@ -92,17 +101,21 @@ const Register = ({ match }) => {
             handleSubmit = {handleSubmit}/> 
             : 
             <JobRegisterForm
+            form = {form}
+            setForm = {setForm}
             handleChange = {handleChange}
             handleSubmit = {handleSubmit}/>}
 
-        <RegisterSuccessModal
+        <SuccessModal
+                suffix = '등록'
                 show = {success}
                 setShow = {setSuccess}/>
          
-        <RegisterLoadingModal
+        <LoadingModal
+            suffix = '등록'
             show = {loading}/>
 
-        <RegisterErrorModal 
+        <ErrorModal 
             msg = {error}
             show = {error}
             setShow = {setError} /> 
@@ -115,5 +128,4 @@ const Register = ({ match }) => {
     );
         
 }
-
-export default Register;
+export default React.memo(Register);

@@ -88,6 +88,17 @@ export const fetchVotes = async (type , itemId, setValue) => {
     console.log("apiCaller -> mbtiVotes : " + value['mbtiVotes']);
 }
 
+
+export const deleteFile = async (filename) => {
+    if(filename){
+        try {
+            await axios.delete("/file/api/v1/delete/" + filename );
+        } catch (e){
+            console.log("파일 삭제 중 에러 : " + e);
+        }
+    }
+}
+
 const handleRequest = async (request, functions, dataString) => {
 
     const setItem = functions.setItem;
@@ -112,6 +123,4 @@ const handleRequest = async (request, functions, dataString) => {
     }
 
     setLoading(false);
-
-    
 }

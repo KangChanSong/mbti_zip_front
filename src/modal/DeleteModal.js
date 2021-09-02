@@ -2,11 +2,18 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
+import SuccessModal from './register/SuccessModal';
+import ErrorModal from './register/ErrorModal';
+import LoadingModal from './register/LoadingModal';
 import './DeleteModal.css';
 
-const DeleteModal = ({ variant, size, text, id }) => {
+const DeleteModal = ({ type , size, text, id }) => {
     const [show , setShow] = useState(false);
     const [form , setForm ] = useState({ password : ''});
+
+    const [done ,setDone ] = useState(false);
+    const [loading , setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const handleChange = (e) => {
         setForm({
@@ -25,34 +32,37 @@ const DeleteModal = ({ variant, size, text, id }) => {
 
     const handleDelete = () => {
         if(!form.password || form.password ===''){
-            alert("비밀번호를 입력해주세요!");
+            alert("비밀번호를 입력해주세요.");
             return;
         }
         requestDelete();
-        alert("댓글 삭제중...");
     }
 
     const requestDelete = async () => {
         try {
-            const url = "/comment/api/v1/delete/" + id;
+
+            setDone(false);
+            setError(null);
+            setLoading(false);
+
+            const url = "/" + type + "/api/v1/delete/" + id;
             const response = await axios.delete(url, { data : form });
             const isSuccess = response.data['isSuccess'];
             if(isSuccess){
-                alert('댓글이 성공적으로 삭제되었습니다.');
-                window.location.reload();
+                setDone(true);
             } else {
                 alert("비밀번호가 맞지 않습니다.");
             }
         } catch (e){
-            alert("Error : " + e);
-            window.location.reload();
+            setError(e);
         }
+
+        setLoading(false);
     }
 
     return (
         <>
             <Button 
-                variant = {variant} 
                 size= {size}
                 onClick = {handleShow}>
                 {text}
@@ -76,6 +86,11 @@ const DeleteModal = ({ variant, size, text, id }) => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+
+            <SuccessModal show = {done} setShow = {setDone} suffix = '삭제'/>
+            <LoadingModal show = {loading} suffix = "삭제" />
+            <ErrorModal msg = {error} show = {error} setShow = {setError}/>
+
         </>
     )
 }

@@ -80,9 +80,11 @@ const GetHead = ({item, type}) => {
                         <p>조회수: {item.views}</p>
                         <button onClick = {handleLike}>{ available ? '🤍' : '❤'} {likes}</button>
                         <DeleteModal 
+                            type = {type}
                             text = "삭제"
-                            variant = "secondary" 
-                            size = "sm" />
+                            size = "sm"
+                            id = {item.id}
+                            />
                     </div>);
 
     const Element = ({ buttons } ) => (

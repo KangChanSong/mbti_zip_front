@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { deleteFile } from '../../modules/apiCaller';
 
 const ImageForm = ({ form ,setForm }) => {
     const [error, setError] = useState(null);
@@ -44,7 +45,7 @@ const ImageForm = ({ form ,setForm }) => {
 
     const handleClick = () => {
         if(image) {
-            axios.delete("/file/api/v1/delete/" + image);
+            deleteFile(image);
             setForm({
                 ...form,
                 filename : '',
