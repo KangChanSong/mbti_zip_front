@@ -56,4 +56,4 @@ const PersonRegisterForm = ( {handleChange, handleSubmit} ) =>
     );
 };
 
-export default PersonRegisterForm;
+export default React.memo(PersonRegisterForm);
