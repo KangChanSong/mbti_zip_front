@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import ImageForm from '../../common/register/ImageForm';
 
 const JobRegisterForm = ( { handleSubmit, handleChange } ) => {
+
+    const [image ,setImage] = useState(null);
+
     return(
         <div className = "register">
             <h1>직업 등록</h1>
@@ -19,11 +23,8 @@ const JobRegisterForm = ( { handleSubmit, handleChange } ) => {
                         name ="writer"
                         placeholder = "작성자를 입력하세요." />
                 </Form.Group>
-                <Form.Group className = "mb-3">
-                    <Form.Control
-                    name = "image"
-                    type="file" />
-                    썸네일을 업로드하세요.
+                <Form.Group>
+                    <ImageForm image = {image} setImage = {setImage} />
                 </Form.Group>
                 <Form.Group className = "mb-3">
                     <Form.Control

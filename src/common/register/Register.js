@@ -24,6 +24,7 @@ const getInitialState = (type) => {
                 categoryId : '',
                 description : '',
                 password : '',  
+                image : '',
             };
     } else if(type === 'job'){
         initialState = 
@@ -64,7 +65,7 @@ const Register = ({ match }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(type === 'person'){
-            if(!form.name || !form.writer || !form.gender || !form.categoryId || !form.description || !form.password){
+            if(!form.name || !form.writer || !form.gender || !form.categoryId || !form.description || !form.password || !form.image){
                 setNotFilled(true);
                 return ;
             }
@@ -84,12 +85,10 @@ const Register = ({ match }) => {
         {type === 'person' ?
 
             <PersonRegisterForm 
-            setForm = {setForm}
             handleChange = {handleChange}
             handleSubmit = {handleSubmit}/> 
             : 
             <JobRegisterForm
-            setForm = {setForm}
             handleChange = {handleChange}
             handleSubmit = {handleSubmit}/>}
 
