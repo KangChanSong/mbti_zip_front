@@ -28,7 +28,7 @@ const VoteCheckModal = ({ show, setShow,  handleVote}) => {
     )
 }
 
-const VoteFormElement = ({ type, id, value , setValue }) => {
+const VoteFormElement = ({ type, id, isRendered, value , setValue }) => {
     // mbti 조회
     const [mbtis , setMbtis] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -41,9 +41,11 @@ const VoteFormElement = ({ type, id, value , setValue }) => {
 
     useEffect(() => {
         const url = "/mbti/api/v1/list";
-        fetchItems(url, 'mbti', setMbtis, setError, setLoading);
-        fetchVotes(type, id, setValue);
-        return () => setLoading(false);
+        if(isRendered){
+            alert("VoteForm.js useEffect()")
+            fetchItems(url, 'mbti', setMbtis, setError, setLoading);
+            fetchVotes(type, id, setValue);
+        }
     }, [])
 
     // state 별 렌더링
@@ -117,13 +119,14 @@ const VoteFormElement = ({ type, id, value , setValue }) => {
     );
 }
 
-const VoteForm = ({ type , id}) => (
+const VoteForm = ({ type , id, isRendered}) => (
     <ContextConsumer >
         {
             ({ state, actions}) => (
                 <VoteFormElement
                     type = {type}
                     id = {id}
+                    isRendered = {isRendered}
                     value = {state.value}
                     setValue=  {actions.setValue}
                 />

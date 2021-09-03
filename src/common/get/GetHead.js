@@ -15,8 +15,7 @@ const PersonHead = ({ item }) => (
             <p>분류 : {item.category}</p>
             <p>투표 결과 : {item.mbti}</p>
         </div>
-    </Alert>  
-);
+    </Alert> );
 
 const JobHead = ({ item }) => (
     <Alert variant = "light" size = "lg" className = "job-get-alert">
@@ -35,10 +34,11 @@ const GetHead = ({item, type}) => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [available, setAvailable] = useState(null);
+    const [isRendered, setIsRendered] = useState(false);
 
     const postToServer = async () => {
         try {
-
+            setIsRendered(false);
             setLikes(item.likes);
             setAvailable(null);
             setError(null);
@@ -57,6 +57,7 @@ const GetHead = ({item, type}) => {
             setError(e);
         }
         setLoading(false);
+        setIsRendered(true);
     }
 
     useEffect(() => {
@@ -98,6 +99,7 @@ const GetHead = ({item, type}) => {
                 <PersonHead item = {item} /> :
                 <JobHead item = {item} />}
                 <VoteForm 
+                isRendered = {isRendered}
                 type = {type}
                 id = {item.id}/>
             </div>

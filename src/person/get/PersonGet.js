@@ -13,8 +13,10 @@ const PersonGet = ({ match }) => {
     const[error, setError ] = useState(null);
 
     useEffect(() => {
-        const url = "/person/api/v1/get/" + personId;
-        fetchOne(url, setPerson,setError,setLoading);
+        if(!loading && !error){
+            const url = "/person/api/v1/get/" + personId;
+            fetchOne(url, setPerson,setError,setLoading);
+        }
     }, []);
 
     const element = (
