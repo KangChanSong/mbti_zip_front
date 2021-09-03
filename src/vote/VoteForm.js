@@ -42,7 +42,6 @@ const VoteFormElement = ({ type, id, isRendered, value , setValue }) => {
     useEffect(() => {
         const url = "/mbti/api/v1/list";
         if(isRendered){
-            alert("VoteForm.js useEffect()")
             fetchItems(url, 'mbti', setMbtis, setError, setLoading);
             fetchVotes(type, id, setValue);
         }

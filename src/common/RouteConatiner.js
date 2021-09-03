@@ -14,6 +14,8 @@ import JobGet from '../job/get/JobGet';
 
 import Register from './register/Register';
 
+import Image from './image/Image';
+
 
 const RouteContainer = () => {
     return (
@@ -30,6 +32,7 @@ const RouteContainer = () => {
             
             <Route path = "/:type/register" component = {Register} />   
             
+            <Route path = "/image/:filename" component = {Image} />
         </>
     )
 }

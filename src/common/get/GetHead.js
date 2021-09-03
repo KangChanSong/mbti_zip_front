@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const PersonHead = ({ item }) => (
     <Alert variant = "light" className = "person-get-alert" >
-        <Image className ="person-get-img" src="https://media.comicbook.com/2020/12/naruto-1249229.jpeg?auto=webp&width=1200&height=628&crop=1200:628,smart/" thumbnail />
+        <img src={'/file/' + item.filename} />
         <div className = "person-get-text">
             <p>작성자 : {item.writer}</p>
             <p>분류 : {item.category}</p>
@@ -19,8 +19,11 @@ const PersonHead = ({ item }) => (
 
 const JobHead = ({ item }) => (
     <Alert variant = "light" size = "lg" className = "job-get-alert">
-        <p>작성자 : {item.writer}</p>
-        <p>투표 결과 : {item.mbti}</p>
+        <img src={'/file/' + item.filename} />
+        <div className = "person-get-text">
+            <p>작성자 : {item.writer}</p>
+            <p>투표 결과 : {item.mbti}</p>
+        </div>
     </Alert> 
 );
 

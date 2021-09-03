@@ -19,7 +19,7 @@ function Main (){
                 setLoading(true);
                 setError(null);
                 
-                const urlSuffix = "/api/v1/list?page=1&size=8&sort=createDate&dir=desc";
+                const urlSuffix = "/api/v1/list?page=1&size=8&sort=likes&dir=desc";
                 const personResponse = await axios.get("/person" + urlSuffix );
                 const jobResponse = await axios.get("/job" + urlSuffix ); 
                 setPersons(personResponse.data['personGetDtos']);

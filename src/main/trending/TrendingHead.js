@@ -8,8 +8,8 @@ const TrendingHead = ({ type }) => {
         job : '직업'}
     return (
         <div className = 'trending-head'>
-            <h3>실시간 베스트 | {types[type]}</h3>
-            <Link to ={"/" + type + "/list"}>
+            <h3>오늘의 베스트  | <span style = {{ fontWeight : 'lighter'}}>{types[type]}</span></h3>
+            <Link to ={"/" + type + "/list?page=1&size=16&sort=likes&dir=desc"}>
                 <Button variant = "primary" size= "sm">
                     더보기
                 </Button>
