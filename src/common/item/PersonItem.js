@@ -15,7 +15,7 @@ const PersonItem = ({ person }) => {
                     variant = 'top' src = 'https://media.comicbook.com/2020/12/naruto-1249229.jpeg?auto=webp&width=1200&height=628&crop=1200:628,smart/'/>
                 <Card.Body>
                     <Card.Title>{person.name}</Card.Title>
-                    <Card.Text>{person.mbti}</Card.Text>
+                    <Card.Text>MBTI : {person.mbti}</Card.Text>
                     <Card.Text>분류 : {person.category}</Card.Text>
                     <Card.Text>❤ : {person.likes}</Card.Text>
                     <Card.Text>👁‍🗨 : {person.views}</Card.Text>

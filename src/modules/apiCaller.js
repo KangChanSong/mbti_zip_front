@@ -117,7 +117,6 @@ const handleRequest = async (request, functions, dataString) => {
         } else {
             setItem(response.data[dataString]);
         }
-
     }catch (e){
         setError(e);
     }

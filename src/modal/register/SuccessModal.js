@@ -4,6 +4,11 @@ import Button from 'react-bootstrap/Button';
 
 const SuccessModal = ({ suffix , show, setShow }) => {
 
+    const handleClose = () => {
+        setShow(false);
+        window.history.back();
+    }
+
     return (
         <Modal show = {show}>
             <Modal.Body>
@@ -12,7 +17,7 @@ const SuccessModal = ({ suffix , show, setShow }) => {
             <Modal.Footer>
                 <Button 
                     variant="primary" 
-                    onClick = {() => setShow(false)} >
+                    onClick = {handleClose} >
                         닫기
                 </Button>
             </Modal.Footer>

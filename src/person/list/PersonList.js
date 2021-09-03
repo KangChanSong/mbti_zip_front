@@ -25,10 +25,10 @@ const PersonList = ({ location }) => {
         fetchItems(url, 'person', setPersons, setError, setLoading);
     }, [page]);
 
-    const element = renderAfterApiCall(persons, error, loading, 
+    return renderAfterApiCall(persons, error, loading, 
         <div className = "personList">
             <ListHead 
-                type = 'job'
+                type = 'person'
                 sort = {sort}
                 dir = {dir}/>
             <ItemCardGroup type = 'person' itemList = {persons} />
@@ -39,8 +39,6 @@ const PersonList = ({ location }) => {
                 type = 'person'
             />
         </div>);
-
-    return element;
 }
 
-export default PersonList;
+export default React.memo(PersonList);

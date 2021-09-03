@@ -84,14 +84,13 @@ const Register = ({ match }) => {
 
     const deleteOnLeave = () => {
         const filename = form['filename'];
-        if(filename) deleteFile(filename);
+        if(filename && !success) deleteFile(filename);
     }
 
     window.onbeforeunload = () => deleteOnLeave();
 
     return (
         <>
-        <Prompt message = {(location, action) => {if(action === 'POP') deleteOnLeave(); }} />
         {type === 'person' ?
 
             <PersonRegisterForm 

@@ -13,7 +13,7 @@ const JobItem = ({ job }) => {
             <Card className = 'm-3'  variant = 'top'>
             <Card.Body>
                 <Card.Title>{job.title}</Card.Title>
-                <Card.Text >{job.mbti}</Card.Text>
+                <Card.Text >MBTI : {job.mbti}</Card.Text>
                 <Card.Text>❤ : {job.likes}</Card.Text>
                 <Card.Text>👁‍🗨 : {job.views}</Card.Text>
             </Card.Body>
