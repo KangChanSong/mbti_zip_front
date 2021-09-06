@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchOne } from '../modules/apiCaller';
 
-const useFetchOne = (url) => {
+export const useFetchOne = (url) => {
 
     const [data , setData] = useState(null);
     const [loading, setLoading ] = useState(false);
@@ -13,5 +13,3 @@ const useFetchOne = (url) => {
 
     return [data , loading, error];
 }
-
-export default useFetchOne;

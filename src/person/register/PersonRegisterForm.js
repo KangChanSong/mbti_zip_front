@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import ImageForm from '../../common/register/ImageForm';
 import CategoryList from '../../category/list/CategoryList';
+import ExistsWarning from '../../common/register/ExistsWarning';
     
 const PersonRegisterForm = ( {form, setForm , handleChange, handleSubmit} ) => 
 {      
+    const [name, setName] = useState(null);
+
+    const onBlur = e => {
+        setName(e.target.value);
+    }
+
     return (
         <div className = "register">
             <h1>인물 등록</h1>
@@ -14,7 +21,13 @@ const PersonRegisterForm = ( {form, setForm , handleChange, handleSubmit} ) =>
                     <Form.Control
                         type="text"
                         name = "name"
-                        placeholder = "인물 이름을 입력하세요" />
+                        placeholder = "인물 이름을 입력하세요"
+                       onBlur = {onBlur}
+                        />
+                <ExistsWarning
+                    url = {"/person/api/v1/exists/" + name}
+                    form = {form}
+                    setForm = {setForm} />
                 </Form.Group>
                 <Form.Group className = "mb-3">
                     <Form.Control
