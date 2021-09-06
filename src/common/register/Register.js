@@ -87,7 +87,7 @@ const Register = ({ match }) => {
         if(filename && !success) deleteFile(filename);
     }
 
-    window.onbeforeunload = () => deleteOnLeave();
+    //window.onbeforeunload = () => deleteOnLeave();
 
     return (
         <>

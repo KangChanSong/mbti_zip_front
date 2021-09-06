@@ -24,8 +24,6 @@ function JobList({ location }){
         fetchItems(url, 'job', setJobs, setError, setLoading);
     }, [page]);
 
-    console.log("JobList sort : " + sort + " dir : " + dir);
-    console.log("JobList location.search sort : " + location.search['sort'] + " dir : " + location.search['dir']);
     const element = (
         <div className = "jobList" >
                 <ListHead 

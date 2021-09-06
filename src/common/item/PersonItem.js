@@ -2,16 +2,13 @@ import React, { useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import './Item.css';
 import { Link } from 'react-router-dom';
-import { useFetchOne } from '../../hooks/CustomHooks';
 
 const PersonItem = ({ person }) => {
 
     return (
         <Link className = "itemLink" to={"/person/get/" + person.id} >
             <Card className="m-3" >
-                <Card.Img
-                    className = "item-card-image"
-                    variant = 'top' src = {'/image/' + person.filename}/>
+                <img className = "item-card-image" src = {"/file/api/v1/get/" + person.filename} />
                 <Card.Body>
                     <Card.Title>{person.name}</Card.Title>
                     <Card.Text>MBTI : {person.mbti}</Card.Text>

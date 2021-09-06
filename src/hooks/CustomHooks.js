@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchOne } from '../modules/apiCaller';
-import axios from 'axios';
 
-export const useFetchOne = (url) => {
+const useFetchOne = (url) => {
 
     const [data , setData] = useState(null);
     const [loading, setLoading ] = useState(false);
@@ -14,3 +13,5 @@ export const useFetchOne = (url) => {
 
     return [data , loading, error];
 }
+
+export default useFetchOne;

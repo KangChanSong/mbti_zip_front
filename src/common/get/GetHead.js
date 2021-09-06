@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import changeTypeToKorean from '../TypeChanger';
 import Alert from 'react-bootstrap/Alert';
-import Image from 'react-bootstrap/Image';
 import VoteForm from '../../vote/VoteForm';
 import DeleteModal from '../../modal/DeleteModal';
 import './GetHead.css';
@@ -9,8 +8,8 @@ import axios from 'axios';
 
 const PersonHead = ({ item }) => (
     <Alert variant = "light" className = "person-get-alert" >
-        <img src={'/file/' + item.filename} />
-        <div className = "person-get-text">
+        <img className = "get-img" src = {"/file/api/v1/get/" + item.filename} />
+        <div className = "get-text">
             <p>작성자 : {item.writer}</p>
             <p>분류 : {item.category}</p>
             <p>투표 결과 : {item.mbti}</p>
@@ -19,8 +18,8 @@ const PersonHead = ({ item }) => (
 
 const JobHead = ({ item }) => (
     <Alert variant = "light" size = "lg" className = "job-get-alert">
-        <img src={'/file/' + item.filename} />
-        <div className = "person-get-text">
+        <img className = "get-img" src = {"http://localhost:3000/file/api/v1/get/" + item.filename} />
+        <div className = "get-text">
             <p>작성자 : {item.writer}</p>
             <p>투표 결과 : {item.mbti}</p>
         </div>

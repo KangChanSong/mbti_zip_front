@@ -37,11 +37,11 @@
     display: flex;
 }
 
-.person-get-img {
+.get-img {
     width: 20%;
 }
 
-.person-get-text{
+.get-text{
     margin-left: 2%;
     margin-top: 1%;
 }
