@@ -5,6 +5,8 @@ import JobItem from './JobItem';
 
 const ItemCardGroup = ({type, itemList}) => {
 
+    if(!itemList) return null;
+
     function toPersonItemList(itemList){
         return itemList.map(item => {
             return <PersonItem 

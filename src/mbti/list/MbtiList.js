@@ -17,6 +17,9 @@ const MbtiList = () => {
     }, []);
 
     const MbtiElements = ({ mbtis }) => {
+
+        if(!mbtis) return null;
+
         return (
             <>
             {

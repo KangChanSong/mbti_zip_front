@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PersonRegisterForm from '../../person/register/PersonRegisterForm'
 import JobRegisterForm from '../../job/register/JobRegisterForm';
 import SuccessModal from '../../modal/register/SuccessModal';
@@ -7,7 +7,6 @@ import ErrorModal from '../../modal/register/ErrorModal';
 import FillAllModal from '../../modal/warning/FillAllModal';
 import { postOne } from '../../modules/apiCaller';
 import { deleteFile } from '../../modules/apiCaller';
-import { Prompt } from 'react-router-dom';
 
 import './Register.css';
 
@@ -87,7 +86,11 @@ const Register = ({ match }) => {
         if(filename && !success) deleteFile(filename);
     }
 
-    //window.onbeforeunload = () => deleteOnLeave();
+    window.addEventListener("beforeunload", () => {
+        alert("beforeunload!");
+        deleteOnLeave();  
+    });
+        
 
     return (
         <>

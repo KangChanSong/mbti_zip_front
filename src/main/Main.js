@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Greeting from './greeting/Greeting';
 import Trending from './trending/Trending';
+import { renderAfterApiCall } from '../modules/renderHelper';
 
 function Main (){
 
@@ -34,23 +35,15 @@ function Main (){
         fetchItems();
     }, [])
 
-    if(loading){
-        return <h1>로딩중</h1>;
-    }
-    if(error) {
-        return <h1> {error.toString()} </h1>;
-    }
-    if(!persons && !jobs){
-        return null;
-    }
+    const element = (
+        <div className = "main">
+            <Greeting />
+            <Trending type = "person" itemList = {persons}/>
+            <Trending type = "job" itemList = {jobs}/>
+        </div>
+    );
 
-    return (
-            <div className = "main">
-                <Greeting />
-                <Trending type = "person" itemList = {persons}/>
-                <Trending type = "job" itemList = {jobs}/>
-            </div>
-    )
+    return renderAfterApiCall(null, error, loading, element);
 }
 
 export default Main;
