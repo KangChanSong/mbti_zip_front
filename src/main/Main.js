@@ -10,7 +10,6 @@ function Main (){
     const[jobs , setJobs] = useState(null);
     const[loading, setLoading] = useState(false);
     const[error, setError] = useState(null);
-
     useEffect(() => {
 
         const fetchItems = async () => {
@@ -43,7 +42,7 @@ function Main (){
         </div>
     );
 
-    return renderAfterApiCall(null, error, loading, element);
+    return renderAfterApiCall(persons, error, loading, element);
 }
 
 export default Main;

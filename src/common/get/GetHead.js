@@ -5,6 +5,7 @@ import VoteForm from '../../vote/VoteForm';
 import DeleteModal from '../../modal/DeleteModal';
 import './GetHead.css';
 import axios from 'axios';
+import { renderAfterApiCall } from '../../modules/renderHelper';
 
 const PersonHead = ({ item }) => (
     <Alert variant = "light" className = "person-get-alert" >
@@ -108,10 +109,7 @@ const GetHead = ({item, type}) => {
         </div>
     )
 
-    if(error){
-        return <Element buttons = {<p>에러 발생 : {error}</p>} />
-    }
-    return <Element buttons = {buttons} />
+    return renderAfterApiCall(item, error, loading , <Element buttons = {buttons} />)
 }
 
 
