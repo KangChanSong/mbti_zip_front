@@ -35,20 +35,27 @@ const WaitModal = ({ wait }) => {
     )
 }
 
-const DoneModal = ({ done, setDone }) => {
+const DoneModal = ({ done, setDone, setPage}) => {
+
+    const onClick = () => {
+        
+        setPage("1");
+        setDone(false);
+    }
+
     return (
         <Modal show = {done} >
             <Modal.Body>
                 댓글이 성공적으로 등록됐습니다.
             </Modal.Body>
-            <Button onClick = {() => setDone(false)}>
+            <Button onClick = {onClick}>
                 닫기
             </Button>
         </Modal>
     )
 } 
 
-function CommentRegisterModal({ type , id}){
+function CommentRegisterModal({ type , id, setPage }){
     const [show , setShow] = useState(false);
     const [form , setForm ] = useState({writer : '', content: '', password: ''});
 
@@ -121,9 +128,11 @@ function CommentRegisterModal({ type , id}){
             <DoneModal
                 done = {done}
                 setDone = {setDone}
+                setPage = {setPage}
             />
         </>
     )
 }
+
 
 export default CommentRegisterModal;

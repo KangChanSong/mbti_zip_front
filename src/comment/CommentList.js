@@ -38,7 +38,7 @@ const CommentList = ({ comments}) => {
         }
         return comments.map(comment => {
             return (
-                <Comment comment = {comment} />
+                <Comment key = {comment.id} comment = {comment} />
             )
         })
     }

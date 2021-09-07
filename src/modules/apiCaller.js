@@ -90,7 +90,6 @@ export const fetchVotes = async (type , itemId, setValue) => {
 
 
 export const deleteFile = async (filename) => {
-    alert("delete file : " + filename);
     if(filename){
         try {
             await axios.delete("/file/api/v1/delete/" + filename );

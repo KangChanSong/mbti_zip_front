@@ -13,7 +13,10 @@ const CommentBottom = ({ type, id, page, setPage}) => {
                 type = {'comment/' + type + "/" + id }
                 size = '10'
                 setPage = {setPage}/>
-            <CommentRegisterModal type = {type} id = {id}/>
+            <CommentRegisterModal 
+                type = {type} 
+                id = {id}
+                setPage = {setPage}/>
         </div>
         
         </>

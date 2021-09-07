@@ -17,6 +17,7 @@ const Comment = ({type , id}) => {
     const size = 10;
     
     useEffect(() => {
+        alert("Comment.js useEffect")
         const url = "/comment/api/v1/" + type + "/" + id + "/list?page=" + page 
                                 + "&size=" +size + "&sort=" + sort + "&dir=" + dir;
         fetchItems(url, 'comment', setComments, setError, setLoading);
@@ -39,4 +40,4 @@ const Comment = ({type , id}) => {
     return renderAfterApiCall(comments, error, loading, element);
 }
 
-export default Comment;
+export default React.memo(Comment);

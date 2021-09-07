@@ -6,7 +6,6 @@ import LoadingModal from '../../modal/register/LoadingModal';
 import ErrorModal from '../../modal/register/ErrorModal';
 import FillAllModal from '../../modal/warning/FillAllModal';
 import { postOne } from '../../modules/apiCaller';
-import { deleteFile } from '../../modules/apiCaller';
 
 import './Register.css';
 
@@ -80,18 +79,7 @@ const Register = ({ match }) => {
         const url = "/" + type +"/api/v1/register";
         postOne(url, form, setSuccess, setError, setLoading);
     }
-
-    const deleteOnLeave = () => {
-        const filename = form['filename'];
-        if(filename && !success) deleteFile(filename);
-    }
-
-    window.addEventListener("beforeunload", () => {
-        alert("beforeunload!");
-        deleteOnLeave();  
-    });
         
-
     return (
         <>
         {type === 'person' ?
