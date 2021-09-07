@@ -8,7 +8,7 @@ import axios from 'axios';
 import { renderAfterApiCall } from '../../modules/renderHelper';
 
 const PersonHead = ({ item }) => (
-    <Alert variant = "light" className = "person-get-alert" >
+    <Alert variant = "light" className = "get-alert" >
         <img className = "get-img" src = {"/file/api/v1/get/" + item.filename} />
         <div className = "get-text">
             <p>작성자 : {item.writer}</p>
@@ -18,7 +18,7 @@ const PersonHead = ({ item }) => (
     </Alert> );
 
 const JobHead = ({ item }) => (
-    <Alert variant = "light" size = "lg" className = "job-get-alert">
+    <Alert variant = "light" size = "lg" className = "get-alert">
         <img className = "get-img" src = {"http://localhost:3000/file/api/v1/get/" + item.filename} />
         <div className = "get-text">
             <p>작성자 : {item.writer}</p>

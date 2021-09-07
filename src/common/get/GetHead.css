@@ -27,13 +27,7 @@
     margin: 5%;
 }
 
-
-.job-get-alert{
-    font-size: 18px;
-}
-
-
-.person-get-alert{
+.get-alert{
     display: flex;
 }
 
