@@ -17,7 +17,7 @@ const SearchForm = () => {
     }
 
     const handleClick = () => {
-
+        
         let filterBy;
         if(type === "job"){
             filterBy = 'title'
@@ -27,8 +27,15 @@ const SearchForm = () => {
         const url = "/" + type + "/list?page=1&size=16&sort=createDate&dir=desc&filterBy=" + filterBy + "&keyword=" + keyword;
         window.location.href = url;
     }
+
+    const handleKeyDown = e => {
+        if(e.key === 'Enter'){
+            e.preventDefault();
+            handleClick();
+        }
+    }
     return (
-        <Form className="d-flex">
+        <Form className="d-flex" onKeyPress = {handleKeyDown}>
             <Form.Select
                 className = "w-50" 
                 defaultValue = {type}
@@ -46,7 +53,8 @@ const SearchForm = () => {
             <Button 
                 variant="outline-success" 
                 bg="info" 
-                onClick = {handleClick}>
+                onClick = {handleClick}
+                >
                     GO
             </Button>
         </Form>
