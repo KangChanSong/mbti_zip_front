@@ -24,6 +24,7 @@ const CollapseMenu = () => {
                     <Link to ="/job/list" className="my-nav-link">직업</Link>
                 </Nav.Link>
                 <NavDropdown title="인물"  className="my-nav-link" id="navbarScrollingDropdown">
+                    <PersonDropdownItem name = "전체" />
                     { data ? 
                         data['categoryGetDtos'].map( category => {
                         return <PersonDropdownItem key = {category.id} name = {category.name} />

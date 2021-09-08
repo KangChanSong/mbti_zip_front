@@ -2,15 +2,21 @@ import React from 'react';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 const PersonDropdownItem = ({name}) => {
-
-    const url = "/person/list?sort=createDate&dir=desc&filterBy=category&keyword=";
-
+    let baseUrl = "/person/list?page=1&size=16&sort=createDate&dir=desc";
+    
+    let url = baseUrl + "&filterBy=category&keyword=" + name;
+    if(name === '전체'){
+        url = baseUrl
+    }
     return (
-        <NavDropdown.Item >
-            <Link to={url + name}>
-                {name}
-            </Link>
-        </NavDropdown.Item>
+        
+            <NavDropdown.Item style = {{ display : 'flex'}}>
+                <Link to={url}
+                    style = {{ width : '100%', height : '100%'}}>        
+                    {name}
+                </Link>        
+            </NavDropdown.Item>
+        
     )
 
 }
