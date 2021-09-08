@@ -4,7 +4,7 @@ import './List.css';
 import SortSelect from '../select/SortSelect';
 
 
-const ListHead = ({ type, sort, dir, category}) => {
+const ListHead = ({ type, sort, dir, keyword}) => {
 
     const handleChange = ({ sort , dir}) => {
         const url = "/" + type + "/list?page=1&size=16&sort=" + sort + "&dir=" + dir;
@@ -12,13 +12,10 @@ const ListHead = ({ type, sort, dir, category}) => {
     }
     return (
         <div className = "listHead">
-                { type === 'person' ? 
-                <h2>{changeTypeToKorean(type)} 목록 
-                        { category ? <span style = {{ fontSize : '18px'}}> | {category}</span> : <></> } 
-                </h2> :
                 <h2>
-                        {changeTypeToKorean(type)} 목록
-                </h2>}
+                    {changeTypeToKorean(type)} 목록 
+                        { keyword ? <span style = {{ fontSize : '18px'}}> | {keyword}</span> : <></> } 
+                </h2>
             
                 <SortSelect 
                         type = {type}

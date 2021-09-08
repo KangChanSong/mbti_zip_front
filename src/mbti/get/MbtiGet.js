@@ -4,6 +4,7 @@ import './MbtiGet.css';
 import { fetchItems } from '../../modules/apiCaller';
 import { renderAfterApiCall } from '../../modules/renderHelper';
 
+
 const MbtiGet = ({ match }) => {
 
     // api call
@@ -22,17 +23,16 @@ const MbtiGet = ({ match }) => {
 
     const element = (
         <div className = "mbtiGet">
-        <MbtiGetBox 
-            mbtiName = {name}
-            type="person" 
-            itemList = {persons}/>
-        <MbtiGetBox 
-            mbtiName = {name}
-            type="job" 
-            itemList = {jobs}/>
+            <MbtiGetBox 
+                mbtiName = {name}
+                type="person" 
+                itemList = {persons}/> 
+            <MbtiGetBox 
+                mbtiName = {name}
+                type="job" 
+                itemList = {jobs}/> 
         </div>
-    )
-    
+    )    
     return renderAfterApiCall({ persons : persons, jobs: jobs}, error, loading, element);
 }
 

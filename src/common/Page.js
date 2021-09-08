@@ -3,7 +3,6 @@ import Pagination from 'react-bootstrap/Pagination';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { createQueryWithCondition } from '../modules/urlGenerator';
-import { renderAfterApiCall } from '../modules/renderHelper';
 import './Page.css';
 
 const makePage = (curr, size, total) => {
@@ -29,7 +28,6 @@ const PageButton = ({ number, size, curr, setPage }) => {
     return (
             <Pagination.Item active = { number == curr} >
                 <Link
-                    style = {{ color : 'white'}}
                     to = {createQueryWithCondition('page', { page : number, size : size})}
                                 onClick = {() => setPage(number)}>
                     {number}

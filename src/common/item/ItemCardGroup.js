@@ -2,6 +2,8 @@ import React from 'react';
 import CardGroup from 'react-bootstrap/CardGroup';
 import PersonItem from './PersonItem';
 import JobItem from './JobItem';
+import { NoItemFound } from '../../modules/renderHelper';
+import changeTypeToKorean from '../TypeChanger';
 
 const ItemCardGroup = ({type, itemList}) => {
 
@@ -25,11 +27,19 @@ const ItemCardGroup = ({type, itemList}) => {
             })
     } 
     return (
-        <CardGroup className = ''>
-            {type === "person" ?
-            toPersonItemList(itemList) :
-            toJobItemList(itemList)}
-        </CardGroup>
+        <>
+        {
+            itemList && (itemList.length > 0) ? 
+                <CardGroup className = ''>
+                    {type === "person" ?
+                    toPersonItemList(itemList) :
+                    toJobItemList(itemList)}
+                </CardGroup> : 
+                <NoItemFound type = {changeTypeToKorean(type)} />
+        }
+
+        
+        </>
     )
 
 }

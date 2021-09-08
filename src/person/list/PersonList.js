@@ -27,8 +27,9 @@ const PersonList = ({ location }) => {
                 type = 'person'
                 sort = {sort}
                 dir = {dir}
-                category = {keyword}
+                keyword = {keyword}
                 />
+                
             <ItemCardGroup type = 'person' itemList = {persons} />
             <ListFoot 
                 setPage = {setPage}

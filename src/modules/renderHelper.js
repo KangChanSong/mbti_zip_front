@@ -13,7 +13,7 @@ const element = (icon, text) => (
         flexDirection : 'column',
         width : '100%',
         height : '100%',
-        padding : '20%'}}
+        padding : '10%'}}
     >
     {icon}
     <span
@@ -55,6 +55,7 @@ export const Error = ({ error }) => {
 
 export const NotFound = () => {
 
+    return element(null , '결과가 없습니다. 😓');
 }
 
 export const renderAfterApiCall = (items, error, loading, element) => {
@@ -62,8 +63,19 @@ export const renderAfterApiCall = (items, error, loading, element) => {
     if(error){
         return <Error error = {error}/>;
     }
-    if(loading || !items){
+    if(loading){
         return <Loading />;
+    }
+    if(!items){
+        return <NotFound />;
     }
     return element;
 }
+
+
+export const NoItemFound = ({ type }) => (
+    <div
+        style = {{ width : '100%', height : '100%', textAlign : 'center', fontSize : '24px'}}>
+        아직 등록된 {type}이 없어요. 😥
+    </div>
+)

@@ -13,11 +13,8 @@ function JobList({ location }){
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const [extPage, extSize, extSort ,extDir] = extractProperties(location);
+    const [extPage, size, sort , dir , filterBy, keyword] = extractProperties(location);
     const [page, setPage] = useState(extPage);
-    const size = extSize;
-    const sort = extSort;
-    const dir = extDir;
 
     useEffect(() => {
         const url = createListUrlWithQuery(location.search, '/job/api/v1/list');
@@ -29,7 +26,8 @@ function JobList({ location }){
                 <ListHead 
                     type = 'job'
                     sort = {sort}
-                    dir = {dir}/>
+                    dir = {dir}
+                    keyword = {keyword}/>
                 <ItemCardGroup type = "job" itemList = {jobs} />
                 <ListFoot 
                     setPage = {setPage}
