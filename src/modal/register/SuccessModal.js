@@ -2,10 +2,14 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-const SuccessModal = ({ suffix , show, setShow }) => {
+const SuccessModal = ({ type ,suffix , show, setShow }) => {
 
     const handleClose = () => {
         setShow(false);
+        if(type === 'comment'){
+            window.location.reload();
+            return;
+        }
         window.history.back();
     }
 

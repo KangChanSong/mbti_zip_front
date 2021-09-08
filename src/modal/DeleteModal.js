@@ -23,7 +23,6 @@ const DeleteModal = ({ type , size, text, id }) => {
 
     const handleClose = () => {
         setShow(false);
-        
     }
     const handleShow = () => {
         setShow(true);
@@ -88,7 +87,7 @@ const DeleteModal = ({ type , size, text, id }) => {
                 </Modal.Footer>
             </Modal>
 
-            <SuccessModal show = {done} setShow = {setDone} suffix = '삭제'/>
+            <SuccessModal type= {type} show = {done} setShow = {setDone} suffix = '삭제'/>
             <LoadingModal show = {loading} suffix = "삭제" />
             <ErrorModal msg = {error} show = {error} setShow = {setError}/>
 

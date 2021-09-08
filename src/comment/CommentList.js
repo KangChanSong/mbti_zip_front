@@ -2,7 +2,7 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import DeleteModal from '../modal/DeleteModal';
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment ,setPage }) => {
 
     const formatDate = () => {
         let date = new Date(comment.updateDate);
@@ -20,6 +20,7 @@ const Comment = ({ comment }) => {
                     type = "comment"
                     size = "sm"
                     id = {comment.id}
+                    setPage = {setPage}
                     />
             </td>
         </tr>

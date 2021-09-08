@@ -40,7 +40,7 @@ const Comment = ({type , id}) => {
                 />
             </div>
 
-            <CommentList comments = {comments}/>
+            <CommentList comments = {comments} setPage = {setPage}/>
             <CommentBottom 
                 type = {type} 
                 id = {id}
