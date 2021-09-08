@@ -11,10 +11,9 @@ const PersonItem = ({ person }) => {
                 <Card.Body>
                 <img className = "item-card-image" src = {"/file/api/v1/get/" + person.filename} />
                     <Card.Title>{person.name}</Card.Title>
-                    <Card.Text>MBTI : {person.mbti}</Card.Text>
-                    <Card.Text>분류 : {person.category}</Card.Text>
-                    <Card.Text>❤ : {person.likes}</Card.Text>
-                    <Card.Text>👁‍🗨 : {person.views}</Card.Text>
+                    <Card.Text></Card.Text>
+                    <Card.Text>{person.category} | {person.mbti} </Card.Text>
+                    <Card.Text>❤ : {person.likes} | 👁‍🗨 : {person.views}</Card.Text>
                 </Card.Body>
             </Card>
         </Link>
