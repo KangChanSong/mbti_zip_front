@@ -8,11 +8,16 @@ const MbtiGetTitle = ({ mbtiName, type}) => {
         job : '직업'
     }
 
+    const handleClick = () => {
+        const url = "/" + type + "/list?page=1&size=16&sort=createDate&dir=desc&filterBy=mbti&keyword=" + mbtiName;
+        window.location.href = url;
+    }
+
     return (
         <div className = "mbtiGet-title">
             <h2>{mbtiName} | {types[type]}</h2>  
             <a href="#">
-                <Button variant = "primary" size= "sm">
+                <Button variant = "primary" size= "sm" onClick = {handleClick}>
                     더보기
                 </Button>
             </a>   
