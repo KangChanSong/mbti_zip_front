@@ -1,4 +1,4 @@
-import qs from 'qs';
+import qs, { parse } from 'qs';
 
 export const extractProperties = (location) => {
 
@@ -18,6 +18,5 @@ export const extractProperties = (location) => {
     if(!parsed.dir){
         parsed.dir = 'desc';
     }
-
-    return [ parsed.page, parsed.size, parsed.sort, parsed.dir];
+    return [ parsed.page, parsed.size, parsed.sort, parsed.dir, parsed.filterBy, parsed.keyword];
 }

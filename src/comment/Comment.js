@@ -11,7 +11,7 @@ const Comment = ({type , id}) => {
     const [loading, setLoading] = useState(false);
     const [error,  setError] = useState(null);
     
-    const [sort, setSort] = useState("createDate");
+    const [sort, setSort] = useState("updateDate");
     const [dir, serDir] = useState("desc");
     const [page, setPage] = useState(1);
     const size = 10;

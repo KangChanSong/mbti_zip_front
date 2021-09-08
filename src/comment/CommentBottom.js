@@ -16,6 +16,7 @@ const CommentBottom = ({ type, id, page, setPage}) => {
             <CommentRegisterModal 
                 type = {type} 
                 id = {id}
+                page = {page}
                 setPage = {setPage}/>
         </div>
         

@@ -120,6 +120,5 @@ const handleRequest = async (request, functions, dataString) => {
     }catch (e){
         setError(e);
     }
-
     setLoading(false);
 }

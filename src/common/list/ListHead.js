@@ -3,7 +3,7 @@ import changeTypeToKorean from '../../common/TypeChanger';
 import Form from 'react-bootstrap/Form';
 import './List.css';
 
-const ListHead = ({ type, sort, dir }) => {
+const ListHead = ({ type, sort, dir, category}) => {
 
     const desc = "desc";
     const asc= "asc"
@@ -19,7 +19,14 @@ const ListHead = ({ type, sort, dir }) => {
 
     return (
         <div className = "listHead">
-            <h2>{changeTypeToKorean(type)} 목록</h2>
+                { type === 'person' ? 
+                <h2>{changeTypeToKorean(type)} 목록 
+                        { category ? <span style = {{ fontSize : '18px'}}> | {category}</span> : <></> } 
+                </h2> :
+                <h2>
+                        {changeTypeToKorean(type)} 목록
+                </h2>}
+            
             <Form.Select size='sm' onChange = {handleChange} defaultValue = {sort + "#" + dir}>
                 <option value = {createDate + "#" +  desc}>
                         최근순

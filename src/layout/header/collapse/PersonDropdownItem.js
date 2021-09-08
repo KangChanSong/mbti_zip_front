@@ -1,14 +1,14 @@
 import React from 'react';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
-const PersonDropdownItem = (props) => {
+const PersonDropdownItem = ({name}) => {
 
-    const value = props.value;
+    const url = "/person/list?sort=createDate&dir=desc&filterBy=category&keyword=";
 
     return (
         <NavDropdown.Item >
-            <Link to="/person/list">
-                {value}
+            <Link to={url + name}>
+                {name}
             </Link>
         </NavDropdown.Item>
     )

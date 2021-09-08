@@ -64,6 +64,7 @@ const DeleteModal = ({ type , size, text, id }) => {
         <>
             <Button 
                 size= {size}
+                variant = "secondary"
                 onClick = {handleShow}>
                 {text}
             </Button>

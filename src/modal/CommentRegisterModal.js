@@ -35,11 +35,15 @@ const WaitModal = ({ wait }) => {
     )
 }
 
-const DoneModal = ({ done, setDone, setPage}) => {
+const DoneModal = ({ done, setDone, setPage, page}) => {
 
     const onClick = () => {
+        if(page === 1){
+            setPage("1");    
+        } else {
+            setPage(1);
+        }
         
-        setPage("1");
         setDone(false);
     }
 
@@ -55,7 +59,7 @@ const DoneModal = ({ done, setDone, setPage}) => {
     )
 } 
 
-function CommentRegisterModal({ type , id, setPage }){
+function CommentRegisterModal({ type , id, setPage, page }){
     const [show , setShow] = useState(false);
     const [form , setForm ] = useState({writer : '', content: '', password: ''});
 
@@ -129,6 +133,7 @@ function CommentRegisterModal({ type , id, setPage }){
                 done = {done}
                 setDone = {setDone}
                 setPage = {setPage}
+                page = {page}
             />
         </>
     )

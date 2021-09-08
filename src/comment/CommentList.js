@@ -17,7 +17,7 @@ const Comment = ({ comment }) => {
             <td className = "comment-list-button">
                     <DeleteModal
                     text = '❌'
-                    variant = 'muted'
+                    type = "comment"
                     size = "sm"
                     id = {comment.id}
                     />
@@ -26,23 +26,24 @@ const Comment = ({ comment }) => {
     );
 }
 
+const Comments = ({ comments }) => {
+    if(!comments || comments.length === 0) {
+        return (
+            <tr>
+                <td colSpan = "3">아직 작성된 댓글이 없습니다.</td>
+            </tr>
+        )
+    }
+    return comments.map(comment => {
+        return (
+            <Comment key = {comment.id} comment = {comment} />
+        )
+    })
+}
+
 const CommentList = ({ comments}) => {
 
-    const createCommentTableRows = (comments) => {
-        if(!comments || comments.length === 0) {
-            return (
-                <tr>
-                    <td colSpan = "3">아직 작성된 댓글이 없습니다.</td>
-                </tr>
-            )
-        }
-        return comments.map(comment => {
-            return (
-                <Comment key = {comment.id} comment = {comment} />
-            )
-        })
-    }
-
+    console.log(comments);
     return (
         <Table striped bordered hover>
             <thead>
@@ -53,7 +54,9 @@ const CommentList = ({ comments}) => {
                 </tr>
             </thead>
             <tbody>
-                {createCommentTableRows(comments)}
+                <Comments
+                    comments = {comments}
+                />
             </tbody>
         </Table>
     )

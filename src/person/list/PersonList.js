@@ -13,24 +13,22 @@ const PersonList = ({ location }) => {
     const[loading, setLoading] = useState(false);
     const[error, setError] = useState(null);
     
-    const [extPage, extSize, extSort ,extDir] = extractProperties(location);
+    const [extPage, size, sort , dir, filterBy, keyword] = extractProperties(location);
     const [page, setPage] = useState(extPage);
-    const sort = extSort;
-    const dir = extDir;
-
-    const size = extSize;
 
     useEffect(() => {
         const url = createListUrlWithQuery(location.search, '/person/api/v1/list');
         fetchItems(url, 'person', setPersons, setError, setLoading);
-    }, [page]);
+    }, [page, filterBy, keyword]);
 
     return renderAfterApiCall(persons, error, loading, 
         <div className = "personList">
             <ListHead 
                 type = 'person'
                 sort = {sort}
-                dir = {dir}/>
+                dir = {dir}
+                category = {keyword}
+                />
             <ItemCardGroup type = 'person' itemList = {persons} />
             <ListFoot 
                 setPage = {setPage}
