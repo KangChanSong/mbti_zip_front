@@ -3,7 +3,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import './renderHelper.css';
 
-const element = (icon, text) => (
+const Icon = ({ icon }) => (
+    <FontAwesomeIcon 
+        icon = {icon}
+        size = "6x" 
+    />
+)
+
+const SpinningIcon = ({ icon }) => {
+    const [speed, setSpeed] = useState(3);
+    return (
+        <FontAwesomeIcon 
+            icon = {icon}
+            size = "6x" 
+            style = {{animation: `spin ${speed}s linear infinite`}}
+        />
+    )
+}
+
+export const element = (icon, text) => (
     <div 
     className = "warn"
     style = {{
@@ -28,27 +46,17 @@ const element = (icon, text) => (
 </div>
 )
 export const Loading = () => {
-
-        const [speed, setSpeed] = useState(3);
-        
-        const icon = <FontAwesomeIcon 
-                        icon = {faSpinner}
-                        size = "6x" 
-                        style = {{animation: `spin ${speed}s linear infinite`}}
-                    />
-
         const text = "로딩중..."
 
-        return element(icon, text);
+        return element(<SpinningIcon icon = {faSpinner} />, text);
 }
 
-export const Error = ({ error }) => {
-
-    const icon = <FontAwesomeIcon 
-                    icon = {faExclamationCircle}
-                    size = "6x" />
+export const Error = ({ error }) => {    
     const text = "에러 발생 : " + error;
-    return element(icon, text);
+    if(error.includes("404")) text = "404 리소스를 찾지 못했습니다.";
+    if(error.includes("500")) text = "500 서버 오류입니다. 빠르게 조치하겠습니다!";
+
+    return element(<Icon icon = {faExclamationCircle} />, text);
 }
 
 
@@ -56,6 +64,10 @@ export const Error = ({ error }) => {
 export const NotFound = () => {
 
     return element(null , '결과가 없습니다. 😓');
+}
+
+export const NotFound404 = () => {
+    return element(<Icon icon = {faExclamationCircle} />, "404 리소스를 찾을 수 없습니다.")
 }
 
 export const renderAfterApiCall = (items, error, loading, element) => {

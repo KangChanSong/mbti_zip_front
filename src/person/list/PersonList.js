@@ -29,7 +29,6 @@ const PersonList = ({ location }) => {
                 dir = {dir}
                 keyword = {keyword}
                 />
-                
             <ItemCardGroup type = 'person' itemList = {persons} />
             <ListFoot 
                 setPage = {setPage}

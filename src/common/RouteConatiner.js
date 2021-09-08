@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Main from '../main/Main';
 
@@ -13,10 +13,12 @@ import JobList from '../job/list/JobList';
 import JobGet from '../job/get/JobGet';
 
 import Register from './register/Register';
+import { NotFound404 } from '../modules/renderHelper';
 
 const RouteContainer = () => {
     return (
         <>
+        <Switch>
             <Route exact path = "/" component = {Main}/>
             <Route path = "/mbti/list" component = {MbtiList}/>
             <Route path = "/mbti/get/:name" component = {MbtiGet} />
@@ -28,6 +30,8 @@ const RouteContainer = () => {
             <Route path = "/job/get/:jobId" component = {JobGet} />
             
             <Route path = "/:type/register" component = {Register} />
+            <Route component = {NotFound404} />
+        </Switch>
         </>
     )
 }
