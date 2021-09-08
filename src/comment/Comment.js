@@ -4,6 +4,7 @@ import './Comment.css';
 import CommentBottom from './CommentBottom';
 import { fetchItems } from '../modules/apiCaller';
 import { renderAfterApiCall } from '../modules/renderHelper';
+import SortSelect from '../common/select/SortSelect';
 
 const Comment = ({type , id}) => {
     
@@ -12,7 +13,7 @@ const Comment = ({type , id}) => {
     const [error,  setError] = useState(null);
     
     const [sort, setSort] = useState("updateDate");
-    const [dir, serDir] = useState("desc");
+    const [dir, setDir] = useState("desc");
     const [page, setPage] = useState(1);
     const size = 10;
     
@@ -20,11 +21,24 @@ const Comment = ({type , id}) => {
         const url = "/comment/api/v1/" + type + "/" + id + "/list?page=" + page 
                                 + "&size=" +size + "&sort=" + sort + "&dir=" + dir;
         fetchItems(url, 'comment', setComments, setError, setLoading);
-    }, [page]);
+    }, [page, sort, dir]);
+
+    const handleChange = ({ sort , dir}) => {
+        setSort(sort);
+        setDir(dir);
+    }
 
     const element = (
         <div className = "comment">
-            <h2>토론</h2>
+            <div className = "comment-head">
+                <h2>토론</h2>
+                <SortSelect
+                    type = 'comment'
+                    sort = {sort}
+                    dir = {dir}
+                    handleChange = {handleChange}
+                />
+            </div>
 
             <CommentList comments = {comments}/>
             <CommentBottom 

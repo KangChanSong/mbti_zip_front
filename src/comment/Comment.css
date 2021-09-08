@@ -6,7 +6,10 @@
 
 }
 
-.comment h2{
+.comment-head{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
     margin: 3%;
 }
 
