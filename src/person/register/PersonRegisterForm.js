@@ -4,13 +4,21 @@ import Button from 'react-bootstrap/Button';
 import ImageForm from '../../common/register/ImageForm';
 import CategoryList from '../../category/list/CategoryList';
 import ExistsWarning from '../../common/register/ExistsWarning';
+import TextTooLongWarning from '../../common/register/TextTooLongWarning';
     
 const PersonRegisterForm = ( {form, setForm , handleChange, handleSubmit} ) => 
 {      
     const [name, setName] = useState(null);
+    const [desc , setDesc] = useState(null);
 
     const onBlur = e => {
+        const name = e.target.value;
         setName(e.target.value);
+    }
+
+    const handleDescChange = e => {
+        const desc = e.target.value;
+        setDesc(desc);
     }
 
     return (
@@ -28,6 +36,7 @@ const PersonRegisterForm = ( {form, setForm , handleChange, handleSubmit} ) =>
                     url = {"/person/api/v1/exists/" + name}
                     form = {form}
                     setForm = {setForm} />
+                <TextTooLongWarning name = {name}/>
                 </Form.Group>
                 <Form.Group className = "mb-3">
                     <Form.Control
@@ -52,8 +61,10 @@ const PersonRegisterForm = ( {form, setForm , handleChange, handleSubmit} ) =>
                     <Form.Control
                     name = "description"
                     type="text"
-                    placeholder = "설명을 입력하세요." />
+                    placeholder = "설명을 입력하세요."
+                    onChange = {handleDescChange} />
                 </Form.Group>
+                <TextTooLongWarning name = {desc} />
                 <Form.Group className = "mb-3">
                     <Form.Control
                         name ="password"

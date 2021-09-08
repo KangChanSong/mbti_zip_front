@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import ImageForm from '../../common/register/ImageForm';
 import ExistsWarning from '../../common/register/ExistsWarning';
+import TextTooLongWarning from '../../common/register/TextTooLongWarning';
 
 const JobRegisterForm = ( { form , setForm , handleSubmit, handleChange } ) => {
 
@@ -28,6 +29,7 @@ const JobRegisterForm = ( { form , setForm , handleSubmit, handleChange } ) => {
                         form = {form}
                         setForm = {setForm}
                     />
+                    <TextTooLongWarning name = {name} />
                 </Form.Group>
                 <Form.Group className = "mb-3">
                     <Form.Control
