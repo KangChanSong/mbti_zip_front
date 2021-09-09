@@ -7,10 +7,10 @@ services :
 
 before_install:
   - echo "DockerFile 이미지 생성"
-  - docker build -t KangChanSong/mbti_zip_front -f Dockerfile.dev
+  - docker build -t kangchansong/mbti_zip_front -f Dockerfile.dev
 
 script:
-  - docker run -e CI=true KangChanSong/mbti_zip_front npm run test -- --coverage
+  - docker run -e CI=true kangchansong/mbti_zip_front npm run test -- --coverage
 
 after_success:
   - echo "테스트 성공"
