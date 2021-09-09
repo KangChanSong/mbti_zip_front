@@ -1,0 +1,16 @@
+sudo: required
+
+language : generic
+
+services :
+  - docker
+
+before_install:
+  - echo "DockerFile 이미지 생성"
+  - docker build -t KangChanSong/mbti_zip_front -f Dockerfile.dev
+
+script:
+  - docker run -e CI=true
+
+after_success:
+  - echo "테스트 성공"
