@@ -13,9 +13,10 @@ script:
   - docker run -e CI=true kangchansong/mbti_zip_front npm run test -- --passWithNoTests
 
 before_deploy:
-  - zip -r mbti_zip_front *
-  - mkdir -p deploy
-  - mv mbti_zip_front.zip deploy/mbti_zip_front.zip
+  - mkdir -p before-deploy
+  - cp scripts/*.sh before-deploy/
+  - cp appspec.yml before-deploy/
+  - cp b
 
 deploy:
   - provider: s3
@@ -36,8 +37,8 @@ deploy:
     bucket: mbti-zip-build
     key: mbti_zip_front.zip
     bundle-type: zip
-    application: mbti-zip
-    deployment-group: mbti-zip-group
+    application: mbti-zip-front
+    deployment-group: mbti-zip-front
     region: ap-northeast-2
     wait-until-deploy: true
 
