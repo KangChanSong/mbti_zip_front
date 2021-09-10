@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "> start-server.sh"
+
 cd /deploy/mbti_zip_front
 yarn install
 yarn build && yarn start
