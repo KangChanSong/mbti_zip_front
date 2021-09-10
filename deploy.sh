@@ -9,7 +9,7 @@ PROJECT_NAME=mbti_zip_front
 
 echo "> Build 파일 복사"
 
-cp $ZIP_REPOSITORY/zip/* $REPOSITORY/
+cp $ZIP_REPOSITORY/* $REPOSITORY/
 
 echo "> 현재 구동중인 애플리케이션 pid 확인"
 
@@ -27,6 +27,6 @@ fi
 
 echo "> 새 애플리케이션 배포"
 
-cd $ZIP_REPOSITORY/
+cd $REPOSITORY/
 
 nohup npm start &
