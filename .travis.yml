@@ -1,26 +1,22 @@
-sudo: required
 
-language : generic
+language : node_js
 
-services:
-  - docker
+node_js:
+  - "10.14"
 
 branches:
   only:
     - master 
 
 before_install:
-  - echo "start creating an image with dockerfile"
-  - docker build -t kangchansong/mbti_zip_front -f Dockerfile.dev .
-
+  - npm install -g yarn
 script:
   - docker run -e CI=true kangchansong/mbti_zip_front npm run test -- --passWithNoTests
 before_deploy:
-  - mkdir -p before-deploy
-  - cp mbti_zip_front * before-deploy/
-  - cd before-deploy && zip -r before-deploy *
-  - cd ../ && mkdir -p deploy
-  - mv before-deploy/before-deploy.zip deploy/mbti_zip.zip
+  - rm -rf node_modules
+  - zip -r mbti_zip_front *
+  - mkdir -p deploy
+  - mv mbti_zip_front.zip deploy/mbti_zip_front.zip
 
 deploy:
   - provider: s3
