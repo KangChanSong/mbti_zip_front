@@ -2,11 +2,8 @@ sudo: required
 
 language : generic
 
-services :
-  - docker
-  
 script:
-  - npm run test -- --passWithNoTests
+  - npm test --passWithNoTests
 
 before_deploy:
   - mkdir -p before-deploy
