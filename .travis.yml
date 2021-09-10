@@ -37,7 +37,7 @@ deploy:
     bucket: mbti-zip-build
     key: mbti_zip_front.zip
     bundle-type: zip
-    application: mbti-zip-front
+    application: mbti-zip
     deployment-group: mbti-zip-front
     region: ap-northeast-2
     wait-until-deploy: true
