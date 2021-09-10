@@ -2,8 +2,6 @@ sudo: required
 
 language : generic
 
-script:
-  - npm test --passWithNoTests
 
 before_deploy:
   - mkdir -p before-deploy
