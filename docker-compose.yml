@@ -2,8 +2,8 @@ version: '2'
 
 services:
   next-app:
-     image: next-app-image
+     image: mbti_zip_front-image
      volumes:
-          - /home/ubuntu/deploy/next-app:/deploy/next-app
+          - /home/ec2-user/deploy/mbti_zip_front:/deploy/mbti_zip_front
      ports:
           - "3000:3000"
