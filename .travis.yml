@@ -4,13 +4,9 @@ language : generic
 
 services :
   - docker
-
-before_install:
-  - echo "DockerFile 이미지 생성"
-  - docker build -t kangchansong/mbti_zip_front -f Dockerfile.dev .
-
+  
 script:
-  - docker run -e CI=true kangchansong/mbti_zip_front npm run test -- --passWithNoTests
+  - npm run test -- --passWithNoTests
 
 before_deploy:
   - mkdir -p before-deploy
