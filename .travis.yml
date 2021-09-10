@@ -13,7 +13,6 @@ before_install:
 script:
   - docker run -e CI=true kangchansong/mbti_zip_front npm run test -- --passWithNoTests
 before_deploy:
-  - rm -rf node_modules
   - zip -r mbti_zip_front *
   - mkdir -p deploy
   - mv mbti_zip_front.zip deploy/mbti_zip_front.zip
