@@ -11,13 +11,13 @@ branches:
 
 before_install:
   - echo "start creating an image with dockerfile"
-  - docker build -t KangChanSong/mbti_zip_front -f Dockerfile.dev .
+  - docker build -t kangchansong/mbti_zip_front -f Dockerfile.dev .
 
 script:
-  - docker run -e CI=true KangChanSong/mbti_zip_front npm run test -- --passWithNoTests
+  - docker run -e CI=true kangchansong/mbti_zip_front npm run test -- --passWithNoTests
 before_deploy:
   - mkdir -p before-deploy
-  - cp KangChanSong/mbti_zip_front/* before-deploy/
+  - cp kangchansong/mbti_zip_front/* before-deploy/
   - cd before-deploy && zip -r before-deploy *
   - cd ../ && mkdir -p deploy
   - mv before-deploy/before-deploy.zip deploy/mbti_zip.zip
