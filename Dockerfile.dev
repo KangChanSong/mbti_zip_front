@@ -1,12 +1,8 @@
-FROM node:alpine
+// Dockerfile
+FROM node:10.14
+MAINTAINER KangChanSong<thdrkdcks@naver.com>
+VOLUME /deploy/mbti_zip_front
 
-WORKDIR '/usr/src/app'
-
-COPY package.json ./
-
-RUN npm install
-
-COPY ./ ./
-
-
-CMD ["npm", "run", "start"]
+COPY ./start-server.sh /usr/local/bin
+RUN ln -s /usr/local/bin/start-server.sh /start-server.sh
+CMD ["start-server.sh"]

@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  next-app:
+     image: next-app-image
+     volumes:
+          - /home/ubuntu/deploy/next-app:/deploy/next-app
+     ports:
+          - "3000:3000"
