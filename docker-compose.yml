@@ -1,9 +1,0 @@
-version: '2'
-
-services:
-  next-app:
-     image: mbti_zip_front-image
-     volumes:
-          - /home/ec2-user/deploy/mbti_zip_front:/deploy/mbti_zip_front
-     ports:
-          - "3000:3000"
