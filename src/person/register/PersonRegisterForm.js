@@ -33,7 +33,7 @@ const PersonRegisterForm = ( {form, setForm , handleChange, handleSubmit} ) =>
                        onBlur = {onBlur}
                         />
                 <ExistsWarning
-                    url = {"/person/api/v1/exists/" + name}
+                    url = {"/api/v1/person/exists/" + name}
                     form = {form}
                     setForm = {setForm} />
                 <TextTooLongWarning name = {name}/>

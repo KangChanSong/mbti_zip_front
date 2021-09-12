@@ -55,7 +55,7 @@ export const Error = ({ error }) => {
     let msg = error.toString();
     let text = "에러 발생 : " + msg;
     if(msg.includes("404")) text = "404 리소스를 찾지 못했습니다.";
-    if(msg.includes("500")) text = "500 서버 오류입니다. 빠르게 조치하겠습니다 !";
+    if(msg.includes("50")) text = "서버 오류입니다. 빠르게 조치하겠습니다!";
 
     return element(<Icon icon = {faExclamationCircle} />, text);
 }
