@@ -28,8 +28,8 @@ const MbtiItem = ({ name }) => {
         <Link to ={"/mbti/get/" + name } className = "itemLink">
             <Card className = 'm-3' bg = 'light' variant = 'top'>
             <Card.Body>
-                <Card.Img className = "mbti-card-image "src = "https://static.neris-assets.com/images/personality-types/avatars/infp-mediator.png"/>
-                <Card.Title>{name}</Card.Title>
+                {/* <Card.Img className = "mbti-card-image "src = "https://static.neris-assets.com/images/personality-types/avatars/infp-mediator.png"/> */}
+                <Card.Title><b>{name}</b></Card.Title>
                 <Card.Text>{mbtiText[name]}</Card.Text>
             </Card.Body>
             </Card>
