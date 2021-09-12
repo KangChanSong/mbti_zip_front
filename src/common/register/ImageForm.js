@@ -16,7 +16,7 @@ const ImageForm = ({ form ,setForm }) => {
             let formData = new FormData();
             formData.append("file", file);
 
-            const response = await axios.post("/file/api/v1/upload", formData, {
+            const response = await axios.post("/api/v1/file/upload", formData, {
                 headers : {
                     "Content-Type" : "multipart/form-data",
                 }

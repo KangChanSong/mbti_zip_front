@@ -17,7 +17,7 @@ function JobList({ location }){
     const [page, setPage] = useState(extPage);
 
     useEffect(() => {
-        const url = createListUrlWithQuery(location.search, '/job/api/v1/list');
+        const url = createListUrlWithQuery(location.search, '/api/v1/job/list');
         fetchItems(url, 'job', setJobs, setError, setLoading);
     }, [page]);
 

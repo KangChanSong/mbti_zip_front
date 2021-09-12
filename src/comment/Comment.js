@@ -18,7 +18,7 @@ const Comment = ({type , id}) => {
     const size = 10;
     
     useEffect(() => {
-        const url = "/comment/api/v1/" + type + "/" + id + "/list?page=" + page 
+        const url = "/api/v1/comment/" + type + "/" + id + "/list?page=" + page 
                                 + "&size=" +size + "&sort=" + sort + "&dir=" + dir;
         fetchItems(url, 'comment', setComments, setError, setLoading);
     }, [page, sort, dir]);

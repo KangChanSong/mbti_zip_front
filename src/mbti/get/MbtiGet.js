@@ -16,9 +16,9 @@ const MbtiGet = ({ match }) => {
     let name = match.params.name;
 
     useEffect(() => {
-        const url = "/api/v1/list?&page=1&size=8&sort=likes&dir=desc&filterBy=mbti&keyword=" + name; 
-        fetchItems("/person" + url, 'person', setPersons, setError, setLoading);
-        fetchItems("/job" + url, 'job', setJobs, setError, setLoading);
+        const url = "/list?&page=1&size=8&sort=likes&dir=desc&filterBy=mbti&keyword=" + name; 
+        fetchItems("/api/v1/person" + url, 'person', setPersons, setError, setLoading);
+        fetchItems("/api/v1/job" + url, 'job', setJobs, setError, setLoading);
     }, []);
 
     const element = (

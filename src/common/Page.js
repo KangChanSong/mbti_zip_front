@@ -50,7 +50,7 @@ const Page = ({curr, size, type, setPage}) => {
                 setError(null);
                 setLoading(null);
                 
-                const url = "/" + type + "/api/v1/count/all";
+                const url = "/api/v1/" + type + "/count/all";
                 const response = await axios.get(url);
                 setTotal(response.data['count']);
             } catch(e){

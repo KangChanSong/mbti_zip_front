@@ -58,7 +58,7 @@ export const fetchVotes = async (type , itemId, setValue) => {
 
         setValue(value);
 
-        const url = "/vote/api/v1/list/" + type + "/" + itemId;
+        const url = "/api/v1/vote/list/" + type + "/" + itemId;
         const response = await axios.get(url);
 
         const mbtiCountGetDtos = response.data['mbtiCountGetDtos'];
@@ -92,7 +92,7 @@ export const fetchVotes = async (type , itemId, setValue) => {
 export const deleteFile = async (filename) => {
     if(filename){
         try {
-            await axios.delete("/file/api/v1/delete/" + filename );
+            await axios.delete("/api/v1/file/delete/" + filename );
         } catch (e){
             console.log("파일 삭제 중 에러 : " + e);
         }

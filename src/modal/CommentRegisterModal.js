@@ -94,7 +94,7 @@ function CommentRegisterModal({ type , id, setPage, page }){
     const postToServer = async () => {
 
         try {
-            const url = "/comment/api/v1/"+ type +"/" + id + "/register";
+            const url = "/api/v1/comment/"+ type +"/" + id + "/register";
 
             setShow(false);
             const response = await axios.post(url, form);

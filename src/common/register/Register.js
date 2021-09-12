@@ -76,7 +76,7 @@ const Register = ({ match }) => {
                 return ;
             }
         }
-        const url = "/" + type +"/api/v1/register";
+        const url = "/api/v1/" + type +"/register";
         postOne(url, form, setSuccess, setError, setLoading);
     }
         

@@ -40,7 +40,7 @@ const VoteFormElement = ({ type, id, isRendered, value , setValue }) => {
     const [show, setShow] = useState(false);
 
     useEffect(() => {
-        const url = "/mbti/api/v1/list";
+        const url = "/api/v1/mbti/list";
         if(isRendered){
             fetchItems(url, 'mbti', setMbtis, setError, setLoading);
             fetchVotes(type, id, setValue);
@@ -73,7 +73,7 @@ const VoteFormElement = ({ type, id, isRendered, value , setValue }) => {
         }
 
         try{
-            const url = "/vote/api/v1/mbti/" + selectedMbti + "/" + type + "/" + id;
+            const url = "/api/v1/vote/mbti/" + selectedMbti + "/" + type + "/" + id;
             await axios.post(url);
             fetchVotes(type, id,  setValue);
             alert("투표 성공")

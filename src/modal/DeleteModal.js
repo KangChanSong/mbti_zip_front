@@ -44,7 +44,7 @@ const DeleteModal = ({ type , size, text, id }) => {
             setError(null);
             setLoading(false);
 
-            const url = "/" + type + "/api/v1/delete/" + id;
+            const url = "/api/v1/" + type + "/delete/" + id;
             const response = await axios.delete(url, { data : form });
             const isSuccess = response.data['isSuccess'];
             if(isSuccess){

@@ -47,7 +47,7 @@ const GetHead = ({item, type}) => {
             setError(null);
             setLoading(true);
 
-            const url = "/like/api/v1/get/" + type + "/" + item.id;
+            const url = "/api/v1/like/get/" + type + "/" + item.id;
             const response = await axios.get(url);
 
             const likes = response.data['likes'];
@@ -75,7 +75,7 @@ const GetHead = ({item, type}) => {
         }
 
         setAvailable(!available);
-        const url = "/like/api/v1/" + type + "/" + item.id;
+        const url = "/api/v1/like/" + type + "/" + item.id;
         await axios.post(url);
         
     }

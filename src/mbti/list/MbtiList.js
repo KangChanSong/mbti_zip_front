@@ -12,7 +12,7 @@ const MbtiList = () => {
     const[error, setError] = useState(null);
 
     useEffect(() => {
-        const url = "/mbti/api/v1/list";
+        const url = "/api/v1/mbti/list";
         fetchItems(url, 'mbti', setMbtis, setError, setLoading);
     }, []);
 

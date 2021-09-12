@@ -9,7 +9,7 @@ const CategoryList = () => {
     const [error, setError] = useState(null);
     
     useEffect( () => {
-        const url = "/category/api/v1/list";
+        const url = "/api/v1/category/list";
         fetchItems(url, 'category', setCategories, setError, setLoading);
     }, []);
 

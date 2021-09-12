@@ -10,7 +10,7 @@ import { useFetchOne } from '../../../hooks/CustomHooks';
 
 const CollapseMenu = () => {
 
-    const [data, loading, error ] = useFetchOne("/category/api/v1/list");
+    const [data, loading, error ] = useFetchOne("/api/v1/category/list");
 
     return (
         <Navbar.Collapse id ="navbarScroll" className = "d-flex justify-content-between">

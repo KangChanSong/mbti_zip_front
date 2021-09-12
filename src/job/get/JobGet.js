@@ -13,7 +13,7 @@ const JobGet = ({ match }) => {
     const [error, setError ] = useState(null);
 
     useEffect(() => {
-        const url = "/job/api/v1/get/" + jobId;
+        const url = "/api/v1/job/get/" + jobId;
         fetchOne(url, setJob, setError , setLoading);
     }, []);
 

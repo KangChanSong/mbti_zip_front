@@ -17,7 +17,7 @@ const PersonList = ({ location }) => {
     const [page, setPage] = useState(extPage);
 
     useEffect(() => {
-        const url = createListUrlWithQuery(location.search, '/person/api/v1/list');
+        const url = createListUrlWithQuery(location.search, '/api/v1/person/list');
         fetchItems(url, 'person', setPersons, setError, setLoading);
     }, [page, filterBy, keyword]);
 

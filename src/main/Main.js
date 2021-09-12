@@ -19,9 +19,9 @@ function Main (){
                 setLoading(true);
                 setError(null);
                 
-                const urlSuffix = "/api/v1/list?page=1&size=8&sort=likes&dir=desc";
-                const personResponse = await axios.get("/person" + urlSuffix );
-                const jobResponse = await axios.get("/job" + urlSuffix ); 
+                const urlSuffix = "/list?page=1&size=8&sort=likes&dir=desc";
+                const personResponse = await axios.get("/api/v1/person" + urlSuffix );
+                const jobResponse = await axios.get("/api/v1/job" + urlSuffix ); 
                 setPersons(personResponse.data['personGetDtos']);
                 setJobs(jobResponse.data['jobGetDtos']);
 

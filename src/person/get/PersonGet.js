@@ -14,7 +14,7 @@ const PersonGet = ({ match }) => {
 
     useEffect(() => {
         if(!loading && !error){
-            const url = "/person/api/v1/get/" + personId;
+            const url = "/api/v1/person/get/" + personId;
             fetchOne(url, setPerson,setError,setLoading);
         }
     }, []);

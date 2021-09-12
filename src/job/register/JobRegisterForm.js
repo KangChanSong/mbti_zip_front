@@ -25,7 +25,7 @@ const JobRegisterForm = ( { form , setForm , handleSubmit, handleChange } ) => {
                         placeholder = {"직업 이름을 입력하세요."} 
                         onBlur = {onBlur}/>
                     <ExistsWarning 
-                        url = {"/job/api/v1/exists/" + name}
+                        url = {"/api/v1/job/exists/" + name}
                         form = {form}
                         setForm = {setForm}
                     />
