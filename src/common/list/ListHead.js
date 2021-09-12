@@ -2,13 +2,15 @@ import React from 'react';
 import changeTypeToKorean from '../../common/TypeChanger';
 import './List.css';
 import SortSelect from '../select/SortSelect';
-
+import { useHistory } from 'react-router';
 
 const ListHead = ({ type, sort, dir, keyword}) => {
 
+    const history = useHistory();
+
     const handleChange = ({ sort , dir}) => {
         const url = "/" + type + "/list?page=1&size=16&sort=" + sort + "&dir=" + dir;
-        window.location.href = url; 
+        history.push(url); 
     }
     return (
         <div className = "listHead">

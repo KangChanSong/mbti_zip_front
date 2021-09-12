@@ -1,16 +1,19 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { useHistory } from 'react-router';
 
 const SuccessModal = ({ type ,suffix , show, setShow }) => {
+
+    const history = useHistory();
 
     const handleClose = () => {
         setShow(false);
         if(type === 'comment'){
-            window.location.reload();
+            history.go(0);
             return;
         }
-        window.history.back();
+        history.goBack();
     }
 
     return (

@@ -1,7 +1,10 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import { useHistory } from 'react-router';
 
 const MbtiGetTitle = ({ mbtiName, type}) => {
+
+    const history = useHistory();
 
     const types = {
         person : '인물',
@@ -10,7 +13,7 @@ const MbtiGetTitle = ({ mbtiName, type}) => {
 
     const handleClick = () => {
         const url = "/" + type + "/list?page=1&size=16&sort=createDate&dir=desc&filterBy=mbti&keyword=" + mbtiName;
-        window.location.href = url;
+        history.push(url);
     }
 
     return (
