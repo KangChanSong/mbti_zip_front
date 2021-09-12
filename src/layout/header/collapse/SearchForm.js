@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 const SearchForm = () => {
 
     const [keyword, setKeyword] = useState(null);
+    const [filterBy, setFilterBy] = useState("name");
     const [type , setType ] = useState("person");
 
     const handleKeywordChange = e => {
@@ -13,25 +15,20 @@ const SearchForm = () => {
     }
 
     const handleTypeChange = e => {
+        const type = e.target.value;
+        if(type === 'job'){
+            setFilterBy("title")
+        } else {
+            setFilterBy("name")
+        }
         setType(e.target.value);
     }
 
-    const handleClick = () => {
-        
-        let filterBy;
-        if(type === "job"){
-            filterBy = 'title'
-        } else {
-            filterBy = 'name'
-        }
-        const url = "/" + type + "/list?page=1&size=16&sort=createDate&dir=desc&filterBy=" + filterBy + "&keyword=" + keyword;
-        window.location.href = url;
-    }
 
     const handleKeyDown = e => {
         if(e.key === 'Enter'){
+            document.getElementsByClassName("search-link")[0].click();
             e.preventDefault();
-            handleClick();
         }
     }
     return (
@@ -50,13 +47,15 @@ const SearchForm = () => {
                 aria-label ="Search"
                 onChange = {handleKeywordChange}
             />
+            <Link className= "search-link" 
+            to={"/" + type + "/list?page=1&size=16&sort=createDate&dir=desc&filterBy=" + filterBy + "&keyword=" + keyword} > 
             <Button 
                 variant="outline-success" 
                 bg="info" 
-                onClick = {handleClick}
                 >
                     GO
             </Button>
+            </Link>
         </Form>
     )
 }
