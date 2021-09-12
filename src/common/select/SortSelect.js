@@ -2,6 +2,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from 'react-router-dom';
+import './SortSelect.css';
 
 const desc = "desc";
 const asc= "asc"
@@ -49,38 +50,38 @@ const ItemDropdown = ({ type }) => {
 
         return (
                 <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        <Dropdown.Toggle variant="primary" id="dropdown-basic">
                         정렬
                         </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                        <Dropdown.Item>
-                                <Link to = {getUrl(createDate, desc)}>
+                        <Dropdown.Item className = "sort-item">
+                                <Link className = "sort-link" to = {getUrl(createDate, desc)}>
                                 최근순
                                 </Link>
                         </Dropdown.Item>
-                        <Dropdown.Item>
-                                <Link to = {getUrl(createDate, asc)}>
+                        <Dropdown.Item className = "sort-item">
+                                <Link className = "sort-link" to = {getUrl(createDate, asc)}>
                                 오래된순
                                 </Link>
                         </Dropdown.Item>
-                        <Dropdown.Item>
-                                <Link to = {getUrl(likes, desc)}>
+                        <Dropdown.Item className = "sort-item">
+                                <Link className = "sort-link" to = {getUrl(likes, desc)}>
                                 좋아요 많은 순
                                 </Link>
                         </Dropdown.Item>
-                        <Dropdown.Item>
-                                <Link to = {getUrl(likes, asc)}>
+                        <Dropdown.Item className = "sort-item">
+                                <Link className = "sort-link" to = {getUrl(likes, asc)}>
                                 좋아요 적은 순
                                 </Link>
                         </Dropdown.Item>
-                        <Dropdown.Item>
-                                <Link to = {getUrl(views, desc)}>
+                        <Dropdown.Item className = "sort-item">
+                                <Link className = "sort-link" to = {getUrl(views, desc)}>
                                 조회수 많은 순
                                 </Link>
                         </Dropdown.Item>
-                        <Dropdown.Item>
-                                <Link to = {getUrl(views, asc)}>
+                        <Dropdown.Item className = "sort-item">
+                                <Link className = "sort-link" to = {getUrl(views, asc)}>
                                 조회수 적은 순
                                 </Link>
                         </Dropdown.Item>
