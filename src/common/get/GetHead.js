@@ -9,7 +9,7 @@ import { renderAfterApiCall } from '../../modules/renderHelper';
 
 const PersonHead = ({ item }) => (
     <Alert variant = "light" className = "get-alert" >
-        <img className = "get-img" src = {"/file/api/v1/get/" + item.filename} />
+        <img className = "get-img" src = {"/api/v1/file/get/" + item.filename} />
         <div className = "get-text">
             <p>작성자 : {item.writer}</p>
             <p>분류 : {item.category}</p>
@@ -19,7 +19,7 @@ const PersonHead = ({ item }) => (
 
 const JobHead = ({ item }) => (
     <Alert variant = "light" size = "lg" className = "get-alert">
-        <img className = "get-img" src = {"http://localhost:3000/file/api/v1/get/" + item.filename} />
+        <img className = "get-img" src = {"/api/v1/file/get/" + item.filename} />
         <div className = "get-text">
             <p>작성자 : {item.writer}</p>
             <p>투표 결과 : {item.mbti}</p>
