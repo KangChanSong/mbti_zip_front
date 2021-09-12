@@ -73,13 +73,20 @@ const ImageForm = ({ form ,setForm }) => {
                 {image ? image : " 이미지를 업로드하세요."}
             </span>
             <p style = {{ color : "red", fontSize: "11px" }}>
-                {error ? " 업로드에 실패했습니다. 에러 : " + error : ""}
+                {error ? <Error error = {error} /> : ""}
             </p>
             <p style = {{ color : "green", fontSize: "11px" }}>
                 {loading ?  "업로드중..." : ""}
             </p>
         </>
     );
+}
+
+const Error = ({ error }) => {
+    if(error.includes('413')){
+        return "파일 용량 초과입니다."
+    } 
+    return "업로드에 실패했습니다. 에러 : " + error;
 }
 
 export default React.memo(ImageForm);
