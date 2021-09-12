@@ -19,7 +19,7 @@ const PersonList = ({ location }) => {
     useEffect(() => {
         const url = createListUrlWithQuery(location.search, '/api/v1/person/list');
         fetchItems(url, 'person', setPersons, setError, setLoading);
-    }, [page, filterBy, keyword]);
+    }, [page, filterBy, keyword, sort ,dir]);
 
     return renderAfterApiCall(persons, error, loading, 
         <div className = "personList">

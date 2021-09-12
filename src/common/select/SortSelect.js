@@ -1,5 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
+import Dropdown from 'react-bootstrap/Dropdown';
+import { Link } from 'react-router-dom';
 
 const desc = "desc";
 const asc= "asc"
@@ -41,6 +43,53 @@ const ItemSelect = ({ onChange, sort ,dir}) => (
             </option>
     </Form.Select>)
 
+const ItemDropdown = ({ type }) => {
+
+        const getUrl = (sort, dir) => ("/" + type + "/list?page=1&size=16&sort=" + sort + "&dir=" + dir);
+
+        return (
+                <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        정렬
+                        </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                        <Dropdown.Item>
+                                <Link to = {getUrl(createDate, desc)}>
+                                최근순
+                                </Link>
+                        </Dropdown.Item>
+                        <Dropdown.Item>
+                                <Link to = {getUrl(createDate, asc)}>
+                                오래된순
+                                </Link>
+                        </Dropdown.Item>
+                        <Dropdown.Item>
+                                <Link to = {getUrl(likes, desc)}>
+                                좋아요 많은 순
+                                </Link>
+                        </Dropdown.Item>
+                        <Dropdown.Item>
+                                <Link to = {getUrl(likes, asc)}>
+                                좋아요 적은 순
+                                </Link>
+                        </Dropdown.Item>
+                        <Dropdown.Item>
+                                <Link to = {getUrl(views, desc)}>
+                                조회수 많은 순
+                                </Link>
+                        </Dropdown.Item>
+                        <Dropdown.Item>
+                                <Link to = {getUrl(views, asc)}>
+                                조회수 적은 순
+                                </Link>
+                        </Dropdown.Item>
+                
+                </Dropdown.Menu>
+                </Dropdown>
+        )
+}
+
 const SortSelect = ({type, sort , dir, handleChange}) => {
 
     // handleChange 에 선택된 sort, dir 전달
@@ -55,14 +104,12 @@ const SortSelect = ({type, sort , dir, handleChange}) => {
             <>
             {type === 'comment' ?
                     <CommentSelect
-                            onChange = {onChange}
-                            sort = {sort}
-                            dir = {dir}
+                        onChange = {onChange}
+                        sort = {sort}
+                        dir = {dir}
                     /> :
-                    <ItemSelect 
-                            onChange = {onChange}
-                            sort = {sort}
-                            dir = {dir}
+                    <ItemDropdown 
+                        type = {type}
                     />}
             </>
     )

@@ -19,7 +19,7 @@ function JobList({ location }){
     useEffect(() => {
         const url = createListUrlWithQuery(location.search, '/api/v1/job/list');
         fetchItems(url, 'job', setJobs, setError, setLoading);
-    }, [page]);
+    }, [page,sort ,dir ,filterBy, keyword]);
 
     const element = (
         <div className = "jobList" >
