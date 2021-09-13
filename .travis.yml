@@ -13,7 +13,7 @@ cache:
     - node_modules
 
 before_install:
-  - npm test --passWithNoTests
+  - npm test -passWithNoTests
   - npm run build
 
 before_deploy:
