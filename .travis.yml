@@ -11,6 +11,7 @@ before_install:
   - npm install -g yarn
 
 before_deploy:
+  - rm -r node_modules
   - zip -r mbti_zip_front/build *
   - mkdir -p deploy
   - mv mbti_zip_front/build.zip deploy/build.zip
