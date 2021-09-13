@@ -3,14 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from 'react-router-dom';
 import './SortSelect.css';
-
-const desc = "desc";
-const asc= "asc"
-const createDate = "createDate";
-const updateDate = "updateDate";
-const likes = "likes";
-const views = "views";
-
+import { getSortText, createDate, updateDate, likes, views, desc ,asc } from '../../modules/sortingHelper';
 const CommentSelect = ({ onChange, sort, dir}) => (
     <Form.Select size='sm' onChange = {onChange} defaultValue = {sort + "#" + dir}>
             <option value = {updateDate + "#" +  desc}>
@@ -44,14 +37,14 @@ const ItemSelect = ({ onChange, sort ,dir}) => (
             </option>
     </Form.Select>)
 
-const ItemDropdown = ({ type }) => {
+const ItemDropdown = ({ type, sort ,dir }) => {
 
-        const getUrl = (sort, dir) => ("/" + type + "/list?page=1&size=16&sort=" + sort + "&dir=" + dir);
+        const getUrl = (s, d) => ("/" + type + "/list?page=1&size=16&sort=" + s + "&dir=" + d);
 
         return (
                 <Dropdown>
                         <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                        정렬
+                        {getSortText(sort, dir)}
                         </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -111,6 +104,8 @@ const SortSelect = ({type, sort , dir, handleChange}) => {
                     /> :
                     <ItemDropdown 
                         type = {type}
+                        sort = {sort}
+                        dir = {dir}
                     />}
             </>
     )
