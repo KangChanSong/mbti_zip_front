@@ -7,10 +7,10 @@ branches:
     - master 
 
 before_install:
+  - sudo rm -r node_modules
   - npm install -g yarn
 
 before_deploy:
-  - sudo rm -r node_modules
   - zip -r mbti_zip_front/build *
   - mkdir -p deploy
   - mv mbti_zip_front/build.zip deploy/build.zip
