@@ -13,6 +13,7 @@ const PersonHead = ({ item }) => (
         <div className = "get-text">
             <p>작성자 : {item.writer}</p>
             <p>분류 : {item.category}</p>
+            <p>설명 : {item.description}</p>
             <p>투표 결과 : {item.mbti}</p>
         </div>
     </Alert> );
