@@ -1,19 +1,25 @@
 
 language : node_js
 
-node_js: 12
+node_js:
+  - 'stable'
+
 branches:
   only:
     - master 
 
-before_install:
-  - sudo rm -r node_modules
-  - npm install -g yarn
+cache:
+  directories:
+    - node_modules
+
+script:
+  - npm test --passWithNoTests
+  - npm run build
 
 before_deploy:
-  - zip -r mbti_zip_front/build *
   - mkdir -p deploy
-  - mv mbti_zip_front/build.zip deploy/build.zip
+  - zip -r build *
+  - mv build/build.zip deploy/build.zip
 
 deploy:
   - provider: s3
