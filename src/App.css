@@ -8,11 +8,11 @@
 }
 
 * {
-    font-family: 'KOTRA_BOLD';
+    font-family: 'SBAggroM';
 }
 @font-face {
-    font-family: 'KOTRA_BOLD';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-family: 'SBAggroM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }

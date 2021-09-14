@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import CollapseMenu from './collapse/CollapseMenu';
 import { Link } from 'react-router-dom';
+import './Header.css';
 
 const Header = () => {
 
@@ -18,9 +19,9 @@ const Header = () => {
                 <Navbar.Brand>
                 <img
                     src="/logo.png"
-                    width="65"
-                    height='65'
-                    className="d-inline-block align-top"
+                    width="60"
+                    height='60'
+                    className="d-inline-block align-top nav-logo"
                     alt="React Bootstrap logo"
                 />
                 </Navbar.Brand>
