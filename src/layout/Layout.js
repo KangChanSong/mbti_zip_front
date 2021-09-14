@@ -4,7 +4,6 @@ import Footer from './footer/Footer';
 import RouteContainer from '../common/RouteConatiner';
 
 const Layout = () => {
-
     return (
         <div className="layout">
             <Header/>

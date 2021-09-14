@@ -10,7 +10,7 @@ const TrendingHead = ({ type }) => {
         <div className = 'trending-head'>
             <h3>Hot 🔥 | <span style = {{ fontWeight : 'lighter'}}>{types[type]}</span></h3>
             <Link to ={"/" + type + "/list?page=1&size=16&sort=likes&dir=desc"}>
-                <Button variant = "primary" size= "sm">
+                <Button variant = "success" size= "sm">
                     더보기
                 </Button>
             </Link>
