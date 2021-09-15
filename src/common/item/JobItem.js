@@ -14,7 +14,7 @@ const JobItem = ({ job }) => {
             <img className = "item-card-image" src = {"/api/v1/file/get/" + job.filename} />
                 <Card.Title>{job.title}</Card.Title>
                 <Card.Text >{job.mbti}</Card.Text>
-                <Card.Text>❤ : {job.likes} | 👁‍🗨 : {job.views}</Card.Text>
+                <Card.Text>❤ : {job.likes} | 👁️ : {job.views}</Card.Text>
             </Card.Body>
             </Card>
         </Link>    
