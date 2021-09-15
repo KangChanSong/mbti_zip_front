@@ -18,6 +18,10 @@
     transition: background-color 0.1s linear;
 }
 
+#root .page-link{
+    background-color: #d1e7dd;
+}
+
 * {
     font-family: 'SBAggroM';
 }

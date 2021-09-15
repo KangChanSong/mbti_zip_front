@@ -52,6 +52,7 @@ const SearchForm = () => {
             <Button 
                 variant="outline-success" 
                 bg="info" 
+                style = {{ border: "1px solid black"}}
                 >
                     GO
             </Button>

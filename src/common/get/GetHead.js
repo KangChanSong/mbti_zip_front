@@ -9,7 +9,9 @@ import { renderAfterApiCall } from '../../modules/renderHelper';
 
 const PersonHead = ({ item }) => (
     <Alert variant = "light" className = "get-alert" >
-        <img className = "get-img" src = {"/api/v1/file/get/" + item.filename} />
+        <div className = "get-img">
+        <img src = {"/api/v1/file/get/" + item.filename} />
+        </div>
         <div className = "get-text">
             <p>작성자 : {item.writer}</p>
             <p>분류 : {item.category}</p>
