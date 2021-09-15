@@ -7,6 +7,17 @@
     color : black;
 }
 
+#root button {
+    background-color: #d1e7dd;
+    transition: background-color 0.1s linear;
+    border: none;
+}
+
+#root button:hover {
+    background-color: #e7f5ef;
+    transition: background-color 0.1s linear;
+}
+
 * {
     font-family: 'SBAggroM';
 }

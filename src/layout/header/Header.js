@@ -9,9 +9,8 @@ const Header = () => {
     return (
         <Navbar 
         style = {{
-            backgroundColor : '#198754',
+            backgroundColor : '#d1e7dd',
         }}
-        variant='success' 
         lg='light' 
         expand = "lg" 
         className ="p-3" >

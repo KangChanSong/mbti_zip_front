@@ -7,7 +7,7 @@ class Footer extends React.Component{
 
     render(){
         return (
-            <Alert variant="success" className ="d-flex justify-content-center"
+            <Alert variant="secondary" className ="d-flex justify-content-center"
                 style = {{ margin : '0'}}>
                 <p className = "p-3" style = {{fontSize : '12px',  color : "black"}}>© KangChanSong</p> 
                 <Alert.Link className = "p-3" href="https://github.com/KangChanSong">
