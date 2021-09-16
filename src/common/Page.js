@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { createQueryWithCondition } from '../modules/urlGenerator';
+import { useLocation } from 'react-router';
 import './Page.css';
 
 const makePage = (curr, size, total) => {
@@ -39,10 +40,27 @@ const PageButton = ({ number, size, curr, setPage }) => {
 
 
 const Page = ({curr, size, type, setPage}) => {
-
+    
     const [total, setTotal] = useState(0);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const location = useLocation();
+
+    const getKeywordQuery = () => {
+        
+        const searchParams = new URLSearchParams(location.search);
+
+        const filterBy = searchParams.get("filterBy");
+        const keyword = searchParams.get("keyword")
+
+        if(!filterBy || !keyword){
+            return "";
+        } 
+
+        return "?filterBy=" + filterBy + "&keyword=" + keyword;
+
+    }
 
     useEffect(() => {
         const fetch = async () => {
@@ -50,8 +68,10 @@ const Page = ({curr, size, type, setPage}) => {
                 setError(null);
                 setLoading(null);
                 
-                const url = "/api/v1/" + type + "/count/all";
+                console.log("Page.js params => " + getKeywordQuery());
+                const url = "/api/v1/" + type + "/count/all" + getKeywordQuery();
                 const response = await axios.get(url);
+
                 setTotal(response.data['count']);
             } catch(e){
                 setError(e);
@@ -85,7 +105,7 @@ const Page = ({curr, size, type, setPage}) => {
 
     if(error){
         return (<Pagination>
-            <p>페이지 불러오는 중 에러 발생 : {error}</p>
+            <p>페이지 버튼 불러오는 중 에러 발생 : {error}</p>
         </Pagination>);
     }
     if(loading){

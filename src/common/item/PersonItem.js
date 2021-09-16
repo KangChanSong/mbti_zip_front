@@ -13,7 +13,7 @@ const PersonItem = ({ person }) => {
                     <Card.Title>{person.name}</Card.Title>
                     <Card.Text></Card.Text>
                     <Card.Text>{person.category} | {person.mbti} </Card.Text>
-                    <Card.Text>❤ : {person.likes} | 👁‍🗨 : {person.views}</Card.Text>
+                    <Card.Text>❤ : {person.likes} | 👁️ : {person.views}</Card.Text>
                 </Card.Body>
             </Card>
         </Link>

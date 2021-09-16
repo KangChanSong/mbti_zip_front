@@ -10,8 +10,7 @@ const SuccessModal = ({ type ,suffix , show, setShow }) => {
     const handleClose = () => {
         setShow(false);
         if(type === 'comment'){
-            history.go(0);
-            return;
+            window.location.reload();
         }
         history.goBack();
     }
