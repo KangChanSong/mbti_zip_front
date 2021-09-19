@@ -91,7 +91,11 @@ const VoteFormElement = ({ type, id, isRendered, value , setValue }) => {
             <Form.Select 
                 className = "vote-form-select"
                 onChange = {handleChange}>
-                <option>MBTI를 고르세요.</option>
+                    {
+                        type === 'person' ? 
+                        <option>MBTI를 고르세요.</option> : 
+                        <option>본인의 MBTI를 고르세요.</option>
+                    }
                 {createMbtiOptions(mbtis)}
             </Form.Select>
             { value.available ? 
