@@ -22,7 +22,7 @@ before_install:
 
 before_deploy:
   - mkdir -p deploy
-  - zip -r build *
+  - zip -r build.zip build/*
   - mv build.zip deploy/build.zip
 
 deploy:
