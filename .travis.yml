@@ -21,6 +21,7 @@ before_install:
   - yarn build
 
 before_deploy:
+  - ls -l
   - mv appspec.yml build/appspec.yml
   - mv deploy.sh build/deploy.sh
   - mkdir -p deploy
