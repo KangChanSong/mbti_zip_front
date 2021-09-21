@@ -24,7 +24,7 @@ before_deploy:
   - mkdir -p deploy
   - zip -r build *
   - echo "============================ BUILDED ========================="
-  - ls ll
+  - ls
   - echo "================================================================"
   - mv build/build.zip deploy/build.zip
 
