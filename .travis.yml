@@ -22,8 +22,8 @@ before_install:
 
 before_deploy:
   - mkdir -p deploy
-  - mv appspec.yml build/appspec.yml
-  - mv deploy.sh build/deploy.sh
+  - mv mbti_zip_front/appspec.yml build/appspec.yml
+  - mv mbti_zip_front/deploy.sh build/deploy.sh
   - zip -r build.zip build/*
   - mv build.zip deploy/build.zip
 
