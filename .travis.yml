@@ -21,9 +21,9 @@ before_install:
   - yarn build
 
 before_deploy:
+  - mv appspec.yml build/appspec.yml
+  - mv deploy.sh build/deploy.sh
   - mkdir -p deploy
-  - mv mbti_zip_front/appspec.yml build/appspec.yml
-  - mv mbti_zip_front/deploy.sh build/deploy.sh
   - zip -r build.zip build/*
   - mv build.zip deploy/build.zip
 
