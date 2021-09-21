@@ -20,6 +20,9 @@ before_install:
 before_deploy:
   - mkdir -p deploy
   - zip -r build *
+  - echo "============================ BUILDED ========================="
+  - ll
+  - echo "================================================================"
   - mv build/build.zip deploy/build.zip
 
 deploy:
