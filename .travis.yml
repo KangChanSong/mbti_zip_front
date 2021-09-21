@@ -15,7 +15,7 @@ cache:
     - node_modules
 
 before_install:
-  - npm run build
+  - yarn build
 
 before_deploy:
   - mkdir -p deploy
